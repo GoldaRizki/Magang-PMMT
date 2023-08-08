@@ -12,7 +12,7 @@ class HomeController extends Controller
 
     public function index(){
 
-        return view('coba');
+        return view('home', ['halaman' => 'Home']);
       
     }
 
