@@ -7,7 +7,7 @@
 
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/custom-design.css" rel="stylesheet">
     @php
     if (!isset($halaman)) {
         $halaman = '';
