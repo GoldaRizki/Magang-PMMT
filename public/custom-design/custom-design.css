@@ -1,0 +1,33 @@
+.tabel-tampil-jadwal td{
+    position: relative;
+    /*border: 1px #1a1a1a; */ 
+    text-align: center;
+    min-width: 40px;
+}
+
+.tabel-tampil-jadwal thead th, 
+.tabel-tampil-jadwal thead td{
+   /* border-collapse: collapse; */
+   font-size: small;
+   position: sticky;
+   top: 0;
+   background-color: white;
+   z-index: 1;
+}
+.tabel-tampil-jadwal thead th:first-child,
+.tabel-tampil-jadwal td:first-child{
+    position: sticky;
+    left: 0;
+    color: #212529;
+    z-index: 2;
+    min-width: 300px;
+    font-size: small;
+    text-align: left;
+    background-color: #ffbf34;
+}
+
+.tabel-tampil-jadwal thead th:first-child{
+    z-index: 4;
+}
+
+ 
