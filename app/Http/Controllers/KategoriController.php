@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AlatController extends Controller
+class KategoriController extends Controller
 {
     //
 }

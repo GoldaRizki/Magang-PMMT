@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Pekerjaan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJadwalsTable extends Migration
+class CreateMesinsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +14,11 @@ class CreateJadwalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jadwals', function (Blueprint $table) {
+        Schema::create('mesins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pekerjaan_id');
-            $table->dateTime('tanggal_rencana');
-            $table->dateTime('tanggal_realisasi');
+            $table->string('nama_mesin');
+            $table->foreignId('kategori_id');
+            $table->text('spesifikasi')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,8 @@ class CreateJadwalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jadwals');
+        Schema::dropIfExists('mesins');
     }
+
+   
 }

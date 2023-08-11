@@ -18,5 +18,6 @@ use App\Http\Controllers\JadwalController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/test', [HomeController::class, 'test']);
 
 Route::get('/jadwal', [JadwalController::class, 'index']);

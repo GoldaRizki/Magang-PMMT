@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,13 @@ class HomeController extends Controller
 
         return view('home', ['halaman' => 'Home']);
       
+    }
+
+
+    public function test(){
+        
+        return Pekerjaan::first()->mesin->nama_mesin;
+
     }
 
 
