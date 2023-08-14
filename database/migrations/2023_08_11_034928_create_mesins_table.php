@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Pekerjaan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +19,9 @@ class CreateMesinsTable extends Migration
             $table->foreignId('kategori_id');
             $table->text('spesifikasi')->nullable();
             $table->timestamps();
+
+
+           
         });
     }
 

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class UpdateTahunan extends Model
 {
     use HasFactory;
+
+    
 }

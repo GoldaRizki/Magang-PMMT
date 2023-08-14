@@ -14,4 +14,12 @@ class Pekerjaan extends Model
     public function mesin(){
         return $this->belongsTo(Mesin::class);
     }
+
+    public function jadwal() {
+        return $this->hasMany(Jadwal::class);
+    }
+
+    public function barang() {
+        return $this->belongsToMany(Barang::class);
+    }
 }

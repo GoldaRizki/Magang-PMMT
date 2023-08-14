@@ -10,8 +10,11 @@ class Mesin extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    /*
-    public function jadwal() {
+    public function kategori() {
+        return $this->belongsTo(Kategori::class);
+    }
+    
+    public function pekerjaan() {
         return $this->hasMany(Pekerjaan::class);
-    } */
+    } 
 }

@@ -18,7 +18,7 @@
   </head>
   <body>
     <header class="navbar navbar-expand-sm navbar-dark bg-primary container-fluid sticky-top">
-            <a class="navbar-brand" style="outline: none;" href="/"><div class="display-6 fw-normal d-inline mx-3">PMMT<p class="d-inline header-5 fw-light">eknik</p></div></a>
+            <a class="navbar-brand" style="outline: none;" href="/"><div class="h3 fw-normal d-inline mx-3">PMMT<p class="d-inline header-5 fw-light">eknik</p></div></a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>

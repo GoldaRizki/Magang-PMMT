@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     use HasFactory;
+
+    public function mesin(){
+        return $this->hasMany(Mesin::class);
+    }
+
 }
