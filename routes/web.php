@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
-
+use App\Http\Controllers\MesinController;
+use App\Models\Mesin;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ use App\Http\Controllers\JadwalController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/jadwal', [JadwalController::class, 'index']);
+Route::get('/mesin', [MesinController::class, 'index']);
+
+
+
 Route::get('/test', [HomeController::class, 'test']);
 
-Route::get('/jadwal', [JadwalController::class, 'index']);

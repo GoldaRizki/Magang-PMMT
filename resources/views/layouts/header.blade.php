@@ -8,6 +8,11 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="custom-design/custom-design.css" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="\DataTables\DataTables-1.13.6\css\jquery.dataTables.css">
+<link rel="stylesheet" href="\DataTables\DataTables-1.13.6\Responsive-2.5.0\css\responsive.dataTables.min.css">
+  
     @php
     if (!isset($halaman)) {
         $halaman = '';
@@ -33,7 +38,7 @@
                   <a class="nav-link @if($halaman == 'Jadwal') active @endif" href="/jadwal">Jadwal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if($halaman == 'Alat') active @endif" href="#">Alat</a>
+                    <a class="nav-link @if($halaman == 'Mesin') active @endif" href="/mesin">Mesin</a>
                   </li>
                 <li class="nav-item">
                   <a class="nav-link @if($halaman == 'Spareparts') active @endif" href="#">Spareparts</a>
@@ -50,7 +55,36 @@
 
 
 
-
         <script src="js/bootstrap.min.js"></script>
-</body>
+
+        <script src="/DataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+        <script src="/DataTables/DataTables-1.13.6/js/jquery.dataTables.js"></script>
+        <script src="\DataTables\DataTables-1.13.6\Responsive-2.5.0\js\dataTables.responsive.min.js"></script>
+        <script>
+          $(document).ready(function() {
+            $('#tabelTemplate').DataTable({
+              columnDefs: [
+        {
+          className: 'dtr-control',
+            target: 0,
+            orderable: false,
+
+        }
+    ],
+    order: [1, 'asc'],
+    responsive: {
+        details: {
+            type: 'column',
+            target: 'tr'
+        }
+    }
+    
+            });
+          });
+
+        </script>
+
+
+
+    </body>
 </html>
