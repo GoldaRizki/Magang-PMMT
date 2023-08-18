@@ -10,6 +10,9 @@ class Mesin extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
+    
+    
+    
     public function kategori() {
         return $this->belongsTo(Kategori::class);
     }
@@ -17,4 +20,5 @@ class Mesin extends Model
     public function pekerjaan() {
         return $this->hasMany(Pekerjaan::class);
     } 
+
 }

@@ -12,6 +12,7 @@ class Barang extends Model
     protected $guarded =['id'];
 
 
+    
 
     public function pekerjaan() {
         return $this->belongsToMany(Pekerjaan::class);

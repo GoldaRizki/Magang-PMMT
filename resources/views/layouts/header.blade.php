@@ -64,20 +64,18 @@
           $(document).ready(function() {
             $('#tabelTemplate').DataTable({
               columnDefs: [
+      
         {
-          className: 'dtr-control',
-            target: 0,
-            orderable: false,
-
+          responsivePriority: 1,
+          target: 1
+        },
+        {
+          responsivePriority: 10001,
+          target: 0
         }
     ],
-    order: [1, 'asc'],
-    responsive: {
-        details: {
-            type: 'column',
-            target: 'tr'
-        }
-    }
+    
+    responsive: true
     
             });
           });
