@@ -20,7 +20,7 @@ class HomeController extends Controller
 
     public function test(){
         
-        return Pekerjaan::first()->mesin->nama_mesin;
+        return view('test');
 
     }
 

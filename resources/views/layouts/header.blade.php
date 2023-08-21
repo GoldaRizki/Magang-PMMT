@@ -66,12 +66,13 @@
               columnDefs: [
       
         {
-          responsivePriority: 1,
+          class:'all',
           target: 1
         },
         {
-          responsivePriority: 10001,
-          target: 0
+          responsivePriority:11005,
+          class:'min-tablet-l',
+          target:-1
         }
     ],
     

@@ -30,6 +30,11 @@
     z-index: 4;
 }
 
+/*
 .dataTables_filter{
     margin-bottom: 30px;
+}
+*/
+ .wrap-column {
+white-space: normal;
 }
