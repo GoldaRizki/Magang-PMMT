@@ -20,8 +20,11 @@ use App\Models\Mesin;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/jadwal', [JadwalController::class, 'index']);
-Route::get('/mesin', [MesinController::class, 'index']);
 
+
+Route::get('/mesin', [MesinController::class, 'index']);
+Route::get('/mesin/create', [MesinController::class, 'create']);
+Route::post('/mesin/create', [MesinController::class, 'tambah']);
 
 
 Route::get('/test', [HomeController::class, 'test']);
