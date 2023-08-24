@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jadwal extends Model
+class Ruang extends Model
 {
     use HasFactory;
 
-    public function maintenance() {
-        return $this->belongsTo(Maintenance::class);
+
+    public function mesin(){
+        return $this->hasMany(Mesin::class);
     }
-    
 }

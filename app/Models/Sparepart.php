@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Barang extends Model
+class Sparepart extends Model
 {
     use HasFactory;
 
     protected $guarded =['id'];
-    
+
 
     
-    public function pekerjaan() {
-        return $this->belongsToMany(Pekerjaan::class);
+
+    public function maintenance() {
+        return $this->belongsToMany(Maintenance::class);
     }
     
 }

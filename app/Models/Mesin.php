@@ -21,4 +21,8 @@ class Mesin extends Model
         return $this->hasMany(Pekerjaan::class);
     } 
 
+    public function ruang(){
+        return $this->belongsTo(Ruang::class);
+    }
+
 }
