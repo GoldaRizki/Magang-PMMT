@@ -1,7 +1,7 @@
 @extends('layouts/header')
 
 
-@section('isi')
+@section('konten')
 
 <div class="container-lg mt-5">
 
@@ -20,7 +20,7 @@
         
 
         <div class="input-group mb-3">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">KATEGORI</button>
+            <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">KATEGORI</button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">+ Tambah Kategori</a></li>
               <li><hr class="dropdown-divider"></li>

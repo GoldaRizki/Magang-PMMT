@@ -1,9 +1,5 @@
 @extends('layouts.header')
 
-
-
-@section('isi')
-    <h1>Ini tahun {{now()->year}}</h1>
-
-
+@section('konten')
+    <h1>MAKAN BANG</h1>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.header')
 
-@section('isi')
+@section('konten')
     
     <div class="container my-3">
 
