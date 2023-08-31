@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
             'bagian' => 'B'
         ]);
 
+
+        
         Mesin::create([
             'nama_mesin' => 'Mesin Genset Supra',
             'kategori_id' => 1,

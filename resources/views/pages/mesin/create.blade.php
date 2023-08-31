@@ -32,8 +32,22 @@
             <input type="text" class="form-control" aria-label="Kategori" id="form_kategori" readonly disabled>
         </div>
 
+        <input type="hidden" id="kategori" name="kategori_id">
+
+        <div class="input-group mb-3">
+            <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">RUANG</button>
+            <ul class="dropdown-menu"> 
+              <li><a class="dropdown-item" href="#">+ Tambah Ruang</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" onclick="setRuang(1,'Produksi')">Produksi</a></li>
+              <li><a class="dropdown-item" onclick="setRuang(2,'Administrasi')">Administrasi</a></li>
+              <li><a class="dropdown-item" onclick="setRuang(3,'Kamar Mandi')">Kamar Mandi</a></li>
+             
+            </ul>
+            <input type="text" class="form-control" aria-label="Ruang" id="form_ruang" readonly disabled>
+        </div>
         
-        <input type="hidden" id="kategori" name="kategori">
+        <input type="hidden" id="ruang" name="ruang_id">
           
           
         <div class="mb-3">
@@ -55,6 +69,12 @@
     function setKategori(id_kategori, nama_kategori){
         document.getElementById('kategori').value = id_kategori;
         document.getElementById('form_kategori').value = nama_kategori;
+
+    }
+
+    function setRuang(id_ruang, nama_ruang){
+        document.getElementById('ruang').value = id_ruang;
+        document.getElementById('form_ruang').value = nama_ruang;
 
     }
 </script>

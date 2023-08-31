@@ -2,12 +2,12 @@
 
 
 @section('tableTemplate')
-    <thead>
-    <tr>
+
+    <!-- iki Thead -->
         <th>Id</th>
         <th>Mesin</th>
+        <th>Ruang</th>
         <th>Kategori</th>
-       
         <th>Aksi</th>
     </tr>
     </thead>
@@ -15,9 +15,9 @@
         @foreach ($mesin as $m)
         <tr>
             <td>{{ $m->id }}</td>
-            <td>{{ $m->nama_mesin }}</td>
+            <td><a class="text-info" href="/mesin/detail/{{ $m->id }}">{{ $m->nama_mesin }}</a></td>
+            <td>{{ $m->ruang->nama_ruang }}</td>
             <td>{{ $m->kategori->nama_kategori }}</td>
-           
             <td><input type="button" class="btn btn-primary btn-sm py-0" value="Jajal tok"></td>
          </tr>
         @endforeach

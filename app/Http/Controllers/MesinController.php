@@ -13,22 +13,23 @@ class MesinController extends Controller
     $mesin = Mesin::all();
 
     //return $mesin;  
-    return view('mesin.index', ['halaman' => 'Mesin', 'mesin' => $mesin, 'link_to_create' => '/mesin/create']);
+    return view('pages.mesin.index', ['halaman' => 'Mesin', 'mesin' => $mesin, 'link_to_create' => '/mesin/create']);
     }
 
 
     public function create(){
     
         //dd("abdwjgakwd");
-        return view('mesin.create');
+        return view('pages.mesin.create');
     }
 
     public function tambah(Request $request){
     
         Mesin::create([
             'nama_mesin' => $request->nama_mesin,
-            'kategori_id' => $request->kategori,
-            'spesifikasi' => $request->spesifikasi
+            'kategori_id' => $request->kategori_id,
+            'spesifikasi' => $request->spesifikasi,
+            'ruang_id' => $request->ruang_id
         ]);
 
         return redirect()->intended('/mesin');
