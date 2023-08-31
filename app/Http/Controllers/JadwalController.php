@@ -8,7 +8,7 @@ class JadwalController extends Controller
 {
     //
     function index() {
-        return view('jadwal', ['halaman' => 'Jadwal']);
+        return view('jadwal', ['halaman' => 'Jadwal', 'link_to_create' => '/jadwal/create/']);
     }
 
 }

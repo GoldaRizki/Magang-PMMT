@@ -28,9 +28,10 @@
 
 @section('afterTable')
 
+<!--
 <div class="container text-center">
     <a href="/mesin/create"><button type="button" class="btn btn-success btn-lg">+ Tambah</button></a>
 </div>
-    
+-->    
 
 @endsection

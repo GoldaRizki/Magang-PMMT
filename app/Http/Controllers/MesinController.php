@@ -13,7 +13,7 @@ class MesinController extends Controller
     $mesin = Mesin::all();
 
     //return $mesin;  
-    return view('mesin.index', ['halaman' => 'Mesin', 'mesin' => $mesin ]);
+    return view('mesin.index', ['halaman' => 'Mesin', 'mesin' => $mesin, 'link_to_create' => '/mesin/create']);
     }
 
 
