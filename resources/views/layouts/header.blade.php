@@ -32,17 +32,16 @@ License: For each use you must have a valid license purchased only from above li
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="/assets/media/logos/favicon.ico" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
-		<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+		@yield('customCss')
 		<!--end::Page Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
-		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
+		<link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 	</head>
 	<!--end::Head-->
@@ -172,44 +171,26 @@ License: For each use you must have a valid license purchased only from above li
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Javascript-->
 		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="/assets/plugins/global/plugins.bundle.js"></script>
+		<script src="/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Vendors Javascript(used by this page)-->
-		<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+		<script src="/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 		<!--end::Page Vendors Javascript-->
 		<!--begin::Page Custom Javascript(used by this page)-->
 
+
+		<script src="/assets/js/custom/widgets.js"></script>
+		<script src="/assets/js/custom/apps/chat/chat.js"></script>
+		<script src="/assets/js/custom/modals/create-app.js"></script>
+		<script src="/assets/js/custom/modals/upgrade-plan.js"></script>
+		<script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+
 		<!-- Mengko tambahi yield ng kene gawe custom-->
 
-		<script src="assets/js/custom/widgets.js"></script>
-		<script src="assets/js/custom/apps/chat/chat.js"></script>
-		<script src="assets/js/custom/modals/create-app.js"></script>
-		<script src="assets/js/custom/modals/upgrade-plan.js"></script>
-		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		@yield('customJs')
 
-		<script>
-			
-			  $('#tabelTemplate').DataTable({
-				columnDefs: [
 		
-		  {
-			class:'all',
-			target: 1
-		  },
-		  {
-			responsivePriority:11005,
-			class:'min-tablet-l',
-			target:[-1,-2]
-		  }
-	  ],
-	  
-	  responsive: true
-	  
-			  });
-			
-  
-		  </script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

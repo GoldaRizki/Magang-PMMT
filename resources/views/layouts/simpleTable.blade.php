@@ -3,13 +3,14 @@
 @section('customCss')
     <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
     
-
 @endsection
 
 @section('konten')
     
-<div class="container my-3">
-
+<div class="container-fluid row my-3">
+    
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
         
     <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-3 gs-7 gx-1">
         <thead>
@@ -22,6 +23,10 @@
         </tbody>
     </table>
 
+    </div>
+
+    <div class="col-md-3"></div>
+
 </div>
 
 @endsection
@@ -31,19 +36,6 @@
 <script>
 			
     $('#tabelTemplate').DataTable({
-      columnDefs: [
-
-{
-  class:'all',
-  target: 1
-},
-{
-  responsivePriority:11005,
-  class:'min-tablet-l',
-  target:[-1,-2]
-}
-],
-
 responsive: true
 
     });

@@ -35,4 +35,12 @@ class MesinController extends Controller
         return redirect()->intended('/mesin');
     }
 
+
+    public function detail($id){
+
+        $mesin = Mesin::findOrFail($id);
+    
+        return view('pages.mesin.detail', ['halaman' => 'Mesin', 'mesin' => $mesin]);
+    }
+
 }
