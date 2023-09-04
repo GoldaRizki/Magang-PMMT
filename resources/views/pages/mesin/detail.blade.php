@@ -8,7 +8,7 @@
     <div class="row">
         
         <div class="col-md-6">
-            <table class="table table-row-dashed table-row-gray-400 gy-4 gx-0 fs-4">
+            <table class="table table-row-dashed table-row-gray-400 gy-4 gx-2 fs-4">
                 <tr>
                     <td><b>Id </b></td>
                     <td>{{ $mesin->id }}</td>

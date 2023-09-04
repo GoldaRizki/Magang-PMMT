@@ -2,62 +2,15 @@
 
 @section('customAddData')
 
-@error('nama_kategori')    
-<!--begin::Alert-->
-<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-    <!--begin::Icon-->
-    <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
-        <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen044.svg-->
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black"/>
-        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black"/>
-        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black"/>
-    </svg>
-    <!--end::Svg Icon-->
-    </span>
-    <!--end::Icon-->
-
-    <!--begin::Wrapper-->
-    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
-        <!--begin::Title-->
-        <h4 class="mb-2 text-light">Error</h4>
-        <!--end::Title-->
-
-        <!--begin::Content-->
-        <span>Terjadi kesalahan, mohon cek kembali isian form. Beberapa form tidak boleh dikosongi</span>
-        <br>
-        <span>Mohon dicek barangkali nilai yang anda masukkan sudah ada di dalam tabel</span>
-        <br>
-        <span>Pesan Error: "{{ $message }}"</span>
-        <!--end::Content-->
-    </div>
-    <!--end::Wrapper-->
-
-    <!--begin::Close-->
-    <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-        <span class="svg-icon svg-icon-2x svg-icon-light">
-            <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->   
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
-        <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
-        <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
-        </svg>
-    <!--end::Svg Icon-->
-        </span>
-    </button>
-    <!--end::Close-->
-</div>
-<!--end::Alert-->
-@enderror
-
-<form action="/kategori/create" method="POST" class="row g-3 justify-content-center">
+<form action="/ruang/create" method="POST" class="row g-3 justify-content-center">
 
     @csrf
-  
     <div class="col-auto">
-        <label for="inputKategori" class="visually-hidden">Kategori</label>
-        <input type="text" class="form-control" id="inputKategori" name="nama_kategori">
-       
+        <label for="inputRuang" class="visually-hidden">Ruang</label>
+        <input type="text" class="form-control" id="inputRuang" name="nama_ruang">
+        @error('nama_ruang')    
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
       </div>
       <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3">
@@ -82,7 +35,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Kategori</h5>
+                <h5 class="modal-title">Edit Ruang</h5>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -91,21 +44,20 @@
                 <!--end::Close-->
             </div>
 
-            <form action="/kategori/update" method="POST">
-            @csrf
-            @method('PUT')
+            <form action="/acwawccwa" method="GET">
+
             <div class="modal-body">
                 <table class="table table-sm table-stripped text-center">
                     <thead>
                         <tr class="fw-bold fs-6 text-gray-900 border-bottom-1 border-gray-400">
                             <th>Id</th>
-                            <th>Kategori</th>
+                            <th>Ruang</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td id='idKategori'></td>
-                            <td id='namaKategori'></td>
+                            <td id='idRuang'></td>
+                            <td id='namaRuang'></td>
                         </tr>
                     </tbody>
                 </table>
@@ -113,9 +65,8 @@
                 <div class="separator separator-dashed border-gray-600 my-11"></div>
 
                     <div class="mb-3">
-                        <input type="hidden" name="id" id="idKategori_input">
-                        <label for="kategori_form" class="form-label float-start">Kategori</label>
-                        <input type="text" class="form-control" id="kategori_form" name="nama_kategori">
+                        <label for="ruang_form" class="form-label float-start">Ruang</label>
+                        <input type="text" class="form-control" id="ruang_form" required>
                     </div>
 
 
@@ -161,7 +112,8 @@
 @section('tableHead')
 
         <th>Id</th>
-        <th>Kategori</th>
+        <th>Ruang</th>
+        <th>No Ruang</th>
         <th>Aksi</th>
 
 @endsection
@@ -169,13 +121,14 @@
      
 @section('tableBody')
 
-        @foreach ($kategori as $k)
+        @foreach ($ruang as $r)
         <tr>
-            <td>{{ $k->id }}</td>
-            <td>{{ $k->nama_kategori }}</td>
+            <td>{{ $r->id }}</td>
+            <td>{{ $r->nama_ruang }}</td>
+            <td>{{ $r->no_ruang }}</td>
             <td class="tombolAksi">
 
-                <button type="button" class="btn btn-sm btn-primary py-0" onclick="aksiEdit({{ $k->id }}, '{{ $k->nama_kategori }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+                <button type="button" class="btn btn-sm btn-primary py-0" onclick="aksiEdit({{ $r->id }}, '{{ $r->nama_ruang }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
                     Edit
                 </button>
                
@@ -184,7 +137,7 @@
              
              <form action="" method="post" style ='display:inline-block;'>
                  @method('delete')
-                 <button class="btn btn-sm btn-danger py-0" type="submit" value="{{ $k->id }}">
+                 <button class="btn btn-sm btn-danger py-0" type="submit" value="{{ $r->id }}">
                    <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen027.svg-->
                    <span class="svg-icon svg-icon-muted svg-icon-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                      <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"/>
@@ -207,11 +160,9 @@
 @section('customJs2')
 <script>
 
-    function aksiEdit(id, kategori){
-            document.getElementById('idKategori').innerHTML = id;
-            document.getElementById('idKategori_input').value = id;
-            document.getElementById('namaKategori').innerHTML = kategori;
-            
+    function aksiEdit(id, ruang){
+            document.getElementById('idRuang').innerHTML = id;
+            document.getElementById('namaRuang').innerHTML = ruang;
         }
     
 </script>

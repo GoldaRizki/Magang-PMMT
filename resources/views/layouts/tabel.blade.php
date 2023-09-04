@@ -2,7 +2,12 @@
 
 @section('customCss')
     <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
-    
+
+    <style>
+    .tombolAksi{
+    min-width: 180px;
+    }
+    </style>
 
 @endsection
 
@@ -29,7 +34,7 @@
 
 @section('customJs')
 <script>
-			
+			//makan bang
     $('#tabelTemplate').DataTable({
       columnDefs: [
 

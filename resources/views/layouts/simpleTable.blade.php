@@ -2,7 +2,11 @@
 
 @section('customCss')
     <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
-    
+    <style>
+        .tombolAksi{
+        min-width: 180px;
+        }
+    </style>
 @endsection
 
 @section('konten')
@@ -11,6 +15,10 @@
     
     <div class="col-md-3"></div>
     <div class="col-md-6">
+    
+        <div class="container text-center">
+            @yield('customAddData')
+        </div>
         
     <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-3 gs-7 gx-1">
         <thead>
@@ -34,7 +42,7 @@
 
 @section('customJs')
 <script>
-			
+
     $('#tabelTemplate').DataTable({
 responsive: true
 
@@ -43,3 +51,5 @@ responsive: true
 
 </script>
 @endsection
+
+@yield('customJs2')

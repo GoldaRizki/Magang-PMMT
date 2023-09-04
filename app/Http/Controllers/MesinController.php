@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Mesin;
+use App\Models\Ruang;
 use Illuminate\Http\Request;
 
 class MesinController extends Controller
@@ -13,24 +15,38 @@ class MesinController extends Controller
     $mesin = Mesin::all();
 
     //return $mesin;  
-    return view('pages.mesin.index', ['halaman' => 'Mesin', 'mesin' => $mesin, 'link_to_create' => '/mesin/create']);
+    return view('pages.mesin.index', ['halaman' => 'Mesin',
+     'mesin' => $mesin,
+      'link_to_create' => '/mesin/create',
+    
+    ]);
     }
 
 
     public function create(){
     
         //dd("abdwjgakwd");
-        return view('pages.mesin.create');
+        return view('pages.mesin.create',
+        [
+            'ruang' => Ruang::all(),
+            'kategori' => Kategori::all(),
+            'halaman' => 'Mesin'
+        ]
+    );
     }
 
     public function tambah(Request $request){
     
-        Mesin::create([
-            'nama_mesin' => $request->nama_mesin,
-            'kategori_id' => $request->kategori_id,
-            'spesifikasi' => $request->spesifikasi,
-            'ruang_id' => $request->ruang_id
+
+        $validData = $request->validate([
+            'nama_mesin' => 'required|max:255',
+            'kategori_id' => 'required|numeric',
+            'ruang_id' => 'required|numeric',
+            'spesifikasi' => 'nullable'
         ]);
+
+
+        Mesin::create($validData);
 
         return redirect()->intended('/mesin');
     }
