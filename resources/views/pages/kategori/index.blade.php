@@ -85,8 +85,16 @@
                 <h5 class="modal-title">Edit Kategori</h5>
 
                 <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="svg-icon svg-icon-2x"></span>
+                <div onclick="clearValue()" class="btn btn-icon btn-sm btn-active-light-danger ms-2" data-bs-dismiss="modal" aria-label="Close">
+                <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
                 </div>
                 <!--end::Close-->
             </div>
@@ -123,7 +131,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <button type="button" onclick="clearValue()" class="btn btn-secondary" data-bs-dismiss="modal">
                     <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
                     <span class="svg-icon svg-icon-muted svg-icon-3 text-nowrap">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -182,9 +190,11 @@
 
        
              
-             <form action="" method="post" style ='display:inline-block;'>
+             <form action="/kategori/destroy" method="post" style ='display:inline-block;'>
                  @method('delete')
-                 <button class="btn btn-sm btn-danger py-0" type="submit" value="{{ $k->id }}">
+                 @csrf
+                 <input type="hidden" name="id" value="{{ $k->id }}">
+                 <button class="btn btn-sm btn-danger py-0" type="submit">
                    <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen027.svg-->
                    <span class="svg-icon svg-icon-muted svg-icon-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                      <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"/>
@@ -213,6 +223,10 @@
             document.getElementById('namaKategori').innerHTML = kategori;
             
         }
+
+    function clearValue() {
+        document.getElementById('kategori_form').value = "";
+    }
     
 </script>
 @endsection

@@ -20,13 +20,13 @@
             @yield('customAddData')
         </div>
         
-    <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-3 gs-7 gx-1">
+    <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-2 gs-7 gx-1">
         <thead>
                 <tr class="fw-bolder fs-6 text-gray-800">
                     @yield('tableHead')
                 </tr>
         </thead>
-        <tbody>
+        <tbody> 
             @yield('tableBody')
         </tbody>
     </table>

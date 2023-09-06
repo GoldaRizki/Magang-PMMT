@@ -36,4 +36,15 @@ class KategoriController extends Controller
 
         return redirect('/kategori');
     }
+
+    public function destroy(Request $request){
+        $dataValid = $request->validate([
+                'id' => 'required'
+            ]);
+
+        Kategori::destroy($dataValid);
+
+        return redirect('/kategori');
+    }
+
 }

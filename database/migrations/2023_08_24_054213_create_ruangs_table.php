@@ -19,6 +19,7 @@ class CreateRuangsTable extends Migration
             $table->String('no_ruang');
             $table->Char('bagian', 1);
             $table->timestamps();
+
         });
     }
 

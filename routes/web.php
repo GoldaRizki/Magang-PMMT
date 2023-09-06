@@ -6,6 +6,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
+use App\Models\Kategori;
 use App\Models\Mesin;
 
 /*
@@ -33,12 +34,15 @@ Route::get('/mesin/detail/{id}', [MesinController::class, 'detail']);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori/create', [KategoriController::class, 'create']);
 Route::put('/kategori/update', [KategoriController::class, 'update']);
+Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
+
 
 
 
 Route::get('/ruang', [RuangController::class, 'index']);
 Route::get('/ruang/create', [RuangController::class, 'create']);
 Route::post('/ruang/create', [RuangController::class, 'tambah']);
+
 
 
 
