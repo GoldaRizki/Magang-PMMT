@@ -17,8 +17,6 @@ class CreateSparepartsTable extends Migration
             $table->unsignedInteger('id');
             $table->String('nama_sparepart');
             $table->timestamps();
-
-
             $table->primary('id');
         });
     }

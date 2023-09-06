@@ -16,17 +16,17 @@ class RuangController extends Controller
         ['ruang' => $ruang, 'halaman' => 'Ruang']);
     }
     
-    public function create(){
-        //halaman create
-
-        
-    
-    }
 
     public function tambah(Request $request){
         // nambahke
+
         $dataValid = $request->validate([
+            'nama_ruang' => 'required',
+            'no_ruang' => 'required'
         ]);
 
+        Ruang::create($dataValid);
+
+        return redirect('/ruang');
     }
 }

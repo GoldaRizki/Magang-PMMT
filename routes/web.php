@@ -40,7 +40,6 @@ Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
 
 
 Route::get('/ruang', [RuangController::class, 'index']);
-Route::get('/ruang/create', [RuangController::class, 'create']);
 Route::post('/ruang/create', [RuangController::class, 'tambah']);
 
 

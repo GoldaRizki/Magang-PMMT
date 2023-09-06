@@ -2,18 +2,10 @@
 
 @section('customAddData')
 
-<form action="/ruang/create" method="POST" class="row g-3 justify-content-center">
 
-    @csrf
-    <div class="col-auto">
-        <label for="inputRuang" class="visually-hidden">Ruang</label>
-        <input type="text" class="form-control" id="inputRuang" name="nama_ruang">
-        @error('nama_ruang')    
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-      </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">
+    
+
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_2">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -25,10 +17,70 @@
     <!--end::Svg Icon-->
             Tambahkan
         </button>
-      </div>
 
-</form>
 
+<div class="modal fade" tabindex="-1" id="kt_modal_2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Ruang</h5>
+        
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" onclick="aksiBatal()" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="svg-icon svg-icon-2x"></span>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+        
+                    <form action="/ruang/create" method="post">
+        
+                    @csrf
+                    <div class="modal-body">
+              
+                            <div class="mb-3">
+                                <label for="ruang_form" class="form-label float-start">Ruang</label>
+                                <input type="text" class="form-control ruang_form" name="nama_ruang" required>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="no_ruang_form" class="form-label float-start">No Ruang</label>
+                                <input type="text" class="form-control no_ruang_form" name="no_ruang" required>
+                            </div>
+        
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="button" onclick="aksiBatal()" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
+                            <span class="svg-icon svg-icon-muted svg-icon-3 text-nowrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+                                    <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
+                                    <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <span class="text-nowrap">Batal</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary text-nowrap">
+                            <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil025.svg-->
+                            <span class="svg-icon svg-icon-muted svg-icon-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="black"/>
+                                    <path d="M10.3629 14.0084L8.92108 12.6429C8.57518 12.3153 8.03352 12.3153 7.68761 12.6429C7.31405 12.9967 7.31405 13.5915 7.68761 13.9453L10.2254 16.3488C10.6111 16.714 11.215 16.714 11.6007 16.3488L16.3124 11.8865C16.6859 11.5327 16.6859 10.9379 16.3124 10.5841C15.9665 10.2565 15.4248 10.2565 15.0789 10.5841L11.4631 14.0084C11.1546 14.3006 10.6715 14.3006 10.3629 14.0084Z" fill="black"/>
+                                    <path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="black"/>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            Simpan Perubahan
+                        </button>
+                    </div>
+        
+                    </form>
+        
+                </div>
+            </div>
+</div>
 
 
 <div class="modal fade" tabindex="-1" id="kt_modal_1">
@@ -38,13 +90,16 @@
                 <h5 class="modal-title">Edit Ruang</h5>
 
                 <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" onclick="aksiBatal()" data-bs-dismiss="modal" aria-label="Close">
                     <span class="svg-icon svg-icon-2x"></span>
                 </div>
                 <!--end::Close-->
             </div>
 
-            <form action="/acwawccwa" method="GET">
+            <form action="/kategori/update" method="POST">
+
+                @method('put')
+                @csrf
 
             <div class="modal-body">
                 <table class="table table-sm table-stripped text-center">
@@ -52,12 +107,16 @@
                         <tr class="fw-bold fs-6 text-gray-900 border-bottom-1 border-gray-400">
                             <th>Id</th>
                             <th>Ruang</th>
+                            <th>No Ruang</th>
+                            <th>Bagian</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td id='idRuang'></td>
                             <td id='namaRuang'></td>
+                            <td id='noRuang'></td>
+                            <td id='bRuang'></td>
                         </tr>
                     </tbody>
                 </table>
@@ -66,15 +125,21 @@
 
                     <div class="mb-3">
                         <label for="ruang_form" class="form-label float-start">Ruang</label>
-                        <input type="text" class="form-control" id="ruang_form" required>
+                        <input type="text" class="form-control ruang_form" name="nama_ruang" required>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="no_ruang_form" class="form-label float-start">No Ruang</label>
+                        <input type="text" class="form-control no_ruang_form" name="no_ruang" required>
+                    </div>
+
 
 
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <button type="button" onclick="aksiBatal()" class="btn btn-secondary" data-bs-dismiss="modal">
                     <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
                     <span class="svg-icon svg-icon-muted svg-icon-3 text-nowrap">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -84,7 +149,7 @@
                         </svg>
                     </span>
                     <!--end::Svg Icon-->
-                    <span class="text-nowrap">Tutup</span>
+                    <span class="text-nowrap">Batal</span>
                 </button>
                 <button type="submit" class="btn btn-primary text-nowrap">
                     <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil025.svg-->
@@ -114,6 +179,7 @@
         <th>Id</th>
         <th>Ruang</th>
         <th>No Ruang</th>
+        <th>Bagian</th>
         <th>Aksi</th>
 
 @endsection
@@ -126,9 +192,10 @@
             <td>{{ $r->id }}</td>
             <td>{{ $r->nama_ruang }}</td>
             <td>{{ $r->no_ruang }}</td>
+            <td>{{ $r->bagian }}</td>
             <td class="tombolAksi">
 
-                <button type="button" class="btn btn-sm btn-primary py-0" onclick="aksiEdit({{ $r->id }}, '{{ $r->nama_ruang }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+                <button type="button" class="btn btn-sm btn-primary py-0" onclick="aksiEdit({{ $r->id }}, '{{ $r->nama_ruang }}', '{{ $r->no_ruang }}', '{{ $r->bagian }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
                     Edit
                 </button>
                
@@ -160,9 +227,33 @@
 @section('customJs2')
 <script>
 
-    function aksiEdit(id, ruang){
+    function aksiBatal(){
+   
+
+        x = document.getElementsByClassName('ruang_form');
+        y = document.getElementsByClassName('no_ruang_form');
+
+        x.forEach(element => {
+            element.value = "";
+        });
+
+        y.forEach(element => {
+            element.value = "";
+        });
+
+        
+    }
+
+    function aksiEdit(id, ruang, noRuang, bagian,y){
+       
+            document.getElementById('bRuang').innnerHTML = bagian;
             document.getElementById('idRuang').innerHTML = id;
             document.getElementById('namaRuang').innerHTML = ruang;
+            document.getElementById('noRuang').innerHTML = noRuang;
+            
+
+            
+
         }
     
 </script>
