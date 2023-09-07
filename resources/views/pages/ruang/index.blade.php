@@ -2,8 +2,56 @@
 
 @section('customAddData')
 
-
+@if($errors->any())
     
+<!--begin::Alert-->
+<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
+    <!--begin::Icon-->
+    <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
+        <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen044.svg-->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black"/>
+        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black"/>
+        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black"/>
+    </svg>
+    <!--end::Svg Icon-->
+    </span>
+    <!--end::Icon-->
+
+    <!--begin::Wrapper-->
+    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+        <!--begin::Title-->
+        <h4 class="mb-2 text-light">Error</h4>
+        <!--end::Title-->
+
+        <!--begin::Content-->
+        <span>Terjadi kesalahan, mohon cek kembali isian form. Beberapa form tidak boleh dikosongi</span>
+        <br>
+        <span>Mohon dicek barangkali nilai yang anda masukkan sudah ada di dalam tabel</span>
+        <br>
+        
+        <!--end::Content-->
+    </div>
+    <!--end::Wrapper-->
+    
+    <!--begin::Close-->
+    <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
+        <span class="svg-icon svg-icon-2x svg-icon-light">
+            <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->   
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+        <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
+        <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
+    </svg>
+    <!--end::Svg Icon-->
+        </span>
+    </button>
+    <!--end::Close-->
+</div>
+<!--end::Alert-->
+@endif    
+
+
 
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_2">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
@@ -46,6 +94,21 @@
                                 <label for="no_ruang_form" class="form-label float-start">No Ruang</label>
                                 <input type="text" class="form-control no_ruang_form" name="no_ruang" required>
                             </div>
+
+
+                            <div class="input-group mb-3">
+                                <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">BAGIAN</button>
+                                <ul class="dropdown-menu"> 
+                                  <li><hr class="dropdown-divider"></li>                                  
+                                  <li><a class="dropdown-item" onclick="setBagian1('Keuangan')">Keuangan</a></li>
+                                  <li><a class="dropdown-item" onclick="setBagian1('Admin')">Admin</a></li>
+                                  <li><a class="dropdown-item" onclick="setBagian1('Manajemen')">Manajemen</a></li>
+
+                                </ul>
+                                <input type="text" class="form-control bagian_form" aria-label="Bagian" name="bagian" value="{{ old('bagian') }}" id="bagian1" readonly>
+                              
+                            </div>
+                                                          
         
                     </div>
         
@@ -96,7 +159,7 @@
                 <!--end::Close-->
             </div>
 
-            <form action="/kategori/update" method="POST">
+            <form action="/ruang/update" method="POST">
 
                 @method('put')
                 @csrf
@@ -114,30 +177,44 @@
                     <tbody>
                         <tr>
                             <td id='idRuang'></td>
-                            <td id='namaRuang'></td>
                             <td id='noRuang'></td>
-                            <td id='bRuang'></td>
+                            <td id='namaRuang'></td>
+                            <td id='bagianRuang'></td>
+                            
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="separator separator-dashed border-gray-600 my-11"></div>
 
+                <input type="hidden" name="id" id="edit_id">
                     <div class="mb-3">
                         <label for="ruang_form" class="form-label float-start">Ruang</label>
-                        <input type="text" class="form-control ruang_form" name="nama_ruang" required>
+                        <input type="text" class="form-control ruang_form" id="edit_nama_ruang" name="nama_ruang" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="no_ruang_form" class="form-label float-start">No Ruang</label>
-                        <input type="text" class="form-control no_ruang_form" name="no_ruang" required>
+                        <input type="text" class="form-control no_ruang_form" id="edit_no_ruang" name="no_ruang" required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">BAGIAN</button>
+                        <ul class="dropdown-menu"> 
+                          <li><hr class="dropdown-divider"></li>                                  
+                          <li><a class="dropdown-item" onclick="setBagian2('Keuangan')">Keuangan</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Admin')">Admin</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Manajemen')">Manajemen</a></li>
+
+                        </ul>
+                        <input type="text" class="form-control bagian_form @error('bagian') is-invalid @enderror" aria-label="Bagian" name="bagian" value="{{ old('bagian') }}" id="bagian2" readonly>
+                        @error('bagian')    
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
 
-
-
             </div>
-
             <div class="modal-footer">
                 <button type="button" onclick="aksiBatal()" class="btn btn-secondary" data-bs-dismiss="modal">
                     <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
@@ -170,7 +247,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 
     <!-- iki Thead -->
@@ -202,9 +278,11 @@
 
        
              
-             <form action="" method="post" style ='display:inline-block;'>
+             <form action="/ruang/destroy" method="post" style ='display:inline-block;'>
                  @method('delete')
-                 <button class="btn btn-sm btn-danger py-0" type="submit" value="{{ $r->id }}">
+                 @csrf
+                 <input type="hidden" name="id" value="{{ $r->id }}">
+                 <button class="btn btn-sm btn-danger py-0" type="submit">
                    <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen027.svg-->
                    <span class="svg-icon svg-icon-muted svg-icon-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                      <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"/>
@@ -232,6 +310,8 @@
 
         x = document.getElementsByClassName('ruang_form');
         y = document.getElementsByClassName('no_ruang_form');
+        z = document.getElementsByClassName('bagian_form');
+
 
         x.forEach(element => {
             element.value = "";
@@ -241,20 +321,40 @@
             element.value = "";
         });
 
+        z.forEach(element => {
+            element.value = "";
+        });
+
         
     }
 
-    function aksiEdit(id, ruang, noRuang, bagian,y){
+        function aksiEdit(id, ruang, noRuang, bagian){
        
-            document.getElementById('bRuang').innnerHTML = bagian;
-            document.getElementById('idRuang').innerHTML = id;
-            document.getElementById('namaRuang').innerHTML = ruang;
-            document.getElementById('noRuang').innerHTML = noRuang;
-            
+       document.getElementById('bagianRuang').innerHTML = bagian;
+       document.getElementById('idRuang').innerHTML = id;
+       document.getElementById('namaRuang').innerHTML = ruang;
+       document.getElementById('noRuang').innerHTML = noRuang;
 
-            
 
+       document.getElementById('edit_id').value = id;
+       document.getElementById('bagian2').value = bagian;
+       document.getElementById('edit_nama_ruang').value = ruang;
+       document.getElementById('edit_no_ruang').value = noRuang;
+
+
+       
         }
-    
+
+
+        function setBagian1(bagian) {
+            document.getElementById('bagian1').value = bagian;
+        }
+
+        function setBagian2(bagian) {
+            document.getElementById('bagian2').value = bagian;
+        }
+
+        
+
 </script>
 @endsection

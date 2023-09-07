@@ -52,12 +52,16 @@
 @endif
 
 
-    <form action="/mesin/create" method="POST">
+    <form action="/mesin/update" method="POST">
 
+        @method('put')
         @csrf
+
+        <input type="hidden" name="id" value="{{ $mesin->id }}">
+
         <div class="mb-3">
             <label for="mesin" class="form-label">Nama Mesin</label>
-            <input type="text" class="form-control @error('nama_mesin') is-invalid @enderror" id="mesin" placeholder="Nama Mesin" value="{{ old('nama_mesin') }}" name="nama_mesin">
+            <input type="text" class="form-control @error('nama_mesin') is-invalid @enderror" id="mesin" placeholder="Nama Mesin" value="{{ old('nama_mesin', $mesin->nama_mesin) }}" name="nama_mesin">
             @error('nama_mesin')    
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -77,13 +81,13 @@
               @endforeach
              
             </ul>
-            <input type="text" class="form-control @error('kategori_id') is-invalid @enderror" aria-label="Kategori" name="form_kategori" id="form_kategori" value="{{ old('form_kategori') }}" readonly>
+            <input type="text" class="form-control @error('kategori_id') is-invalid @enderror" aria-label="Kategori" name="form_kategori" id="form_kategori" value="{{ old('form_kategori', $mesin->kategori->nama_kategori) }}" readonly>
             @error('kategori_id')    
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
-        <input type="hidden" id="kategori" name="kategori_id" value="{{ old('kategori_id') }}">
+        <input type="hidden" id="kategori" name="kategori_id" value="{{ old('kategori_id', $mesin->kategori_id) }}">
 
         <div class="input-group mb-3">
             <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">RUANG</button>
@@ -99,25 +103,24 @@
 
              
             </ul>
-            <input type="text" class="form-control @error('ruang_id') is-invalid @enderror" aria-label="Ruang" name="form_ruang" value="{{ old('form_ruang') }}" id="form_ruang" readonly>
+            <input type="text" class="form-control @error('ruang_id') is-invalid @enderror" aria-label="Ruang" name="form_ruang" value="{{ old('form_ruang', $mesin->ruang->nama_ruang) }}" id="form_ruang" readonly>
             @error('ruang_id')    
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         
-        <input type="hidden" id="ruang" name="ruang_id" value="{{ old('ruang_id') }}">
+        <input type="hidden" id="ruang" name="ruang_id" value="{{ old('ruang_id', $mesin->ruang_id) }}">
           
           
         <div class="mb-3">
             <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
-            <textarea class="form-control" id="spesifikasi" name="spesifikasi" rows="9">{{ old('spesifikasi') }}</textarea>
+            <textarea class="form-control" id="spesifikasi" name="spesifikasi" rows="9">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
         </div>
-
 
         <div class="container-fluid">
             
             <a href="/mesin">
-                <button type="button" class="btn btn-lg btn-secondary d-inline">
+            <button type="button" class="btn btn-lg btn-secondary d-inline">
 
                     <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr046.svg-->
                     <span class="svg-icon svg-icon-muted svg-icon-3">

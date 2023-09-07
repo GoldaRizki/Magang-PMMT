@@ -122,7 +122,7 @@ License: For each use you must have a valid license purchased only from above li
 				</div>
 				<!--end::Page title-->
 			<!--begin::Actions-->
-		<div class="d-flex align-items-center py-1">
+			<div class="d-flex align-items-center py-1">
 											
 											
 		<!--begin::Button-->

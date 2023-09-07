@@ -17,7 +17,7 @@ class CreateRuangsTable extends Migration
             $table->id();
             $table->String('nama_ruang');
             $table->String('no_ruang');
-            $table->Char('bagian', 1)->nullable();
+            $table->enum('bagian', ['Keuangan', 'Admin', 'Manajemen']);
             $table->timestamps();
 
         });

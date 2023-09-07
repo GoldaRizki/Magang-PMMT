@@ -7,14 +7,16 @@
         min-width: 180px;
         }
     </style>
+
+
 @endsection
 
 @section('konten')
     
 <div class="container-fluid row my-3">
     
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
     
         <div class="container text-center">
             @yield('customAddData')
@@ -33,7 +35,7 @@
 
     </div>
 
-    <div class="col-md-3"></div>
+    <div class="col-lg-3"></div>
 
 </div>
 
@@ -50,6 +52,8 @@ responsive: true
   
 
 </script>
-@endsection
 
 @yield('customJs2')
+
+@endsection
+

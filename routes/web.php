@@ -6,6 +6,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\SparepartController;
 use App\Models\Kategori;
 use App\Models\Mesin;
 
@@ -29,6 +30,11 @@ Route::get('/mesin', [MesinController::class, 'index']);
 Route::get('/mesin/create', [MesinController::class, 'create']);
 Route::post('/mesin/create', [MesinController::class, 'tambah']);
 Route::get('/mesin/detail/{id}', [MesinController::class, 'detail']);
+Route::get('/mesin/edit/{id}', [MesinController::class, 'edit']);
+Route::put('/mesin/update', [MesinController::class, 'update']);
+Route::delete('/mesin/destroy', [MesinController::class, 'destroy']);
+
+
 
 
 Route::get('/kategori', [KategoriController::class, 'index']);
@@ -40,8 +46,13 @@ Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
 
 
 Route::get('/ruang', [RuangController::class, 'index']);
-Route::post('/ruang/create', [RuangController::class, 'tambah']);
+Route::post('/ruang/create', [RuangController::class, 'create']);
+Route::put('/ruang/update', [RuangController::class, 'update']);
+Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
 
+
+
+Route::get('/sparepart', [SparepartController::class, 'index']);
 
 
 

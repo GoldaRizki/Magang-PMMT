@@ -17,16 +17,43 @@ class RuangController extends Controller
     }
     
 
-    public function tambah(Request $request){
+    public function create(Request $request){
         // nambahke
 
         $dataValid = $request->validate([
             'nama_ruang' => 'required',
-            'no_ruang' => 'required'
+            'no_ruang' => 'required',
+            'bagian' => 'required'
         ]);
 
         Ruang::create($dataValid);
 
         return redirect('/ruang');
     }
+
+
+    public function update(Request $request){
+        $dataValid = $request->validate([
+            'nama_ruang' => 'required',
+            'no_ruang' => 'required',
+            'bagian' => 'required'
+        ]);
+
+        Ruang::find($request->id)->update($dataValid);
+
+        return redirect('/ruang');
+    }
+
+    public function destroy(Request $request){
+        $dataValid = $request->validate([
+            'id' => 'required|numeric',
+        ]);
+
+        Ruang::destroy($dataValid);
+
+        return redirect('/ruang');
+    }
+
+
+
 }

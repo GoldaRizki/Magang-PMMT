@@ -40,7 +40,7 @@
                 <img src="\assets\media\stock\600x400\img-7.jpg" class="img-fluid d-block mx-auto" alt="...Gambar Mesin Apalah">
             </div>
             <div class="container-fluid m-4 text-center">
-                <form action="" method="post" style ='display:inline-block;'>
+                <a href="/mesin/edit/{{ $mesin  ->id }}">
                     <button class="btn btn-sm btn-primary" type="submit">
                         <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
                         <span class="svg-icon svg-icon-muted svg-icon-base"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -52,10 +52,12 @@
                     <!--end::Svg Icon-->
                     <span>Edit</span>
                 </button>
-            </form>
+                </a>
 
-                <form action="" method="post" style ='display:inline-block;'>
+                <form action="/mesin/destroy" method="post" style ='display:inline-block;'>
                     @method('delete')
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $mesin->id }}">
                     <button class="btn btn-sm btn-danger" type="submit">
                       <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen027.svg-->
                         <span class="svg-icon svg-icon-muted svg-icon-base"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
