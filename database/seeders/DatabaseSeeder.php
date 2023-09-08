@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Mesin;
-use App\Models\Pekerjaan;
 use App\Models\Ruang;
 use App\Models\Kategori;
 use App\Models\Maintenance;
@@ -54,6 +53,7 @@ class DatabaseSeeder extends Seeder
         
         Mesin::create([
             'nama_mesin' => 'Mesin Genset Supra',
+            'no_asset' => '234.234.276.23.334',
             'kategori_id' => 1,
             'ruang_id' => 1,
             'spesifikasi' => 'Pokoke apik'
@@ -61,6 +61,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Mesin::create([
             'nama_mesin' => 'Mesin Genset Mitsubishi 250KVA wes apik lah pokoke',
+            'no_asset' => '234.234.276.23.334',
             'kategori_id' => 2,
             'ruang_id' => 2,
             'spesifikasi' => 'Konsumsi dayane 250v, yo ngono kae'
@@ -68,6 +69,7 @@ class DatabaseSeeder extends Seeder
 
         Mesin::create([
             'nama_mesin' => 'Chiller 1',
+            'no_asset' => '234.234.276.23.334',
             'kategori_id' => 2,
             'ruang_id' => 3,
             'spesifikasi' => 'Konsumsi dayane 250v, yo ngono kae'
@@ -75,6 +77,7 @@ class DatabaseSeeder extends Seeder
 
         Mesin::create([
             'nama_mesin' => 'Chiller 2',
+            'no_asset' => '234.234.276.23.334',
             'kategori_id' => 3,
             'ruang_id' => 1,
             'spesifikasi' => 'Alah mboh meh tak isi opo sembarang /r/n Iki yo mung gawe pemanis'
