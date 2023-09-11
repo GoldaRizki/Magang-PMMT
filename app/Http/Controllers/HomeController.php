@@ -18,9 +18,10 @@ class HomeController extends Controller
     }
 
 
-    public function test(){
+    public function test(Request $request){
         
-        return view('pages.mesin.detail');
+        return $request;
+        //return view('pages.mesin.detail');
 
     }
 

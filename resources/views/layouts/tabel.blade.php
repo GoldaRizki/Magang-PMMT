@@ -15,6 +15,11 @@
     
 <div class="container my-3">
 
+    <form action="/test" method="get">
+        @csrf
+    <input type="hidden" name="test" id="test">
+    <input type="submit" value="jajal wae">
+    </form>
         
     <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-3 gs-7 gx-1">
         <thead>
@@ -34,10 +39,11 @@
 
 @section('customJs')
 <script>
-			//makan bang
-    $('#tabelTemplate').DataTable({
-      columnDefs: [
-
+    
+    //makan bang
+mboh = $('#tabelTemplate').DataTable({
+        columnDefs: [
+            
 {
   class:'all',
   target: 1
@@ -51,8 +57,23 @@
 
 responsive: true
 
-    });
-  
+});
+
+
+//var data = mboh.rows().data();
+//console.log(JSON.stringify(data.toArray()));
+
+$(document).ready(function(){
+
+  function getData(mboh){
+    document.getElementById('test').value = mboh;
+}
+        getData(JSON.stringify(mboh.rows().data().toArray()));
+    
+
+});
+
+
 
 </script>
 @endsection
