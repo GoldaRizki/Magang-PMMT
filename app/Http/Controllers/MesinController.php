@@ -6,18 +6,24 @@ use App\Models\Kategori;
 use App\Models\Mesin;
 use App\Models\Ruang;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class MesinController extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
 
-    $mesin = Mesin::with(['kategori', 'ruang'])->get();
+    
+
+    if($request->ajax()){
+        
+        $mesin = Mesin::with(['kategori', 'ruang']);
+        return DataTables::of($mesin)->make(true);
+    }
 
     //return $mesin;  
     return view('pages.mesin.index', ['halaman' => 'Mesin',
-     'mesin' => $mesin,
-      'link_to_create' => '/mesin/create',
+      'link_to_create' => '/mesin/create'
     
     ]);
     }
