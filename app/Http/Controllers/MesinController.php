@@ -17,8 +17,16 @@ class MesinController extends Controller
 
     if($request->ajax()){
         
-        $mesin = Mesin::with(['kategori', 'ruang']);
-        return DataTables::of($mesin)->make(true);
+        $mesin = Mesin::query()->with(['kategori', 'ruang']);
+        return DataTables::of($mesin)
+        ->editColumn('nama_mesin', function($m){
+            return '<a class="text-dark" href="/mesin/detail/' . $m->id . '">' . $m->nama_mesin . '</a>';
+        })
+        ->addColumn('aksi', function($m){
+            return view('partials.tombolAksi', ['editPath' => '/mesin/edit/', 'id'=> $m->id, 'deletePath' => '/mesin/destroy/' ]);
+        })
+        ->rawColumns(['nama_mesin','aksi'])
+        ->toJson();
     }
 
     //return $mesin;  
@@ -46,6 +54,7 @@ class MesinController extends Controller
 
         $validData = $request->validate([
             'nama_mesin' => 'required|max:255',
+            'no_asset' => 'required|max:25',
             'kategori_id' => 'required|numeric',
             'ruang_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
@@ -85,7 +94,8 @@ class MesinController extends Controller
         
         $dataValid = $request->validate([
             'id' => 'required|numeric',
-            'nama_mesin' => 'required',
+            'nama_mesin' => 'required|max:255',
+            'no_asset' => 'required|max:25',
             'kategori_id' => 'required|numeric',
             'ruang_id' => 'required|numeric',
             'spesifikasi' => 'nullable'

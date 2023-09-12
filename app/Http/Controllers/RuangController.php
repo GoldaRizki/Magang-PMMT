@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruang;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class RuangController extends Controller
 {
     //
 
-    public function index(){
-        $ruang = Ruang::all();
+    public function index(Request $request){
+        if($request->ajax()){
+            $ruang = Ruang::query();
+
+            return DataTables::of($ruang)
+            ->addColumn('aksi', function($r){
+                return view('partials.tombolAksiRuang', ['r' => $r]);
+            })
+            ->rawColumns(['aksi'])
+            ->toJson();
+        }
 
         return view('pages.ruang.index', 
-        ['ruang' => $ruang, 'halaman' => 'Ruang']);
+        ['halaman' => 'Ruang']);
     }
     
 

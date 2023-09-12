@@ -6,6 +6,16 @@
     <style>
     .tombolAksi{
     min-width: 180px;
+    }.dataTables_filter input[type="search"]{
+      background-color: white;
+    }
+
+    .dataTables_filter input[type="search"]:focus{
+      background-color: #e0e0e0;
+    }
+
+    .dataTables_wrapper .dataTables_length select{
+      background-color: white !important;
     }
     </style>
 
@@ -13,7 +23,7 @@
 
 @section('konten')
     
-<div class="container my-3">
+<div class="container-fluid my-3">
 
         
     <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-3 gs-7 gx-1">
@@ -22,9 +32,7 @@
                     @yield('tableHead')
                 </tr>
         </thead>
-        <tbody>
-            @yield('tableBody')
-        </tbody>
+        
     </table>
 
 </div>
@@ -33,26 +41,7 @@
 
 
 @section('customJs')
-<script>
-			//makan bang
-    $('#tabelTemplate').DataTable({
-      columnDefs: [
 
-{
-  class:'all',
-  target: 1
-},
-{
-  responsivePriority:11005,
-  class:'min-tablet-l',
-  target:[-1,-2]
-}
-],
-
-responsive: true
-
-    });
-  
-
-</script>
+@yield('data')
+    
 @endsection

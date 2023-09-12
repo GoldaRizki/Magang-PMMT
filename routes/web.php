@@ -53,6 +53,13 @@ Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
 
 
 Route::get('/sparepart', [SparepartController::class, 'index']);
+Route::get('/sparepart/create', [SparepartController::class, 'create']);
+    
+
+
+Route::get('/sparepart/edit/{id}', [MesinController::class, 'edit']);
+
+
 
 
 

@@ -6,6 +6,20 @@
         .tombolAksi{
         min-width: 180px;
         }
+        .dataTables_filter input[type="search"]{
+        background-color: white;
+        }
+
+        .dataTables_filter input[type="search"]:focus{
+        background-color: #e0e0e0;
+        }
+
+        .dataTables_wrapper .dataTables_length select{
+        background-color: white !important;
+        }
+        .dataTables_processing{
+            z-index: 5;
+        }
     </style>
 
 
@@ -14,28 +28,30 @@
 @section('konten')
     
 <div class="container-fluid row my-3">
+
+    <div class="col-lg-2"> 
+    </div>
     
-    <div class="col-lg-3"></div>
-    <div class="col-lg-6">
-    
+    <div class="col-lg-8">
         <div class="container text-center">
             @yield('customAddData')
         </div>
-        
-    <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-2 gs-7 gx-1">
-        <thead>
-                <tr class="fw-bolder fs-6 text-gray-800">
+
+
+
+            <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-2 gs-7 gx-1">
+                <thead>
+                    <tr class="fw-bolder fs-6 text-gray-800">
                     @yield('tableHead')
                 </tr>
         </thead>
         <tbody> 
-            @yield('tableBody')
         </tbody>
     </table>
-
+    
     </div>
 
-    <div class="col-lg-3"></div>
+    <div class="col-lg-2"></div>
 
 </div>
 
@@ -43,15 +59,8 @@
 
 
 @section('customJs')
-<script>
 
-    $('#tabelTemplate').DataTable({
-responsive: true
-
-    });
-  
-
-</script>
+@yield('data')
 
 @yield('customJs2')
 

@@ -62,6 +62,14 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
+        <div class="mb-3">
+            <label for="no_asset" class="form-label">No Asset</label>
+            <input type="text" class="form-control @error('no_asset') is-invalid @enderror" id="no_asset" placeholder="Nomor Asset" value="{{ old('no_asset') }}" name="no_asset">
+            @error('no_asset')    
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
         
 
         <div class="input-group mb-3">

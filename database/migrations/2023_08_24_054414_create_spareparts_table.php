@@ -16,6 +16,11 @@ class CreateSparepartsTable extends Migration
         Schema::create('spareparts', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->String('nama_sparepart');
+            $table->integer('harga');
+            $table->integer('jumlah');
+            $table->enum('satuan', ['Buah', 'Pak', 'Biji', 'Liter']);
+
+
             $table->timestamps();
             $table->primary('id');
         });

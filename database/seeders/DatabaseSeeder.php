@@ -172,19 +172,31 @@ Maintenance::create([
 Sparepart::create([
     'id' => 1,
     'nama_sparepart' => 'Oli MPX',
+    'harga' => 560000,
+    'jumlah' => 65,
+    'satuan' => 'Buah'
 ]);
 
 Sparepart::create([
     'id' => 3,
     'nama_sparepart' => 'vanbelt mio',
+    'harga' => 45000,
+    'jumlah' => 34,
+    'satuan' => 'Pak'
 ]);
 Sparepart::create([
     'id' => 345,
     'nama_sparepart' => 'baut ukuran 10',
+    'harga' => 56000,
+    'jumlah' => 65,
+    'satuan' => 'Biji'
 ]);
 Sparepart::create([
     'id' => 236,
     'nama_sparepart' => 'laker',
+    'harga' => 30000,
+    'jumlah' => 23,
+    'satuan' => 'Liter'
 ]);
 
 

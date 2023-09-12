@@ -4,14 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class KategoriController extends Controller
 {
     //
-    public function index(){
-        $kategori = Kategori::all();
+    public function index(Request $request){
 
-        return view('pages.kategori.index', ['halaman' => 'Kategori', 'kategori' => $kategori]);
+        if($request->ajax()){
+            
+            $kategori = Kategori::query();
+            return DataTables::of($kategori)
+            ->addColumn('aksi', function($k){
+                return view('partials.tombolAksiKategori', ['k' => $k]);
+            })
+            ->toJson();
+
+        }
+
+        return view('pages.kategori.index', ['halaman' => 'Kategori']);
     }
 
     public function create(Request $request){
