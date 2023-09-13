@@ -1,7 +1,7 @@
 @extends('layouts.tabel')
 
 @section('tableHead')
-    <th>Id</th>
+    <th>Item Number</th>
     <th>Sparepart</th>
     <th>Harga</th>
     <th>Jumlah</th>

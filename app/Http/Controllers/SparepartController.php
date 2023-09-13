@@ -39,4 +39,51 @@ class SparepartController extends Controller
             'halaman' => 'Spareparts'
         ]);
     }
+
+    public function tambah(Request $request){
+        
+        $dataValid = $request->validate([
+            'id' => 'required|numeric',
+            'nama_sparepart' => 'required',
+            'harga' => 'required|numeric',
+            'jumlah' => 'required|numeric',
+            'satuan' => 'required'
+        ]);
+
+        Sparepart::create($dataValid);
+
+        return redirect('/sparepart');
+    }
+
+
+    public function edit($id){
+    
+        $sparepart = Sparepart::findOrFail($id);
+
+
+        return view('pages.spareparts.update', [
+            'halaman' => 'Spareparts',
+            'sparepart' => $sparepart
+        ]);
+
+
+    }
+
+
+    public function update(Request $request){
+    
+        $dataValid = $request->validate([
+            'id' => 'required|numeric',
+            'nama_sparepart' => 'required',
+            'harga' => 'required|numeric',
+            'jumlah' => 'required|numeric',
+            'satuan' => 'required'
+        ]);
+
+        Sparepart::findOrFail($request->id_old)->update($dataValid);
+
+        return redirect('/sparepart');
+        
+    }
+
 }

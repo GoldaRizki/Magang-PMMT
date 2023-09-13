@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SetupMaintenance extends Model
 {
     use HasFactory;
+
+
+    //protected $guarded = [];
+    
+   // protected $fillable = ['*'];
+    
 }

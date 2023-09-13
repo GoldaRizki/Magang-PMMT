@@ -9,11 +9,10 @@ class Sparepart extends Model
 {
     use HasFactory;
 
-    protected $guarded =['id'];
+    protected $guarded =[];
 
 
     
-
     public function maintenance() {
         return $this->belongsToMany(Maintenance::class);
     }

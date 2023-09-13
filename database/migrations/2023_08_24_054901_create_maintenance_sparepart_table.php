@@ -21,8 +21,8 @@ class CreateMaintenanceSparepartTable extends Migration
             $table->timestamps();
 
             $table->unique(['sparepart_id', 'maintenance_id']);
-            $table->foreign('sparepart_id')->references('id')->on('spareparts')->cascadeOnDelete();
-            $table->foreign('maintenance_id')->references('id')->on('maintenances')->cascadeOnDelete();
+            $table->foreign('sparepart_id')->references('id')->on('spareparts')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('maintenance_id')->references('id')->on('maintenances')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
