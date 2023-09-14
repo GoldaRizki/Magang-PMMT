@@ -69,4 +69,5 @@ Route::put('/sparepart/update', [SparepartController::class, 'update']);
 
 
 Route::get('/test', [HomeController::class, 'test']);
+Route::post('/test', [HomeController::class, 'test2']);
 

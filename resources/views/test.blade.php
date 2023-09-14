@@ -34,14 +34,57 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-		<!--end::Global Stylesheets Bundle-->
-	</head>
-	<!--end::Head-->
-	<!--begin::Body-->
+		<script src="assets\sweetAlert\sweetalert2.all.min.js"></script>
 
+		<script>
+function hapus() {
+	
+	Swal.fire({
+		title: 'Do you want to save the changes?',
+		showDenyButton: true,
+		showCancelButton: true,
+  confirmButtonText: 'Save',
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire('Saved!', '', 'success')
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+  }
+});
+
+}
+		</script>
+		<!--end::Global Stylesheets Bundle-->
+		</head>
+		<!--end::Head-->
+		<!--begin::Body-->
+		
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px" data-kt-app-page-loading-enabled="true" data-kt-app-page-loading="on">
 
-
+		<template id="my-template">
+			<swal-title>
+			  Save changes to "Untitled 1" before closing?
+			</swal-title>
+			<swal-icon type="warning" color="red"></swal-icon>
+			<swal-button type="confirm">
+			  Save As
+			</swal-button>
+			<swal-button type="cancel">
+			  Cancel
+			</swal-button>
+			<swal-button type="deny">
+			  Close without Saving
+			</swal-button>
+			<swal-param name="allowEscapeKey" value="false" />
+			<swal-param
+			  name="customClass"
+			  value='{ "popup": "my-popup" }' />
+			<swal-function-param
+			  name="didOpen"
+			  value="popup => console.log(popup)" />
+		  </template>
 
     <!--begin::Main-->
 		<!--begin::Root-->
@@ -3534,6 +3577,12 @@ License: For each use you must have a valid license purchased only from above li
 						</div>
 						<!--end::Toolbar-->
 
+					<form action="/test" onsubmit="return hapus()" method="post">
+					
+
+						@csrf
+						<button type="submit">Jajal</button>
+					</form>
 
 				
 											
@@ -3568,36 +3617,10 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="assets/js/custom/apps/chat/chat.js"></script>
 		<script src="assets/js/custom/modals/create-app.js"></script>
 		<script src="assets/js/custom/modals/upgrade-plan.js"></script>
+
     
 
-        <script>
-            // Toggle
-const button = document.querySelector("#kt_page_loading_basic");
 
-// Handle toggle click event
-button.addEventListener("click", function() {
-    // Populate the page loading element dynamically.
-    // Optionally you can skipt this part and place the HTML
-    // code in the body element by refer to the above HTML code tab.
-    const loadingEl = document.createElement("div");
-    document.body.append(loadingEl);
-    loadingEl.classList.add("page-loader");
-    loadingEl.innerHTML = `
-        <span class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </span>
-    `;
-
-    // Show page loading
-    KTApp.showPageLoading();
-
-    // Hide after 3 seconds
-    setTimeout(function() {
-        KTApp.hidePageLoading();
-        loadingEl.remove();
-    }, 3000);
-});
-        </script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

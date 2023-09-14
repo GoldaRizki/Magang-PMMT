@@ -20,10 +20,14 @@ class HomeController extends Controller
 
     public function test(){
         
-        return view('pages.mesin.detail');
+        return view('test');
 
     }
 
+    public function test2(Request $request){
+        
+        return $request;
 
+    }
    
 }
