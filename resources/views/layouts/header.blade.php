@@ -43,12 +43,16 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+		<script src="assets\sweetAlert\sweetalert2.all.min.js"></script>
+
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
 
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px" data-kt-app-page-loading-enabled="true" data-kt-app-page-loading="on">
 
+		@include('partials.notifikasi')
 
 
     <!--begin::Main-->

@@ -63,7 +63,7 @@ class MesinController extends Controller
 
         Mesin::create($validData);
 
-        return redirect()->intended('/mesin');
+        return redirect()->intended('/mesin')->with('tambah', 'p');
     }
 
 
@@ -103,7 +103,7 @@ class MesinController extends Controller
 
         Mesin::find($dataValid['id'])->update($dataValid);
 
-        return redirect('/mesin');
+        return redirect('/mesin')->with('edit', 'p');
     }
 
     public function destroy(Request $request){
@@ -114,7 +114,7 @@ class MesinController extends Controller
 
         Mesin::destroy($id);
 
-        return redirect('/mesin');
+        return redirect('/mesin')->with('hapus', 'p');
 
     }
 }

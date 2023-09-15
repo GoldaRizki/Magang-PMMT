@@ -37,22 +37,35 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="assets\sweetAlert\sweetalert2.all.min.js"></script>
 
 		<script>
-function hapus() {
+function hapus(form) {
 	
-	Swal.fire({
-		title: 'Do you want to save the changes?',
-		showDenyButton: true,
-		showCancelButton: true,
-  confirmButtonText: 'Save',
-  denyButtonText: `Don't save`,
+	cek = false;
+	
+Swal.fire({
+	title: 'Apakah anda yakin akan menghapus?',
+	text: 'Apabila data dihapus, maka data yang bergantung juga akan dihapus',
+	showCancelButton: true,
+  	confirmButtonText: 'Hapus',
+	confirmButtonColor : '#F14182',
+	icon: 'question',
 }).then((result) => {
   /* Read more about isConfirmed, isDenied below */
   if (result.isConfirmed) {
-    Swal.fire('Saved!', '', 'success')
-  } else if (result.isDenied) {
-    Swal.fire('Changes are not saved', '', 'info')
-  }
+    Swal.fire({
+		icon: 'success',
+		title: 'Berhasil Dihapus',
+		timer: 1500,
+		showConfirmButton: false, 
+	});
+	console.log('hasil log: ' + result.isConfirmed);
+	form.submit()
+  } else if (result.isDismissed) {
+    Swal.fire('Changes are not saved', '', 'info');
+	}
 });
+
+console.log('cek adalah: '+cek);
+return cek;
 
 }
 		</script>
@@ -3577,7 +3590,7 @@ function hapus() {
 						</div>
 						<!--end::Toolbar-->
 
-					<form action="/test" onsubmit="return hapus()" method="post">
+					<form action="/test" onSubmit="return hapus(this);" method="post">
 					
 
 						@csrf

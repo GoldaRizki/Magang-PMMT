@@ -38,7 +38,7 @@ class RuangController extends Controller
 
         Ruang::create($dataValid);
 
-        return redirect('/ruang');
+        return redirect('/ruang')->with('tambah', 'p');
     }
 
 
@@ -51,7 +51,7 @@ class RuangController extends Controller
 
         Ruang::find($request->id)->update($dataValid);
 
-        return redirect('/ruang');
+        return redirect('/ruang')->with('edit', 'p');
     }
 
     public function destroy(Request $request){
@@ -61,7 +61,7 @@ class RuangController extends Controller
 
         Ruang::destroy($dataValid);
 
-        return redirect('/ruang');
+        return redirect('/ruang')->with('hapus', 'p');
     }
 
 

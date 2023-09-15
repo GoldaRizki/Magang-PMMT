@@ -52,7 +52,7 @@ class SparepartController extends Controller
 
         Sparepart::create($dataValid);
 
-        return redirect('/sparepart');
+        return redirect('/sparepart')->with('tambah', 'p');
     }
 
 
@@ -82,7 +82,7 @@ class SparepartController extends Controller
 
         Sparepart::findOrFail($request->id_old)->update($dataValid);
 
-        return redirect('/sparepart');
+        return redirect('/sparepart')->with('edit', 'p');
         
     }
 

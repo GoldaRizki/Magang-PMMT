@@ -33,7 +33,7 @@ class KategoriController extends Controller
 
         Kategori::create($dataValid);
 
-        return redirect('/kategori');   
+        return redirect('/kategori')->with('tambah', 'p');   
     }
 
     public function update(Request $request){
@@ -45,7 +45,7 @@ class KategoriController extends Controller
 
         Kategori::find($dataValid['id'])->update($dataValid);
 
-        return redirect('/kategori');
+        return redirect('/kategori')->with('edit', 'p');
     }
 
     public function destroy(Request $request){
@@ -55,7 +55,7 @@ class KategoriController extends Controller
 
         Kategori::destroy($dataValid);
 
-        return redirect('/kategori');
+        return redirect('/kategori')->with('hapus', 'p');
     }
 
 }

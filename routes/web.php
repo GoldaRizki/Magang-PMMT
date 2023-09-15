@@ -30,10 +30,8 @@ Route::get('/mesin', [MesinController::class, 'index']);
 Route::get('/mesin/create', [MesinController::class, 'create']);
 Route::post('/mesin/create', [MesinController::class, 'tambah']);
 Route::get('/mesin/detail/{id}', [MesinController::class, 'detail']);
-//Route::get('/mesin/edit/{id}', [MesinController::class, 'edit']);
-Route::get('/mesin/edit/{id}', function(){
-    dd('ya ndak tau');
-});
+Route::get('/mesin/edit/{id}', [MesinController::class, 'edit']);
+
 Route::put('/mesin/update', [MesinController::class, 'update']);
 Route::delete('/mesin/destroy', [MesinController::class, 'destroy']);
 
