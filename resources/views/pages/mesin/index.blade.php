@@ -3,7 +3,7 @@
 
 @section('tableHead')
     
-                    <th>Id</th>
+                    <th>No</th>
                     <th>Mesin</th>
                     <th>No. Asset</th>
                     <th>Ruang</th>
@@ -37,7 +37,7 @@ dom:'<"top"lf>rtip<"bottom"><"clear">',
 serverSide: true,
 ajax: "/mesin",
 columns: [
-{data: 'id', name: 'id'},
+{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
 {data: 'nama_mesin', name: 'nama_mesin'},
 {data: 'no_asset', name: 'no_asset'},
 {data: 'ruang.nama_ruang', name: 'ruang.nama_ruang'},

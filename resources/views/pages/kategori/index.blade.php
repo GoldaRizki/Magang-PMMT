@@ -168,7 +168,7 @@
     <!-- iki Thead -->
 @section('tableHead')
 
-        <th>Id</th>
+        <th>No</th>
         <th>Kategori</th>
         <th>Aksi</th>
 
@@ -188,7 +188,7 @@ dom:'<"top"lf>rtip<"bottom"><"clear">',
 serverSide: true,
 ajax: "/kategori",
 columns: [
-{data: 'id', name: 'id'},
+{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
 {data: 'nama_kategori', name: 'nama_kategori'},
 {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
 //{data: 'kategori', name: 'kategori', orderable: false, searchable: false},

@@ -15,6 +15,7 @@ class SparepartController extends Controller
             
             $parts = Sparepart::query();
             return DataTables::of($parts)
+
             ->addColumn('aksi', function($p){
                 return view('partials.tombolAksi', ['editPath' => '/sparepart/edit/', 'id'=> $p->id, 'deletePath' => '/sparepart/destroy/' ]);
             })
@@ -84,6 +85,16 @@ class SparepartController extends Controller
 
         return redirect('/sparepart')->with('edit', 'p');
         
+    }
+
+    public function destroy(Request $request){  
+        $dataValid = $request->validate([
+            'id' => 'required|numeric',
+        ]);
+
+        Sparepart::destroy($dataValid);
+
+        return redirect('/sparepart')->with('hapus', 'p');
     }
 
 }

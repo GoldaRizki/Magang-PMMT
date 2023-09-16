@@ -17,7 +17,7 @@ class KategoriController extends Controller
             return DataTables::of($kategori)
             ->addColumn('aksi', function($k){
                 return view('partials.tombolAksiKategori', ['k' => $k]);
-            })
+            })->addIndexColumn()
             ->toJson();
 
         }

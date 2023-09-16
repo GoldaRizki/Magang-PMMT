@@ -6,7 +6,7 @@
 
 
 
-<form action="/ruang/destroy" method="post" style ='display:inline-block;'>
+<form action="/ruang/destroy" method="post" onSubmit="return hapus(this);" style ='display:inline-block;'>
  @method('delete')
  @csrf
  <input type="hidden" name="id" value="{{ $r->id }}">

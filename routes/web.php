@@ -58,7 +58,7 @@ Route::get('/sparepart/create', [SparepartController::class, 'create']);
 Route::post('/sparepart/create', [SparepartController::class, 'tambah']);
 Route::get('/sparepart/edit/{id}', [SparepartController::class, 'edit']);
 Route::put('/sparepart/update', [SparepartController::class, 'update']);
-    
+Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);    
 
 
 

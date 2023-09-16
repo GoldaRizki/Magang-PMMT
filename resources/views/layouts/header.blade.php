@@ -45,7 +45,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--end::Global Stylesheets Bundle-->
 		<script src="assets\sweetAlert\sweetalert2.all.min.js"></script>
 
-
+		@include('partials.customJs')
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->

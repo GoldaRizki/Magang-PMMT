@@ -19,6 +19,7 @@ class RuangController extends Controller
                 return view('partials.tombolAksiRuang', ['r' => $r]);
             })
             ->rawColumns(['aksi'])
+            ->addIndexColumn()
             ->toJson();
         }
 

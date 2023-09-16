@@ -252,7 +252,7 @@
     <!-- iki Thead -->
 @section('tableHead')
 
-        <th>Id</th>
+        <th>No</th>
         <th>Ruang</th>
         <th>No Ruang</th>
         <th>Bagian</th>
@@ -273,7 +273,7 @@ dom:'<"top"lf>rtip<"bottom"><"clear">',
 serverSide: true,
 ajax: "/ruang",
 columns: [
-{data: 'id', name: 'id'},
+{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
 {data: 'nama_ruang', name: 'nama_ruang'},
 {data: 'no_ruang', name: 'no_ruang'},
 {data: 'bagian', name: 'bagian'},
