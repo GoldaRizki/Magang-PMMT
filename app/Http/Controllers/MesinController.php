@@ -22,11 +22,11 @@ class MesinController extends Controller
         ->editColumn('nama_mesin', function($m){
             return '<a class="text-dark" href="/mesin/detail/' . $m->id . '">' . $m->nama_mesin . '</a>';
         })
-        ->editColumn('kategori.nama_kategori', function($m){
-            return $m->kategori->nama_kategori;
+        ->editColumn('kategori', function(Mesin $mesin){
+            return $mesin->kategori->nama_kategori;
         })
-        ->editColumn('ruang.nama_ruang', function($m){
-            return $m->ruang->nama_ruang;
+        ->editColumn('ruang', function(Mesin $mesin){
+            return $mesin->ruang->nama_ruang;
         })
         ->addColumn('aksi', function($m){
             return view('partials.tombolAksi', ['editPath' => '/mesin/edit/', 'id'=> $m->id, 'deletePath' => '/mesin/destroy/' ]);

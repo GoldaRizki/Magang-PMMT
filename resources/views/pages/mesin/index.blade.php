@@ -40,8 +40,8 @@ columns: [
 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
 {data: 'nama_mesin', name: 'nama_mesin'},
 {data: 'no_asset', name: 'no_asset'},
-{data: 'ruang.nama_ruang', name: 'ruang.nama_ruang'},
-{data: 'kategori.nama_kategori', name: 'kategori.nama_kategori'},
+{data: 'ruang', name: 'ruang.nama_ruang'},
+{data: 'kategori', name: 'kategori.nama_kategori'},
 {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
 
 //{data: 'kategori', name: 'kategori', orderable: false, searchable: false},

@@ -17,6 +17,9 @@
     .dataTables_wrapper .dataTables_length select{
       background-color: white !important;
     }
+    .dataTables_processing{
+            z-index: 5;
+    }
     </style>
 
 @endsection
@@ -26,7 +29,7 @@
 <div class="container-fluid my-3">
 
         
-    <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-3 gs-7 gx-1">
+    <table id="tabelTemplate" class="table table-sm table-row-bordered table-row-gray-400 gs-7">
         <thead>
                 <tr class="fw-bolder fs-6 text-gray-800">
                     @yield('tableHead')
