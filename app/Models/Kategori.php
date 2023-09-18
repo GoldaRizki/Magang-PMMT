@@ -15,4 +15,8 @@ class Kategori extends Model
         return $this->hasMany(Mesin::class);
     }
 
+    public function setupMaintenance(){
+        return $this->hasMany(SetupMaintenance::class);
+    }
+
 }
