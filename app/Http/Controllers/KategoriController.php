@@ -11,6 +11,7 @@ class KategoriController extends Controller
     //
     public function index(Request $request){
 
+        /*
         if($request->ajax()){
             
             $kategori = Kategori::query();
@@ -21,6 +22,7 @@ class KategoriController extends Controller
             ->toJson();
 
         }
+        */  
 
         return view('pages.kategori.index', ['halaman' => 'Kategori']);
     }

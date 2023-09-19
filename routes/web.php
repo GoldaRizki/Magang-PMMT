@@ -7,8 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SparepartController;
-use App\Models\Kategori;
-use App\Models\Mesin;
+
 
 /*
 |--------------------------------------------------------------------------
