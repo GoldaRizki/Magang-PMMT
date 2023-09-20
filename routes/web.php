@@ -6,6 +6,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\SetupMaintenanceController;
 use App\Http\Controllers\SparepartController;
 
 
@@ -43,6 +44,8 @@ Route::put('/kategori/update', [KategoriController::class, 'update']);
 Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
 
 
+Route::get('/setupMaintenance/{id}', [SetupMaintenanceController::class, 'setup']);
+Route::post('/setupMaintenance/create', [SetupMaintenanceController::class, 'create']);
 
 
 Route::get('/ruang', [RuangController::class, 'index']);

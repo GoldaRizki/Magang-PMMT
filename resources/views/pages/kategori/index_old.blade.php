@@ -2,8 +2,8 @@
 
 @section('customAddData')
 
-@error('nama_kategori')    
-<!--begin::Alert-->
+@if($errors->any())
+    <!--begin::Alert-->
 <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
     <!--begin::Icon-->
     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
@@ -28,7 +28,10 @@
         <br>
         <span>Mohon dicek barangkali nilai yang anda masukkan sudah ada di dalam tabel</span>
         <br>
-        <span>Pesan Error: "{{ $message }}"</span>
+        <span>Pesan Error: </span>
+        @foreach ($errors as $e)
+            <span>{{ $e }}</span>
+        @endforeach
         <!--end::Content-->
     </div>
     <!--end::Wrapper-->
@@ -48,7 +51,7 @@
     <!--end::Close-->
 </div>
 <!--end::Alert-->
-@enderror
+@endif
 
 <form action="/kategori/create" method="POST" class="row g-3 justify-content-center">
 

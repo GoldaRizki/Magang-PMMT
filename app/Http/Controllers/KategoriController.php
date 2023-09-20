@@ -33,9 +33,9 @@ class KategoriController extends Controller
             'nama_kategori' => 'required|max:100|unique:kategoris'
         ]);
 
-        Kategori::create($dataValid);
+        $kategoriBaru = Kategori::create($dataValid);
 
-        return redirect('/kategori')->with('tambah', 'p');   
+        return redirect('/setupMaintenance/' . $kategoriBaru->id);   
     }
 
     public function update(Request $request){
