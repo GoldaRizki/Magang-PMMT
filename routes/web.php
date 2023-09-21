@@ -8,7 +8,7 @@ use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SetupMaintenanceController;
 use App\Http\Controllers\SparepartController;
-
+use App\Models\SetupMaintenance;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +43,16 @@ Route::post('/kategori/create', [KategoriController::class, 'create']);
 Route::put('/kategori/update', [KategoriController::class, 'update']);
 Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
 
+Route::post('/kategori/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaKategori']);
+Route::delete('/kategori/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaKategori']);
+
 
 Route::get('/setupMaintenance/{id}', [SetupMaintenanceController::class, 'setup']);
-Route::post('/setupMaintenance/create', [SetupMaintenanceController::class, 'create']);
+Route::post('/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaSetup']);
+Route::put('/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaSetup']);
+Route::delete('/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaSetup']);
+
+
 
 
 Route::get('/ruang', [RuangController::class, 'index']);

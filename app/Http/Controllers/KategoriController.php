@@ -9,7 +9,7 @@ use Yajra\DataTables\DataTables;
 class KategoriController extends Controller
 {
     //
-    public function index(Request $request){
+    public function index(){
 
         /*
         if($request->ajax()){
@@ -24,7 +24,9 @@ class KategoriController extends Controller
         }
         */  
 
-        return view('pages.kategori.index', ['halaman' => 'Kategori']);
+        $kategori = Kategori::with(['setupMaintenance'])->get();
+
+        return view('pages.kategori.index', ['halaman' => 'Kategori', 'kategori' => $kategori]);
     }
 
     public function create(Request $request){

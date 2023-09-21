@@ -21,13 +21,14 @@ class SetupMaintenanceController extends Controller
         return view('pages.setupMaintenance.setup', [
             'setup' => $setup,
             'nama_kategori' => $nama_kategori,
-            'id' => $id
+            'id' => $id,
+            'halaman' => 'Setup Maintenance'
         ]);
         //return dd($setup);
 
     }
 
-    public function create(Request $request){
+    private function create($request){
     
         $dataValid = $request->validate([
             'kategori_id' => 'required|numeric',
@@ -39,6 +40,60 @@ class SetupMaintenanceController extends Controller
 
         SetupMaintenance::create($dataValid);
 
-        return redirect('/setupMaintenance/' . $dataValid['kategori_id'])->with('tambah', 'p');
     }
+
+
+    private function delete($request){
+        
+        $dataValid = $request->validate([
+            'id' => 'required|numeric',
+        ]);
+
+        SetupMaintenance::destroy($dataValid);
+    }
+
+    private function edit($request){
+        $dataValid = $request->validate([
+            'id' => 'required|numeric',
+            'nama_setup_maintenance' => 'required',
+            'periode' => 'required|numeric',
+            'satuan_periode' => 'required'
+        ]);
+
+        SetupMaintenance::find($dataValid['id'])->update($dataValid);
+    }
+
+    public function createPadaSetup(Request $request){
+    
+        $this->create($request);
+        return redirect('/setupMaintenance/' . $request->kategori_id)->with('tambah', 'p');
+    }
+
+    public function hapusPadaSetup(Request $request){
+        $this->delete($request);
+
+        return redirect('/setupMaintenance/' . $request->kategori_id)->with('hapus', 'p');
+    }
+
+    public function editPadaSetup(Request $request){
+        $this->edit($request);
+
+        return redirect('/setupMaintenance/'. $request->kategori_id)->with('edit', 'p');
+    }
+
+
+
+    public function createPadaKategori(Request $request){
+        $this->create($request);
+
+        return redirect('/kategori')->with('tambah', 'p');
+    }
+
+    public function hapusPadaKategori(Request $request){
+        $this->delete($request);
+
+        return redirect('/kategori')->with('hapus', 'p');
+    }
+
+
 }
