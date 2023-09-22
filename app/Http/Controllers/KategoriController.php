@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 
 class KategoriController extends Controller
 {
@@ -56,7 +55,6 @@ class KategoriController extends Controller
         $dataValid = $request->validate([
                 'id' => 'required'
             ]);
-
         Kategori::destroy($dataValid);
 
         return redirect('/kategori')->with('hapus', 'p');

@@ -89,6 +89,12 @@ class SetupMaintenanceController extends Controller
         return redirect('/kategori')->with('tambah', 'p');
     }
 
+    public function editPadaKategori(Request $request){
+        $this->edit($request);
+
+        return redirect('/kategori')->with('edit', 'p');
+    }
+
     public function hapusPadaKategori(Request $request){
         $this->delete($request);
 

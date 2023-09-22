@@ -17,8 +17,6 @@
      <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black"/>
  </svg></span>
  <!--end::Svg Icon-->
-</span>
-<!--end::Svg Icon-->
 <span>Hapus</span>
 </button>
 </form>                

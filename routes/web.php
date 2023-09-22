@@ -44,6 +44,7 @@ Route::put('/kategori/update', [KategoriController::class, 'update']);
 Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
 
 Route::post('/kategori/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaKategori']);
+Route::put('/kategori/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaKategori']);
 Route::delete('/kategori/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaKategori']);
 
 
