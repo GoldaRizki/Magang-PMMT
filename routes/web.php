@@ -40,7 +40,7 @@ Route::delete('/mesin/destroy', [MesinController::class, 'destroy']);
 
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori/create', [KategoriController::class, 'create']);
-Route::put('/kategori/update', [KategoriController::class, 'update']);
+Route::put('/kategori/update', [KategoriController::class, 'updateOnKategori']);
 Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
 
 Route::post('/kategori/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaKategori']);
@@ -52,7 +52,7 @@ Route::get('/setupMaintenance/{id}', [SetupMaintenanceController::class, 'setup'
 Route::post('/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaSetup']);
 Route::put('/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaSetup']);
 Route::delete('/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaSetup']);
-
+Route::put('/setupMaintenance/kategori/update', [KategoriController::class, 'updateOnSetup']);
 
 
 

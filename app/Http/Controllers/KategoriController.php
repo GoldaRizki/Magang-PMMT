@@ -39,7 +39,7 @@ class KategoriController extends Controller
         return redirect('/setupMaintenance/' . $kategoriBaru->id);   
     }
 
-    public function update(Request $request){
+    private function update($request){
             
         $dataValid = $request->validate([
             'id' => 'required',
@@ -48,8 +48,8 @@ class KategoriController extends Controller
 
         Kategori::find($dataValid['id'])->update($dataValid);
 
-        return redirect('/kategori')->with('edit', 'p');
     }
+
 
     public function destroy(Request $request){
         $dataValid = $request->validate([
@@ -58,6 +58,22 @@ class KategoriController extends Controller
         Kategori::destroy($dataValid);
 
         return redirect('/kategori')->with('hapus', 'p');
+    }
+
+
+
+    public function updateOnKategori(Request $request) {
+
+        $this->update($request);
+
+        return redirect('/kategori')->with('edit', 'p');
+    }
+
+    public function updateOnSetup(Request $request) {
+
+        $this->update($request);
+
+        return redirect('/setupMaintenance/' . $request->id)->with('edit', 'p');
     }
 
 }

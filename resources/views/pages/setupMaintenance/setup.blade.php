@@ -185,6 +185,73 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" id="kt_modal_3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Kategori</h5>
+
+                <!--begin::Close-->
+                <div onclick="clearValue()" class="btn btn-icon btn-sm btn-active-light-danger ms-2" data-bs-dismiss="modal" aria-label="Close">
+                <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <form action="/setupMaintenance/kategori/update" method="POST">
+            @method('put')
+            @csrf
+            <div class="modal-body">
+            
+                    <input type="hidden" name="id" id="edit_for_kategori_id">
+                    <div class="mb-3">
+                        <label for="kategori_form" class="form-label float-start">Edit Kategori</label>
+                        <input type="text" class="form-control clear-form" id="edit_kategori_form" name="nama_kategori">
+                    </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" onclick="clearValue()" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-3 text-nowrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                    <span class="text-nowrap">Batal</span>
+                </button>
+                <button type="submit" class="btn btn-primary text-nowrap">
+                    <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil025.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="black"/>
+                            <path d="M10.3629 14.0084L8.92108 12.6429C8.57518 12.3153 8.03352 12.3153 7.68761 12.6429C7.31405 12.9967 7.31405 13.5915 7.68761 13.9453L10.2254 16.3488C10.6111 16.714 11.215 16.714 11.6007 16.3488L16.3124 11.8865C16.6859 11.5327 16.6859 10.9379 16.3124 10.5841C15.9665 10.2565 15.4248 10.2565 15.0789 10.5841L11.4631 14.0084C11.1546 14.3006 10.6715 14.3006 10.3629 14.0084Z" fill="black"/>
+                            <path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="black"/>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                    Simpan Perubahan
+                </button>
+            </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
 @endsection
 
 
@@ -266,7 +333,7 @@
             </form>
 
 
-            <button class="btn btn-sm btn-dark text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_4" onclick="">
+            <button class="btn btn-sm btn-dark text-nowrap d-inline" data-bs-toggle="modal" data-bs-target="#kt_modal_3" onclick="setEditKategori({{ $id }}, '{{ $nama_kategori }}')">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z" fill="white"/>
@@ -378,6 +445,12 @@ function setEdit(id, nama_setup_maintenance, periode, satuan_periode){
     document.getElementById('edit_periode_form').value = periode;
     document.getElementById('edit_satuan_periode').value = satuan_periode;
 }
+
+function setEditKategori(id, kategori) {
+    document.getElementById('edit_for_kategori_id').value = id;
+    document.getElementById('edit_kategori_form').value = kategori;
+}
+
 
 
 
