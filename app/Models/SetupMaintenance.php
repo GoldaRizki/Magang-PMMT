@@ -17,7 +17,9 @@ class SetupMaintenance extends Model
         return $this->belongsTo(Kategori::class);
     }
     
-    
+    public function setupForm(){
+        return $this->hasMany(SetupForm::class);
+    }
    
     
 }

@@ -6,6 +6,8 @@ use App\Models\Mesin;
 use App\Models\Ruang;
 use App\Models\Kategori;
 use App\Models\Maintenance;
+use App\Models\SetupForm;
+use App\Models\SetupMaintenance;
 use App\Models\Sparepart;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -84,6 +86,32 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+
+
+        SetupMaintenance::create([
+            'nama_setup_maintenance' => 'Perawatan Karbu',
+            'kategori_id' => 1,
+            'periode' => 3,
+            'satuan_periode' => 'Minggu'
+        ]);
+
+
+        SetupForm::create([
+            'nama_setup_form' => 'Kondisi Karburator',
+            'setup_maintenance_id' => 1,
+            
+        ]);
+
+        SetupForm::create([
+            'nama_setup_form' => 'Kondisi Roda',
+            'setup_maintenance_id' => 1,
+            
+        ]);
+        SetupForm::create([
+            'nama_setup_form' => 'Putaran Mesin',
+            'setup_maintenance_id' => 1,
+            
+        ]);
 /*
 
         Pekerjaan::create([

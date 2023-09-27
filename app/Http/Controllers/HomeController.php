@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\Cache;
 use App\Models\Kategori;
 use App\Models\Maintenance;
 use App\Models\SetupMaintenance;
@@ -34,13 +36,41 @@ class HomeController extends Controller
    
     public function load_test(){
         
-        $setup = Kategori::with(['SetupMaintenance'])->find(1)->get();
-        $setup->forget(['id']);
-        dd($setup->flatten()->toArray());
-        $maintenance = new Maintenance($setup->toArray());
-        dd($maintenance);
-       // dd($kategori);
-        return view('test_page.load_setup')->with('setup',$setup);
 
+//dd($collection);
+
+        $setup = Kategori::with(['SetupMaintenance'])->find(1)->setupMaintenance;
+        //$setup->forget(['id']);
+        
+        $setup = $setup->map(function($item, $key){
+             return collect([
+                'nama_setup' => $item->nama_setup_maintenance, 
+                'periode' => $item->periode,
+                'satuan_periode' => $item->satuan_periode,
+                
+                'setupForm' => $item->setupForm->map(function($i) {
+                    return collect([
+                        'nama_setup_form' => $i->nama_setup_form,
+                        'setup_maintenance_id' => $i->setup_maintenance_id,
+                        'value' => $i->value,
+                    ]);
+                    }) 
+            ]);
+            });
+
+
+            $a = collect([
+                'a' => 'wkdhawdkl',
+                'b'=> 'kjwbdkjwgad'
+            ]);
+ 
+            //dd($a->get('a'));
+            Cache::put('setup', $setup, 60);
+          
+
+        //$maintenance = new Maintenance($setup->toArray());
+        //dd($maintenance);
+       // dd($kategori);
+        return view('test_page.load_setup');
     }
 }

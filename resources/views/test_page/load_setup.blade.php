@@ -23,42 +23,53 @@
           </div>
     </div>
 
+    @php
+        $setup = collect(Cache::get('setup'));
+    
+    @endphp
+
+
+
+
     <div class="col-md-8">
 
         <table class="table gs-7 align-middle">
 
-
          
-            @foreach ($setup as $s)
+        @foreach ($setup as $s)
                 
             <tr class="table-primary">
-                <td class="fw-bold fs-2">{{ $s->nama_maintenance }}</td>
+                <td class="fw-bold fs-2">{{ $s->get('nama_setup') }}</td>
+                <td class="fs-2">{{ $s->get('periode') }}</td>
+                <td class="fs-2">{{ $s->get('satuan_periode') }}</td>
                 <td class="text-end"><button class="btn btn-primary btn-sm">+</button></td>
             </tr>
-            
-            @if ($s->sparepart->isEmpty())
-                <tr>
-                    <td>(kosong)</td>
-                </tr>
-            @else
-            <tr>
-                <td colspan="3">
-    
-                    <table class="table align-middle">    
-                      @foreach ($s->sparepart as $p)
-                          
-                        <tr>
-                            <td>{{ $p->nama_sparepart }}</td>
-                            
-                            <td class="text-end"><button class="btn btn-primary btn-sm">+</button></td>
-                        </tr>
-    
-                        @endforeach
 
+            <tr>
+                @if($s->get('setupForm')->isNotEmpty())
+                
+                <td colspan="3">
+                    <table class="table align-middle">
+        
+                        @foreach ($s->get('setupForm') as $f)
+                        <tr>
+                            <td>{{ $f->get('nama_setup_form') }}</td>
+                            <td>{{ $s->get('periode') }}</td>
+                            <td>{{ $s->get('satuan_periode') }}</td>
+                           
+                        </tr>
+                        
+                        @endforeach
                     </table>
                 </td>
+            
+            
+                @else
+                        <td>(kosong)</td>
+                @endif
             </tr>
-            @endif
+            
+           
 
               
         @endforeach
