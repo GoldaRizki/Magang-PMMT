@@ -78,4 +78,5 @@ Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);
 
 Route::get('/test', [HomeController::class, 'test']);
 Route::post('/test', [HomeController::class, 'test2']);
+Route::get('/test_load', [HomeController::class, 'load_test']);
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Maintenance;
+use App\Models\SetupMaintenance;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,4 +32,15 @@ class HomeController extends Controller
 
     }
    
+    public function load_test(){
+        
+        $setup = Kategori::with(['SetupMaintenance'])->find(1)->get();
+        $setup->forget(['id']);
+        dd($setup->flatten()->toArray());
+        $maintenance = new Maintenance($setup->toArray());
+        dd($maintenance);
+       // dd($kategori);
+        return view('test_page.load_setup')->with('setup',$setup);
+
+    }
 }
