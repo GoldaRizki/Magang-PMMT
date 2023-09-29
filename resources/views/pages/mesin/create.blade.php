@@ -72,26 +72,6 @@
         </div>
         
 
-        <div class="input-group mb-3">
-            <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">KATEGORI</button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/kategori">+ Tambah Kategori</a></li>
-              <li><hr class="dropdown-divider"></li>
-              
-              @foreach($kategori as $k)
-
-              <li><a class="dropdown-item" onclick="setKategori({{ $k->id }},'{{ $k->nama_kategori }}')">{{ $k->nama_kategori }}</a></li>
-              
-              @endforeach
-             
-            </ul>
-            <input type="text" class="form-control @error('kategori_id') is-invalid @enderror" aria-label="Kategori" name="form_kategori" id="form_kategori" value="{{ old('form_kategori') }}" readonly>
-            @error('kategori_id')    
-            <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <input type="hidden" id="kategori" name="kategori_id" value="{{ old('kategori_id') }}">
 
         <div class="input-group mb-3">
             <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">RUANG</button>
@@ -161,11 +141,6 @@
 
 
 <script>
-    function setKategori(id_kategori, nama_kategori){
-        document.getElementById('kategori').value = id_kategori;
-        document.getElementById('form_kategori').value = nama_kategori;
-
-    }
 
     function setRuang(id_ruang, nama_ruang){
         document.getElementById('ruang').value = id_ruang;

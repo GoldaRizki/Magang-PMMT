@@ -23,7 +23,11 @@ class MesinController extends Controller
             return '<a class="text-dark" href="/mesin/detail/' . $m->id . '">' . $m->nama_mesin . '</a>';
         })
         ->editColumn('kategori', function(Mesin $mesin){
-            return $mesin->kategori->nama_kategori;
+            if(isset($mesin->kategori)){
+                return $mesin->kategori->nama_kategori;
+            }else{
+                return "Tak Terkategori";
+            }
         })
         ->editColumn('ruang', function(Mesin $mesin){
             return $mesin->ruang->nama_ruang;
@@ -50,7 +54,6 @@ class MesinController extends Controller
         return view('pages.mesin.create',
         [
             'ruang' => Ruang::all(),
-            'kategori' => Kategori::all(),
             'halaman' => 'Mesin'
         ]
     );
@@ -62,15 +65,14 @@ class MesinController extends Controller
         $validData = $request->validate([
             'nama_mesin' => 'required|max:255',
             'no_asset' => 'required|max:25',
-            'kategori_id' => 'required|numeric',
             'ruang_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
         ]);
 
 
-        Mesin::create($validData);
+        $mesin = Mesin::create($validData);
 
-        return redirect()->intended('/mesin')->with('tambah', 'p');
+        return redirect()->intended('/maintenance/form/select/'. $mesin['id'])->with('tambah', 'p');
     }
 
 
@@ -83,7 +85,7 @@ class MesinController extends Controller
 
     public function edit($id){
         
-        $mesin = Mesin::with(['ruang', 'kategori'])->findOrFail($id);
+        $mesin = Mesin::with(['ruang'])->findOrFail($id);
         $ruang = Ruang::all();
         $kategori = Kategori::all();
 
@@ -103,7 +105,6 @@ class MesinController extends Controller
             'id' => 'required|numeric',
             'nama_mesin' => 'required|max:255',
             'no_asset' => 'required|max:25',
-            'kategori_id' => 'required|numeric',
             'ruang_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
         ]);

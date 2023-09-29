@@ -42,7 +42,7 @@ class HomeController extends Controller
         $setup = Kategori::with(['SetupMaintenance'])->find(1)->setupMaintenance;
         //$setup->forget(['id']);
         
-        $setup = $setup->map(function($item, $key){
+        $setup = $setup->map(function($item){
              return collect([
                 'nama_setup' => $item->nama_setup_maintenance, 
                 'periode' => $item->periode,
@@ -58,11 +58,6 @@ class HomeController extends Controller
             ]);
             });
 
-
-            $a = collect([
-                'a' => 'wkdhawdkl',
-                'b'=> 'kjwbdkjwgad'
-            ]);
  
             //dd($a->get('a'));
             Cache::put('setup', $setup, 60);

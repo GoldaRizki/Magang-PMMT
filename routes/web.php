@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SetupMaintenanceController;
+use App\Http\Controllers\SetupMesinController;
 use App\Http\Controllers\SparepartController;
 use App\Models\SetupMaintenance;
 
@@ -56,10 +57,17 @@ Route::put('/setupMaintenance/kategori/update', [KategoriController::class, 'upd
 
 
 
+
+
 Route::get('/ruang', [RuangController::class, 'index']);
 Route::post('/ruang/create', [RuangController::class, 'create']);
 Route::put('/ruang/update', [RuangController::class, 'update']);
 Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
+
+
+
+Route::get('/maintenance/form/select/{id}', [SetupMesinController::class, 'pilih_template']);
+Route::get('/maintenance/form/tampil/', [SetupMesinController::class, 'tampil_template']);
 
 
 
@@ -78,5 +86,5 @@ Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);
 
 Route::get('/test', [HomeController::class, 'test']);
 Route::post('/test', [HomeController::class, 'test2']);
-Route::get('/test_load', [HomeController::class, 'load_test']);
+Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 

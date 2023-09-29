@@ -23,7 +23,7 @@ class KategoriController extends Controller
         }
         */  
 
-        $kategori = Kategori::with(['setupMaintenance'])->get();
+        $kategori = Kategori::with(['setupMaintenance'])->get()->sortDesc();
 
         return view('pages.kategori.index', ['halaman' => 'Kategori', 'kategori' => $kategori]);
     }
