@@ -22,4 +22,8 @@ class Maintenance extends Model
         return $this->belongsToMany(Sparepart::class);
     }
 
+    public function form(){
+        return $this->hasMany(Form::class);
+    }
+
 }

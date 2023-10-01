@@ -1,5 +1,8 @@
 @extends('layouts.tray_layout')
 
+
+
+
 @section('content_left')
     <p>DIkei tombil balik</p>
 
@@ -10,8 +13,8 @@
 @section('content_right')
 <h1 class="text-center my-3">Pilih Template</h1>
 
-<form action="/maintenance/form/tampil/" method="get">
-
+<form action="/maintenance/form/pilih/kirim/" method="post">
+    @csrf
     <select name="id" class="form-select mx-5" aria-label="Pilih">
         
         <option value="{{ $mesin->kategori_id }}">{{ $mesin->kategori->nama_kategori }}</option>

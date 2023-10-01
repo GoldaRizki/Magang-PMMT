@@ -66,8 +66,15 @@ Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
 
 
 
-Route::get('/maintenance/form/select/{id}', [SetupMesinController::class, 'pilih_template']);
-Route::get('/maintenance/form/tampil/', [SetupMesinController::class, 'tampil_template']);
+Route::post('/maintenance/form/pilih/', [SetupMesinController::class, 'pilih_template']);
+Route::post('/maintenance/form/pilih/kirim/', [SetupMesinController::class, 'ambil_template']);
+Route::get('/maintenance/form/pilih/', [SetupMesinController::class, 'tampil_template']);
+
+Route::post('/maintenance/create/', [SetupMesinController::class, 'create_maintenance']);
+Route::post('/maintenance/edit/', [SetupMesinController::class, 'edit_maintenance']);
+Route::post('/maintenance/delete/', [SetupMesinController::class, 'delete_maintenance']);
+
+
 
 
 

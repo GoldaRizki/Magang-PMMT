@@ -33,7 +33,7 @@ class MesinController extends Controller
             return $mesin->ruang->nama_ruang;
         })
         ->addColumn('aksi', function($m){
-            return view('partials.tombolAksi', ['editPath' => '/mesin/edit/', 'id'=> $m->id, 'deletePath' => '/mesin/destroy/' ]);
+            return view('partials.tombolAksiMesin', ['editPath' => '/mesin/edit/', 'id'=> $m->id, 'deletePath' => '/mesin/destroy/' ]);
         })
         ->rawColumns(['nama_mesin','aksi'])
         ->addIndexColumn()

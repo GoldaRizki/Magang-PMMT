@@ -12,16 +12,51 @@ class SetupMesinController extends Controller
     //
 
 
-    public function pilih_template($id){
+    public function pilih_template(Request $request){
 
-        $mesin = Mesin::find($id);
+        $data_valid = $request->validate([
+            'id' => 'required|numeric',
+        ]);
 
-        $kategori = Kategori::all();
 
-        return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
+        $mesin = Mesin::with(['maintenance'])->find($data_valid['id']);
+
+
+        if($mesin->maintenance->isNotEmpty()){
+            
+
+            $setup = $mesin->maintenance->map(function($item){
+                return collect([
+                   'nama_setup' => $item->nama_maintenance, 
+                   'periode' => $item->periode,
+                   'satuan_periode' => $item->satuan_periode,
+                   
+                   'setupForm' => $item->form->map(function($i) {
+                       return collect([
+                           'nama_setup_form' => $i->nama_form,
+                           'setup_maintenance_id' => $i->maintenance_id,
+                           'value' => $i->value,
+                       ]);
+                       }) 
+               ]);
+               });
+            
+
+               Cache::put('setup', $setup, now()->addMinutes(30));
+
+
+               return redirect('/maintenance/form/pilih/');
+            
+        }else{
+            
+            $kategori = Kategori::all(); 
+
+            return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
+        
+        }
     }
 
-    public function tampil_template(Request $request){
+    public function ambil_template(Request $request){
         $data_valid = $request->validate([
             'id' => 'required|numeric',
         ]); 
@@ -47,9 +82,81 @@ class SetupMesinController extends Controller
 
  
             //dd($a->get('a'));
-            Cache::put('setup', $setup, 60);
+            Cache::put('setup', $setup, now()->addMinutes(30));
 
 
-        return view('pages.maintenance.form');
+        return redirect('/maintenance/form/pilih/');
     }
+
+    public function tampil_template() {
+
+        $setup = collect(Cache::get('setup'));
+
+
+        return view('pages.maintenance.form', ['setup' => $setup]);
+    }
+
+    public function create_maintenance(Request $request){
+        
+        $setup = collect(Cache::get('setup'));
+
+        $data_valid = $request->validate([
+            'nama_setup' => 'required',
+            'periode' => 'required',
+            'satuan_periode' => 'required'
+        ]);
+
+        $data_valid['setupForm'] = collect([]);
+
+        $setup->push(collect($data_valid));
+
+        Cache::put('setup', $setup, now()->addMinutes(30));
+
+        return redirect('/maintenance/form/pilih/');
+
+    }
+
+
+    public function edit_maintenance(Request $request){
+
+        $setup = collect(Cache::get('setup'));
+
+        $data_valid = collect($request->validate([
+            'index' => 'required|numeric',
+            'nama_setup' => 'required',
+            'periode' => 'required',
+            'satuan_periode' => 'required'
+        ]));
+
+        $index_maintenance = $data_valid['index'];
+
+        $maintenance = $setup[$index_maintenance];
+
+        $data_valid->forget('index');
+        
+        $maintenance = $maintenance->replace($data_valid);
+
+        $setup[$index_maintenance] = $maintenance;
+
+        Cache::put('setup', $setup, now()->addMinutes(30));
+
+        return redirect('/maintenance/form/pilih/');
+    }
+
+    public function delete_maintenance(Request $request){
+
+        $setup = collect(Cache::get('setup'));
+
+        $data_valid = $request->validate([
+            'index' => 'required|numeric',
+        ]);
+
+        $setup = $setup->forget($data_valid['index'])->values();
+
+
+        Cache::put('setup', $setup, now()->addMinutes(30));
+
+        return redirect('/maintenance/form/pilih/');
+    }
+
 }
