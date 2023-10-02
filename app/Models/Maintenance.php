@@ -9,6 +9,7 @@ class Maintenance extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id']; 
 
     public function mesin(){
         return $this->belongsTo(Mesin::class);

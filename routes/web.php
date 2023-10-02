@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SetupMaintenanceController;
@@ -74,7 +75,11 @@ Route::post('/maintenance/create/', [SetupMesinController::class, 'create_mainte
 Route::post('/maintenance/edit/', [SetupMesinController::class, 'edit_maintenance']);
 Route::post('/maintenance/delete/', [SetupMesinController::class, 'delete_maintenance']);
 
+Route::put('/maintenance/submit/', [MaintenanceController::class, 'update']);
 
+Route::post('/maintenance/form/create/', [SetupMesinController::class, 'create_maintenance_form']);
+Route::post('/maintenance/form/update/', [SetupMesinController::class, 'update_maintenance_form']);
+Route::post('/maintenance/form/delete/', [SetupMesinController::class, 'delete_maintenance_form']);
 
 
 

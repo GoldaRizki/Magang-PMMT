@@ -16,8 +16,8 @@ class CreateFormsTable extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
             $table->string('nama_form');
-            $table->foreignId('maintenance_id');
-            $table->json('value')->nullable();
+            $table->foreignId('maintenance_id')->constrained()->onDelete('cascade');
+            $table->json('value')->default('[]');
             $table->timestamps();
         });
     }

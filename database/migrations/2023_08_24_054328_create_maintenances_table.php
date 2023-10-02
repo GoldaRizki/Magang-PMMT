@@ -18,8 +18,8 @@ class CreateMaintenancesTable extends Migration
             $table->String('nama_maintenance');
             $table->foreignId('mesin_id');
             $table->integer('periode');
-            $table->char('satuan_periode', 1);
-            $table->dateTime('start_time');
+            $table->enum('satuan_periode', ['Jam', 'Hari', 'Minggu', 'Bulan', 'Tahun'])->default('Jam');
+            $table->dateTime('start_time')->nullable();
             $table->timestamps();
         });
     }
