@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Mesin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Carbon;
 
 class SetupMesinController extends Controller
 {
@@ -19,7 +20,7 @@ class SetupMesinController extends Controller
         ]);
 
 
-        $mesin = Mesin::with(['maintenance'])->find($data_valid['id']);
+        $mesin = Mesin::with(['maintenance', 'ruang', 'kategori'])->find($data_valid['id']);
 
 
         if($mesin->maintenance->isNotEmpty()){
@@ -30,6 +31,8 @@ class SetupMesinController extends Controller
                    'nama_setup' => $item->nama_maintenance, 
                    'periode' => $item->periode,
                    'satuan_periode' => $item->satuan_periode,
+                   'start_time' => $item->start_time,
+                   'warna' => $item->warna,
                    
                    'setupForm' => $item->form->map(function($i) {
                        return collect([
@@ -49,7 +52,6 @@ class SetupMesinController extends Controller
             
             $kategori = Kategori::all(); 
             Cache::put('mesin', $mesin, now()->addMinutes(30));
-
             return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
         
         }
@@ -71,6 +73,10 @@ class SetupMesinController extends Controller
                 'nama_setup' => $item->nama_setup_maintenance, 
                 'periode' => $item->periode,
                 'satuan_periode' => $item->satuan_periode,
+                'start_date' => now()->format('d-m-Y'),
+                'warna' => $item->warna,
+           
+
                 
                 'setupForm' => $item->setupForm->map(function($i) {
                     return collect([
@@ -81,8 +87,12 @@ class SetupMesinController extends Controller
             ]);
             });
 
- 
+
             $mesin = collect(Cache::get('mesin'));
+            $mesin['kategori_id'] = $data_valid['id'];
+
+            $mesin['kategori'] = Kategori::find($data_valid['id'])->toArray();
+            //dd($mesin);
             //dd($a->get('a'));
             Cache::put('setup', $setup, now()->addMinutes(30));
             Cache::put('mesin', $mesin, now()->addMinutes(30));
@@ -102,12 +112,17 @@ class SetupMesinController extends Controller
     public function create_maintenance(Request $request){
         
         $setup = collect(Cache::get('setup'));
+        
 
+        //dd($request);
         $data_valid = $request->validate([
             'nama_setup' => 'required',
             'periode' => 'required',
-            'satuan_periode' => 'required'
+            'satuan_periode' => 'required',
+            'start_date' => 'required|date_format:d-m-Y',
+            'warna' => 'required'
         ]);
+
 
         $data_valid['setupForm'] = collect([]);
 
@@ -132,7 +147,9 @@ class SetupMesinController extends Controller
             'index' => 'required|numeric',
             'nama_setup' => 'required',
             'periode' => 'required',
-            'satuan_periode' => 'required'
+            'satuan_periode' => 'required',
+            'start_date' => 'required|date',
+            'warna' => 'required'
         ]));
 
         $index_maintenance = $data_valid['index'];
@@ -181,6 +198,7 @@ class SetupMesinController extends Controller
         $data_valid = $request->validate([
             'maintenance_index' => 'required|numeric',
             'nama_setup_form' => 'required',
+
         ]);
         $setup[$data_valid['maintenance_index']]->get('setupForm')->push(collect(['nama_setup_form' => $data_valid['nama_setup_form']]));
 
@@ -201,6 +219,7 @@ class SetupMesinController extends Controller
             'maintenance_index' => 'required|numeric',
             'form_index' => 'required|numeric',
             'nama_setup_form' => 'required',
+            
         ]);
 
         $form = $setup[$data_valid['maintenance_index']]->get('setupForm')[$data_valid['form_index']];

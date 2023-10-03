@@ -152,7 +152,8 @@ Maintenance::create([
     'mesin_id' => 1,
     'periode' => 3,
     'satuan_periode' => 'Minggu',
-    'start_time' => Carbon::parse('12-3-2023')
+    'start_time' => Carbon::parse('12-3-2023'),
+    'warna' => '#f7069f'
 ]);
 
 Maintenance::create([
@@ -160,8 +161,9 @@ Maintenance::create([
     'mesin_id' => 1,
     'periode' => 3,
     'satuan_periode' => 'Jam',
-    
-    'start_time' => Carbon::parse('13-5-2023')
+    'start_time' => Carbon::parse('13-5-2023'),
+    'warna' => '#ff033f'
+
 ]);
 
 Maintenance::create([
@@ -169,7 +171,8 @@ Maintenance::create([
     'mesin_id' => 1,  
     'periode' => 3,
     'satuan_periode' => 'Hari',
-    'start_time' => Carbon::parse('2-4-2023')
+    'start_time' => Carbon::parse('2-4-2023'),
+    'warna' => '#ffff00'
 ]);
 
 /*

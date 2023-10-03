@@ -409,11 +409,11 @@
         </tr>
         <tr>
             <td><b>Ruang</b></td>
-            <td>{{ $mesin->get('ruang') }}</td>
+            <td>{{ $mesin->get('ruang')['nama_ruang'] }}</td>
         </tr>
         <tr>
             <td><b>Kategori</b></td>
-            <td>{{ $mesin->get('kategori') }}</td>
+            <td>{{ $mesin->get('kategori')['nama_kategori'] }}</td>
         </tr>
     </table>
 
@@ -536,7 +536,13 @@
                         <b>:</b>
                     </td>
                     <td>
-                        23 Maret 2023
+@php
+    setlocale(LC_ALL, 'IND');
+
+@endphp
+
+
+                        {{ Illuminate\Support\Carbon::parse($s->get('start_date'))->formatLocalized('%d %B %Y') }}
                     </td>
                 </tr>
                 <tr>
@@ -547,7 +553,7 @@
                         <b>:</b>
                     </td>
                     <td>
-                        <span style="color: #ff1ab3">#ff1ab3</span>
+                        <span style="color: {{ $s->get('warna') }};"><b>{{ $s->get('warna') }}</b></span>
                     </td>
                 </tr>
                 
@@ -674,7 +680,7 @@ x.forEach(element => {
 
 
 $('.input-group.date').datepicker({
-    format: "dd/mm/yyyy",
+    format: "dd-mm-yyyy",
     todayBtn: "linked",
     language: "id",
     autoclose: true,
