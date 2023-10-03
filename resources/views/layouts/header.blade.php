@@ -42,10 +42,10 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="\assets\bootstrap-datepicker-1.9.0\css\bootstrap-datepicker.standalone.min.css">
 		<!--end::Global Stylesheets Bundle-->
 		
-		<script src="assets\sweetAlert\sweetalert2.all.min.js"></script>
-
+		<script src="\assets\sweetAlert\sweetalert2.all.min.js"></script>
 		@include('partials.customJs')
 	</head>
 	<!--end::Head-->
@@ -190,7 +190,8 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="/assets/js/custom/modals/create-app.js"></script>
 		<script src="/assets/js/custom/modals/upgrade-plan.js"></script>
 		<script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-
+		<script src="\assets\bootstrap-datepicker-1.9.0\js\bootstrap-datepicker.min.js"></script>
+		<script src="\assets\bootstrap-datepicker-1.9.0\locales\bootstrap-datepicker.id.min.js"></script>
 		<!-- Mengko tambahi yield ng kene gawe custom-->
 
 		@yield('customJs')

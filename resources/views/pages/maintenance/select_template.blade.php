@@ -4,7 +4,40 @@
 
 
 @section('content_left')
-    <p>DIkei tombil balik</p>
+
+<table class="table table-row-dashed table-row-gray-400 gs-1">
+    <tr>
+        <td><b>Nama Mesin</b></td>
+        <td>{{ $mesin->nama_mesin }}</td>
+    </tr>
+    <tr>
+        <td><b>Nomor Asset</b></td>
+        <td>{{ $mesin->no_asset }}</td>
+    </tr>
+    <tr>
+        <td><b>Ruang</b></td>
+        <td>{{ $mesin->ruang->nama_ruang }}</td>
+    </tr>
+    <tr>
+        <td><b>Kategori</b></td>
+        <td>{{ $mesin->kategori->nama_kategori }}</td>
+    </tr>
+</table>
+
+ 
+
+    <a href="/mesin" class="btn btn-dark container-fluid mt-12">
+        <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr046.svg-->
+        <span class="svg-icon svg-icon-muted svg-icon-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M14 6H9.60001V8H14C15.1 8 16 8.9 16 10V21C16 21.6 16.4 22 17 22C17.6 22 18 21.6 18 21V10C18 7.8 16.2 6 14 6Z" fill="black"/>
+                <path opacity="0.3" d="M9.60002 12L5.3 7.70001C4.9 7.30001 4.9 6.69999 5.3 6.29999L9.60002 2V12Z" fill="black"/>
+            </svg>
+        </span>
+<!--end::Svg Icon-->
+
+        <span>Kembali</span>
+    </a>
 
 
 @endsection

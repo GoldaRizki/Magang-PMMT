@@ -106,6 +106,34 @@
                       
                     </div>
 
+                    <div class="input-group mb-3">
+
+                        <span class="form-label float-start">Start Date</span>
+                        <div class="input-group date">
+                            <input type="text" class="form-control clear-form" id="tanggal_form" name="start_date" readonly>
+                            <button class="btn btn-secondary" type="button">
+                                <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil002.svg-->
+                                <span class="svg-icon svg-icon-muted svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                        <path opacity="0.3" d="M19 3.40002C18.4 3.40002 18 3.80002 18 4.40002V8.40002H14V4.40002C14 3.80002 13.6 3.40002 13 3.40002C12.4 3.40002 12 3.80002 12 4.40002V8.40002H8V4.40002C8 3.80002 7.6 3.40002 7 3.40002C6.4 3.40002 6 3.80002 6 4.40002V8.40002H2V4.40002C2 3.80002 1.6 3.40002 1 3.40002C0.4 3.40002 0 3.80002 0 4.40002V19.4C0 20 0.4 20.4 1 20.4H19C19.6 20.4 20 20 20 19.4V4.40002C20 3.80002 19.6 3.40002 19 3.40002ZM18 10.4V13.4H14V10.4H18ZM12 10.4V13.4H8V10.4H12ZM12 15.4V18.4H8V15.4H12ZM6 10.4V13.4H2V10.4H6ZM2 15.4H6V18.4H2V15.4ZM14 18.4V15.4H18V18.4H14Z" fill="black"/>
+                                        <path d="M19 0.400024H1C0.4 0.400024 0 0.800024 0 1.40002V4.40002C0 5.00002 0.4 5.40002 1 5.40002H19C19.6 5.40002 20 5.00002 20 4.40002V1.40002C20 0.800024 19.6 0.400024 19 0.400024Z" fill="black"/>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                        </button>
+                        
+                        </div>
+                    </div>
+
+
+                    <div class="my-5">
+                        <div class="p-2 fw-bold">Warna</div>
+                        <div class="p-2 d-inline"><input type="color" name="warna" id="create_warna" value="#0095E8">
+                        </div>
+
+                      </div>
+
+
             </div>
 
             <div class="modal-footer">
@@ -370,20 +398,26 @@
 @section('content_left')
     
 
-
-    <table>
+    <table class="table table-row-dashed table-row-gray-400 gs-1">
         <tr>
-            <td>Nama Mesin</td>
+            <td><b>Nama Mesin</b></td>
             <td>{{ $mesin->get('nama_mesin') }}</td>
         </tr>
         <tr>
-            <td>Nomor Asset</td>
+            <td><b>Nomor Asset</b></td>
             <td>{{ $mesin->get('no_asset') }}</td>
+        </tr>
+        <tr>
+            <td><b>Ruang</b></td>
+            <td>{{ $mesin->get('ruang') }}</td>
+        </tr>
+        <tr>
+            <td><b>Kategori</b></td>
+            <td>{{ $mesin->get('kategori') }}</td>
         </tr>
     </table>
 
-        <div class="col-auto text-center">
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+            <button class="btn btn-primary my-3 container-fluid" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
                 <span class="svg-icon svg-icon-muted svg-icon-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -393,27 +427,40 @@
                     </svg>
                 </span>
         <!--end::Svg Icon-->
-                Tambahkan
+                <span>Maintenance</span>
             </button>
-          </div>
 
 
           <form action="/maintenance/submit/" method="post">
             @method('put')
             @csrf
-            <button class="btn btn-info text-nowrap" type="submit">
-            <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen027.svg-->
-                <span class="svg-icon svg-icon-muted svg-icon-7">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                        <path fill="white" d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                        <path fill="white" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                      </svg>
-                    </span>
-                <!--end::Svg Icon-->
+            <button class="btn btn-warning container-fluid" type="submit">
+            <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen037.svg-->
+            <span class="svg-icon svg-icon-muted svg-icon-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+                <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black"/>
+                </svg>
+            </span>
             <!--end::Svg Icon-->
+    
             <span>Simpan Perubahan</span>
             </button>
         </form>
+
+        <a href="/mesin" class="btn btn-dark container-fluid mt-12">
+            <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr046.svg-->
+            <span class="svg-icon svg-icon-muted svg-icon-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 6H9.60001V8H14C15.1 8 16 8.9 16 10V21C16 21.6 16.4 22 17 22C17.6 22 18 21.6 18 21V10C18 7.8 16.2 6 14 6Z" fill="black"/>
+                    <path opacity="0.3" d="M9.60002 12L5.3 7.70001C4.9 7.30001 4.9 6.69999 5.3 6.29999L9.60002 2V12Z" fill="black"/>
+                </svg>
+            </span>
+    <!--end::Svg Icon-->
+
+            <span>Kembali</span>
+        </a>
+
 @endsection
     
 
@@ -429,8 +476,7 @@
     
     <tr class="table-primary">
         <td class="fw-bold fs-2">{{ $s->get('nama_setup') }}</td>
-        <td class="fs-2">{{ $s->get('periode') }}</td>
-        <td class="fs-2">{{ $s->get('satuan_periode') }}</td>
+
         <td class="text-end">
 
             <form action="/maintenance/delete/" method="post" onSubmit="return hapusSetup(this);" style ="display:inline-block;">
@@ -469,14 +515,64 @@
     </tr>
     
     <tr>
+        <td>
+            <table class="table g-1">
+                <tr>
+                    <td>
+                        <b>Periode</b>
+                    </td>
+                    <td>
+                        <b>:</b>
+                    </td>
+                    <td>
+                        {{ $s->get('periode') }}&nbsp;{{ $s->get('satuan_periode') }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Start Date</b>
+                    </td>
+                    <td>
+                        <b>:</b>
+                    </td>
+                    <td>
+                        23 Maret 2023
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Warna</b>
+                    </td>
+                    <td>
+                        <b>:</b>
+                    </td>
+                    <td>
+                        <span style="color: #ff1ab3">#ff1ab3</span>
+                    </td>
+                </tr>
+                
+            </table>
+        </td>
+        <td></td>
+    </tr>
+
+    
+    <tr><td colspan="2"><h2>Form :</h2></td></tr>
+    <tr>
         @if($s->get('setupForm')->isNotEmpty())
         
-        <td colspan="3">
-            <table class="table align-middle">
-                
+        <td colspan="2">
+            <table class="table align-middle table-row-dashed table-row-gray-400">
+                    <tr class="fw-bolder border-bottom border-gray-600 fs-4">
+                        <th>Nama Form</th>
+                        <th>Syarat</th>
+                        <th>Aksi</th>
+                    </tr>        
+
                 @foreach ($s->get('setupForm') as $f)
                 <tr>
                     <td>{{ $f->get('nama_setup_form') }}</td>
+                    <td>Baik</td>
                     <td>
                         <!-- panggil modal -->
                         <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_4" onclick="indexEditMaintenance({{ $loop->parent->index }}, {{ $loop->index }}, '{{ $f->get('nama_setup_form') }}')">
@@ -513,6 +609,7 @@
             </tr>
             
             @endforeach
+
         </table>
     </td>
           
@@ -520,7 +617,7 @@
         
         
         @else
-        <td>(kosong)</td>
+        <td colspan="2">(kosong)</td>
         @endif
     </tr>
     
@@ -576,6 +673,13 @@ x.forEach(element => {
 }
 
 
+$('.input-group.date').datepicker({
+    format: "dd/mm/yyyy",
+    todayBtn: "linked",
+    language: "id",
+    autoclose: true,
+    todayHighlight: true
+});
 
 
     </script>

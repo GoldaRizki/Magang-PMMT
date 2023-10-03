@@ -437,12 +437,12 @@
             <!--end::Svg Icon-->
             </button>
 
-    </td>
+        </td>
     </tr>
     <tr>
         @if($k->setupMaintenance->isNotEmpty())
         
-        <td colspan="3">
+        <td colspan="2">
             <table class="table align-middle">
 
                 @foreach ($k->setupMaintenance as $s)

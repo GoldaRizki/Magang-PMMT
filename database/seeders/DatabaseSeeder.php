@@ -150,28 +150,26 @@ class DatabaseSeeder extends Seeder
 Maintenance::create([
     'nama_maintenance' => 'ganti oli',
     'mesin_id' => 1,
-   
     'periode' => 3,
     'satuan_periode' => 'Minggu',
-    'start_time' => Carbon::parse('12-3-2023 23:58:36')
+    'start_time' => Carbon::parse('12-3-2023')
 ]);
 
 Maintenance::create([
     'nama_maintenance' => 'ganti vanbelt',
     'mesin_id' => 1,
-   
     'periode' => 3,
     'satuan_periode' => 'Jam',
-    'start_time' => Carbon::parse('13-5-2023 23:58:36')
+    
+    'start_time' => Carbon::parse('13-5-2023')
 ]);
 
 Maintenance::create([
     'nama_maintenance' => 'manasi mesin',
-    'mesin_id' => 1,
-   
+    'mesin_id' => 1,  
     'periode' => 3,
     'satuan_periode' => 'Hari',
-    'start_time' => Carbon::parse('2-4-2023 5:34:36')
+    'start_time' => Carbon::parse('2-4-2023')
 ]);
 
 /*
