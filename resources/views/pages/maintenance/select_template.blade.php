@@ -8,19 +8,19 @@
 <table class="table table-row-dashed table-row-gray-400 gs-1">
     <tr>
         <td><b>Nama Mesin</b></td>
-        <td>{{ $mesin->nama_mesin }}</td>
+        <td>{{ $mesin['nama_mesin'] }}</td>
     </tr>
     <tr>
         <td><b>Nomor Asset</b></td>
-        <td>{{ $mesin->no_asset }}</td>
+        <td>{{ $mesin['no_asset'] }}</td>
     </tr>
     <tr>
         <td><b>Ruang</b></td>
-        <td>{{ $mesin->ruang->nama_ruang }}</td>
+        <td>{{ $mesin['ruang']['nama_ruang'] }}</td>
     </tr>
     <tr>
         <td><b>Kategori</b></td>
-        <td>{{ $mesin->kategori->nama_kategori }}</td>
+        <td>{{ $mesin['kategori']['nama_kategori'] }}</td>
     </tr>
 </table>
 
@@ -50,7 +50,7 @@
     @csrf
     <select name="id" class="form-select mx-5" aria-label="Pilih">
         
-        <option value="{{ $mesin->kategori_id }}">{{ $mesin->kategori->nama_kategori }}</option>
+        <option value="{{ $mesin['kategori_id'] }}">{{ $mesin['kategori']['nama_kategori'] }}</option>
         
         @foreach ($kategori as $k)
         

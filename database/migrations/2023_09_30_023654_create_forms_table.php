@@ -17,6 +17,7 @@ class CreateFormsTable extends Migration
             $table->id();
             $table->string('nama_form');
             $table->foreignId('maintenance_id')->constrained()->onDelete('cascade');
+            $table->string('syarat', 20);
             $table->json('value')->default('[]');
             $table->timestamps();
         });

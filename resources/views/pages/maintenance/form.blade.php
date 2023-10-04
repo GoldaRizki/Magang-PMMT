@@ -84,16 +84,16 @@
             
                     <div class="mb-3">
                         <label for="maintenance_form" class="form-label float-start">Nama Maintenance</label>
-                        <input type="text" class="form-control clear-form" id="maintenance_form" name="nama_setup">
+                        <input type="text" class="form-control @error('nama_setup') is-invalid @enderror clear-form" id="maintenance_form" value="{{ old('nama_setup') }}" name="nama_setup">
                     </div>
 
                     <div class="mb-3">
                         <label for="periode_form" class="form-label float-start">Periode</label>
-                        <input type="number" class="form-control clear-form" id="periode_form" name="periode">
+                        <input type="number" class="form-control @error('periode') is-invalid @enderror clear-form" id="periode_form" value="{{ old('periode') }}" name="periode">
                     </div>
 
                     <div class="input-group mb-3">
-                        <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Satuan</button>
+                        <button class="btn btn-primary btn-outline-secondary @error('satuan_periode') is-invalid @enderror dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Satuan</button>
                         <ul class="dropdown-menu"> 
                           <li><a class="dropdown-item" onclick="setSatuan('Jam')">Jam</a></li>
                           <li><a class="dropdown-item" onclick="setSatuan('Hari')">Hari</a></li>
@@ -102,7 +102,7 @@
                           <li><a class="dropdown-item" onclick="setSatuan('Tahun')">Tahun</a></li>
 
                         </ul>
-                        <input type="text" class="form-control clear-form" aria-label="Satuan" name="satuan_periode" id="satuan_periode" readonly>
+                        <input type="text" class="form-control @error('satuan_periode') is-invalid @enderror clear-form" aria-label="Satuan" value="{{ old('satuan_periode') }}" name="satuan_periode" id="satuan_periode" readonly>
                       
                     </div>
 
@@ -110,8 +110,8 @@
 
                         <span class="form-label float-start">Start Date</span>
                         <div class="input-group date">
-                            <input type="text" class="form-control clear-form" id="tanggal_form" name="start_date" readonly>
-                            <button class="btn btn-secondary" type="button">
+                            <input type="text" class="form-control @error('start_date') is-invalid @enderror clear-form" id="tanggal_form" value="{{ old('start_date') }}" name="start_date" readonly>
+                            <button class="btn btn-secondary @error('start_date') is-invalid @enderror" type="button">
                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil002.svg-->
                                 <span class="svg-icon svg-icon-muted svg-icon-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
@@ -128,7 +128,7 @@
 
                     <div class="my-5">
                         <div class="p-2 fw-bold">Warna</div>
-                        <div class="p-2 d-inline"><input type="color" name="warna" id="create_warna" value="#0095E8">
+                        <div class="p-2 d-inline"><input type="color" name="warna" id="create_warna" value="{{ old('warna','#0095E8') }}">
                         </div>
 
                       </div>
@@ -223,6 +223,35 @@
                       
                     </div>
 
+                    <div class="input-group mb-3">
+
+                        <span class="form-label float-start">Start Date</span>
+                        <div class="input-group date">
+                            <input type="text" class="form-control clear-form" id="edit_tanggal_form" name="start_date" readonly>
+                            <button class="btn btn-secondary" type="button">
+                                <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil002.svg-->
+                                <span class="svg-icon svg-icon-muted svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                        <path opacity="0.3" d="M19 3.40002C18.4 3.40002 18 3.80002 18 4.40002V8.40002H14V4.40002C14 3.80002 13.6 3.40002 13 3.40002C12.4 3.40002 12 3.80002 12 4.40002V8.40002H8V4.40002C8 3.80002 7.6 3.40002 7 3.40002C6.4 3.40002 6 3.80002 6 4.40002V8.40002H2V4.40002C2 3.80002 1.6 3.40002 1 3.40002C0.4 3.40002 0 3.80002 0 4.40002V19.4C0 20 0.4 20.4 1 20.4H19C19.6 20.4 20 20 20 19.4V4.40002C20 3.80002 19.6 3.40002 19 3.40002ZM18 10.4V13.4H14V10.4H18ZM12 10.4V13.4H8V10.4H12ZM12 15.4V18.4H8V15.4H12ZM6 10.4V13.4H2V10.4H6ZM2 15.4H6V18.4H2V15.4ZM14 18.4V15.4H18V18.4H14Z" fill="black"/>
+                                        <path d="M19 0.400024H1C0.4 0.400024 0 0.800024 0 1.40002V4.40002C0 5.00002 0.4 5.40002 1 5.40002H19C19.6 5.40002 20 5.00002 20 4.40002V1.40002C20 0.800024 19.6 0.400024 19 0.400024Z" fill="black"/>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                        </button>
+                        
+                        </div>
+                    </div>
+
+
+                    <div class="my-5">
+                        <div class="p-2 fw-bold">Warna</div>
+                        <div class="p-2 d-inline"><input type="color" name="warna" id="edit_warna">
+                        </div>
+
+                      </div>
+
+
+
             </div>
 
             <div class="modal-footer">
@@ -287,6 +316,10 @@
                     <div class="mb-3">
                         <label for="create_form_form" class="form-label float-start">Nama Form</label>
                         <input type="text" class="form-control clear-form" id="create_form_form" name="nama_setup_form">
+                    </div>
+                    <div class="mb-3">
+                        <label for="create_form_syarat" class="form-label float-start">Syarat</label>
+                        <input type="text" class="form-control clear-form" id="create_form_syarat" name="syarat_setup_form">
                     </div>
 
             </div>
@@ -358,6 +391,12 @@
                         <input type="text" class="form-control clear-form" id="edit_form_form" name="nama_setup_form">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="edit_form_syarat" class="form-label float-start">Syarat</label>
+                        <input type="text" class="form-control clear-form" id="edit_form_syarat" name="syarat_setup_form">
+                    </div>
+
+
             </div>
 
             <div class="modal-footer">
@@ -417,7 +456,7 @@
         </tr>
     </table>
 
-            <button class="btn btn-primary my-3 container-fluid" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+            <button class="btn btn-primary mb-3 container-fluid" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
                 <span class="svg-icon svg-icon-muted svg-icon-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -431,12 +470,13 @@
             </button>
 
 
+
           <form action="/maintenance/submit/" method="post">
             @method('put')
             @csrf
-            <button class="btn btn-warning container-fluid" type="submit">
+            <button class="btn btn-warning mb-3 text-dark container-fluid" type="submit">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen037.svg-->
-            <span class="svg-icon svg-icon-muted svg-icon-3">
+            <span class="svg-icon-dark svg-icon-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
                 <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black"/>
@@ -448,7 +488,27 @@
             </button>
         </form>
 
-        <a href="/mesin" class="btn btn-dark container-fluid mt-12">
+
+
+        <form action="/maintenance/ubah_template/" onSubmit="return ubahKategori(this);" method="post">
+            @csrf
+            <button class="btn btn-secondary mt-9 container-fluid" type="submit">
+            
+                <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
+                <span class="svg-icon svg-icon-muted svg-icon-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z" fill="black"/>
+                        <path d="M10.9256 11.1882C10.5351 10.7977 10.5351 10.1645 10.9256 9.77397L18.0669 2.6327C18.8479 1.85165 20.1143 1.85165 20.8953 2.6327L21.3665 3.10391C22.1476 3.88496 22.1476 5.15129 21.3665 5.93234L14.2252 13.0736C13.8347 13.4641 13.2016 13.4641 12.811 13.0736L10.9256 11.1882Z" fill="black"/>
+                        <path d="M8.82343 12.0064L8.08852 14.3348C7.8655 15.0414 8.46151 15.7366 9.19388 15.6242L11.8974 15.2092C12.4642 15.1222 12.6916 14.4278 12.2861 14.0223L9.98595 11.7221C9.61452 11.3507 8.98154 11.5055 8.82343 12.0064Z" fill="black"/>
+                    </svg>
+                </span>
+                    <!--end::Svg Icon-->
+    
+            <span>Ubah Kategori</span>
+            </button>
+        </form>
+
+        <a href="/mesin" class="btn btn-dark container-fluid mt-3">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr046.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -475,7 +535,7 @@
     @foreach ($setup as $s)
     
     <tr class="table-primary">
-        <td class="fw-bold fs-2">{{ $s->get('nama_setup') }}</td>
+        <td class="fw-bold fs-1">{{ $s->get('nama_setup') }}</td>
 
         <td class="text-end">
 
@@ -492,7 +552,7 @@
             </form>
 
 
-            <button class="btn btn-sm btn-dark text-nowrap d-inline" data-bs-toggle="modal" data-bs-target="#kt_modal_2" onclick="setEdit({{ $loop->index }}, '{{ $s->get('nama_setup') }}', {{ $s->get('periode') }}, '{{ $s->get('satuan_periode') }}')">
+            <button class="btn btn-sm btn-dark text-nowrap d-inline" data-bs-toggle="modal" data-bs-target="#kt_modal_2" onclick="setEdit({{ $loop->index }}, '{{ $s->get('nama_setup') }}', {{ $s->get('periode') }}, '{{ $s->get('satuan_periode') }}', '{{ Illuminate\Support\Carbon::parse($s->get('start_date'))->format('d-m-Y') }}', '{{ $s->get('warna') }}')">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z" fill="white"/>
@@ -578,10 +638,10 @@
                 @foreach ($s->get('setupForm') as $f)
                 <tr>
                     <td>{{ $f->get('nama_setup_form') }}</td>
-                    <td>Baik</td>
+                    <td>{{ $f->get('syarat_setup_form') }}</td>
                     <td>
                         <!-- panggil modal -->
-                        <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_4" onclick="indexEditMaintenance({{ $loop->parent->index }}, {{ $loop->index }}, '{{ $f->get('nama_setup_form') }}')">
+                        <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_4" onclick="indexEditMaintenance({{ $loop->parent->index }}, {{ $loop->index }}, '{{ $f->get('nama_setup_form') }}', '{{ $f->get('syarat_setup_form') }}')">
                             <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
                             <span class="svg-icon svg-icon-muted svg-icon-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z" fill="black"/>
@@ -652,21 +712,24 @@ function setEditSatuan(periode) {
     document.getElementById('edit_satuan_periode').value = periode;
     }
 
-function setEdit(index, nama_setup_maintenance, periode, satuan_periode){
+function setEdit(index, nama_setup_maintenance, periode, satuan_periode, start_date, warna){
     document.getElementById('edit_index').value = index;
     document.getElementById('edit_maintenance_form').value = nama_setup_maintenance;
     document.getElementById('edit_periode_form').value = periode;
     document.getElementById('edit_satuan_periode').value = satuan_periode;
+    document.getElementById('edit_tanggal_form').value = start_date;
+    document.getElementById('edit_warna').value = warna;
     }    
 
 function indexMaintenance(index) {
     document.getElementById('maintenance_index').value = index;
 }
 
-function indexEditMaintenance(indexMaintenance, index, form){
+function indexEditMaintenance(indexMaintenance, index, form, syarat){
     document.getElementById('edit_maintenance_index').value = indexMaintenance;
     document.getElementById('edit_form_index').value = index;
     document.getElementById('edit_form_form').value = form;
+    document.getElementById('edit_form_syarat').value = syarat;
 }
 
 

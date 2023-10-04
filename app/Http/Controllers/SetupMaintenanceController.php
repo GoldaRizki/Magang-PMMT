@@ -35,6 +35,7 @@ class SetupMaintenanceController extends Controller
             'nama_setup_maintenance' => 'required',
             'periode' => 'required|numeric',
             'satuan_periode' => 'required',
+            'warna' => 'required'
         ]);
 
 
@@ -57,7 +58,8 @@ class SetupMaintenanceController extends Controller
             'id' => 'required|numeric',
             'nama_setup_maintenance' => 'required',
             'periode' => 'required|numeric',
-            'satuan_periode' => 'required'
+            'satuan_periode' => 'required',
+            'warna' => 'required'
         ]);
 
         SetupMaintenance::find($dataValid['id'])->update($dataValid);

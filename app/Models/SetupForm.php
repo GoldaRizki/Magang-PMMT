@@ -19,4 +19,6 @@ class SetupForm extends Model
     public function setup_maintenance(){
         return $this->belongsTo(SetupMaintenance::class);
     }
+    
+    
 }

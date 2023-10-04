@@ -19,4 +19,14 @@ class Kategori extends Model
         return $this->hasMany(SetupMaintenance::class);
     }
 
+    public function setup_form(){
+        return $this->hasManyThrough(SetupMaintenance::class,
+         SetupForm::class,
+        'kategori_id',
+        'setup_maintenance_id',
+        'id',
+        'id'
+        );
+    }
+
 }

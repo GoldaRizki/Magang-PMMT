@@ -19,6 +19,7 @@ class CreateSetupMaintenancesTable extends Migration
             $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
             $table->integer('periode')->default(0);
             $table->enum('satuan_periode', ['Jam', 'Hari', 'Minggu', 'Bulan', 'Tahun'])->default('Jam');
+            $table->char('warna', 7);
             $table->timestamps();
         });
     }

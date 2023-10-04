@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\SetupFormController;
 use App\Http\Controllers\SetupMaintenanceController;
 use App\Http\Controllers\SetupMesinController;
 use App\Http\Controllers\SparepartController;
@@ -57,6 +58,8 @@ Route::delete('/setupMaintenance/destroy', [SetupMaintenanceController::class, '
 Route::put('/setupMaintenance/kategori/update', [KategoriController::class, 'updateOnSetup']);
 
 
+Route::post('/setupForm/create/', [SetupFormController::class, 'createPadaSetup']);
+
 
 
 
@@ -70,6 +73,8 @@ Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
 Route::post('/maintenance/form/pilih/', [SetupMesinController::class, 'pilih_template']);
 Route::post('/maintenance/form/pilih/kirim/', [SetupMesinController::class, 'ambil_template']);
 Route::get('/maintenance/form/pilih/', [SetupMesinController::class, 'tampil_template']);
+
+Route::post('/maintenance/ubah_template/', [SetupMesinController::class, 'ubah_template']);
 
 Route::post('/maintenance/create/', [SetupMesinController::class, 'create_maintenance']);
 Route::post('/maintenance/edit/', [SetupMesinController::class, 'edit_maintenance']);

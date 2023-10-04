@@ -42,4 +42,27 @@ function hapusSetup(form) {
 return false;
 
 }    
+
+
+function ubahKategori(form) {
+	
+	
+	Swal.fire({
+		title: 'Apakah anda yakin ingin mengganti Kategori?',
+		text: 'Semua perubahan yang sudah anda lakukan akan ditempa dengan isi template dari Kategori',
+		showCancelButton: true,
+		confirmButtonText: 'Ganti',
+        cancelButtonText: 'Batal',
+		confirmButtonColor : '#F14182',
+		icon: 'question',
+	}).then((result) => {
+	/* Read more about isConfirmed, isDenied below */
+	if (result.isConfirmed) {
+		form.submit()
+	} });
+
+
+return false;
+
+}    
 </script>

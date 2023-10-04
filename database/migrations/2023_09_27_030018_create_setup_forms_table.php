@@ -17,6 +17,7 @@ class CreateSetupFormsTable extends Migration
             $table->id();
             $table->string('nama_setup_form');
             $table->foreignId('setup_maintenance_id');
+            $table->string('syarat', 20);
             $table->json('value')->default('[]');
             $table->timestamps();
         });

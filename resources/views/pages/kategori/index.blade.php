@@ -158,12 +158,12 @@
             
                     <div class="mb-3">
                         <label for="setup_maintenance_form" class="form-label float-start">Nama Maintenance</label>
-                        <input type="text" class="form-control clear-form" id="setup_maintenance_form" name="nama_setup_maintenance">
+                        <input type="text" class="form-control clear-form" id="setup_maintenance_form" value="{{ old('nama_setup_maintenance') }}" name="nama_setup_maintenance">
                     </div>
 
                     <div class="mb-3">
                         <label for="periode_form" class="form-label float-start">Periode</label>
-                        <input type="number" class="form-control clear-form" id="periode_form" name="periode">
+                        <input type="number" class="form-control clear-form" id="periode_form" value="{{ old('periode') }}" name="periode">
                     </div>
 
                     <div class="input-group mb-3">
@@ -179,6 +179,13 @@
                         <input type="text" class="form-control clear-form" aria-label="Satuan" name="satuan_periode" value="{{ old('satuan_periode') }}" id="satuan_periode" readonly>
                       
                     </div>
+
+                    <div class="my-5">
+                        <div class="p-2 fw-bold">Warna</div>
+                        <div class="p-2 d-inline"><input type="color" name="warna" id="create_warna" value="{{ old('warna','#0095E8') }}">
+                        </div>
+
+                      </div>
 
             </div>
 
@@ -240,8 +247,6 @@
                 @method('PUT')
                 @csrf
             <div class="modal-body">
-
-                <input type="hidden" name="kategori_id" id="edit_kategori_id">
                 <input type="hidden" name="id" id="edit_id">
                     <div class="mb-3">
                         <label for="nama_setup_maintenance_form" class="form-label float-start">Nama Maintenance</label>
@@ -266,6 +271,14 @@
                         <input type="text" class="form-control clear-form" aria-label="Satuan" name="satuan_periode" value="{{ old('satuan_periode') }}" id="edit_satuan_periode" readonly>
                       
                     </div>
+
+                    <div class="my-5">
+                        <div class="p-2 fw-bold">Warna</div>
+                        <div class="p-2 d-inline"><input type="color" name="warna" id="edit_warna" value="{{ old('warna','#0095E8') }}">
+                        </div>
+
+                      </div>
+
 
             </div>
 
@@ -335,6 +348,7 @@
                         <label for="kategori_form" class="form-label float-start">Edit Kategori</label>
                         <input type="text" class="form-control clear-form" id="edit_kategori_form" name="nama_kategori">
                     </div>
+                    
 
             </div>
 
@@ -380,7 +394,7 @@
 
 @section('content_left')
 <div class="col-auto text-center">
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+    <button type="button" class="btn container-fluid btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
         <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
         <span class="svg-icon svg-icon-muted svg-icon-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -390,7 +404,7 @@
             </svg>
         </span>
 <!--end::Svg Icon-->
-        Tambahkan
+        Kategori Baru
     </button>
   </div>
 @endsection
@@ -402,7 +416,7 @@
 
     @foreach ($kategori as $k)
     <tr class="table-primary">
-        <td class="fw-bold fs-4"><a class="link-dark" href="/setupMaintenance/{{ $k->id }}">{{ $k->nama_kategori }}</a></td>
+        <td class="fw-bold fs-2"><a class="link-dark" href="/setupMaintenance/{{ $k->id }}">{{ $k->nama_kategori }}</a></td>
         <td class="text-end">
 
             <form action="/kategori/destroy" method="post" onSubmit="return hapus(this);" style ="display:inline-block;">
@@ -443,16 +457,17 @@
         @if($k->setupMaintenance->isNotEmpty())
         
         <td colspan="2">
-            <table class="table align-middle">
+            <table class="table fs-4 align-middle">
 
                 @foreach ($k->setupMaintenance as $s)
                 <tr>
                     <td>{{ $s->nama_setup_maintenance }}</td>
-                    <td>{{ $s->periode }}</td>
+                    <td class="text-end">{{ $s->periode }}</td>
                     <td>{{ $s->satuan_periode }}</td>
+                    <td><b style="color: {{ $s->warna }};">{{ $s->warna }}</b></td>
                     <td>
                             <!-- panggil modal -->
-                            <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_3" onclick="setEdit({{ $s->id }}, '{{ $s->nama_setup_maintenance }}', {{ $s->periode }}, '{{ $s->satuan_periode }}')">
+                            <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_3" onclick="setEdit({{ $s->id }}, '{{ $s->nama_setup_maintenance }}', {{ $s->periode }}, '{{ $s->satuan_periode }}', '{{ $s->warna }}')">
                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
                                 <span class="svg-icon svg-icon-muted svg-icon-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z" fill="black"/>
@@ -482,6 +497,11 @@
                             <span>Hapus</span>
                             </button>
                         </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        awawddwwd
                     </td>
                 </tr>
                 
@@ -525,11 +545,13 @@ function setEditSatuan(periode) {
     document.getElementById('edit_satuan_periode').value = periode;
     }
 
-function setEdit(id, nama_setup_maintenance, periode, satuan_periode){
+function setEdit(id, nama_setup_maintenance, periode, satuan_periode, warna){
     document.getElementById('edit_id').value = id;
     document.getElementById('edit_setup_maintenance_form').value = nama_setup_maintenance;
     document.getElementById('edit_periode_form').value = periode;
     document.getElementById('edit_satuan_periode').value = satuan_periode;
+    document.getElementById('edit_warna').value = warna;
+
 }
 
 function setEditKategori(id, kategori) {

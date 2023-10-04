@@ -6,7 +6,8 @@ use App\Models\Kategori;
 use App\Models\Mesin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Carbon;
+
+
 
 class SetupMesinController extends Controller
 {
@@ -31,12 +32,13 @@ class SetupMesinController extends Controller
                    'nama_setup' => $item->nama_maintenance, 
                    'periode' => $item->periode,
                    'satuan_periode' => $item->satuan_periode,
-                   'start_time' => $item->start_time,
+                   'start_date' => $item->start_date,
                    'warna' => $item->warna,
                    
                    'setupForm' => $item->form->map(function($i) {
                        return collect([
                            'nama_setup_form' => $i->nama_form,
+                           'syarat_setup_form' => $i->syarat,
                            'value' => $i->value,
                        ]);
                        }) 
@@ -50,15 +52,27 @@ class SetupMesinController extends Controller
             
         }else{
             
-            $kategori = Kategori::all(); 
             Cache::put('mesin', $mesin, now()->addMinutes(30));
-            return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
+            return $this->aksi_pilih_template();
+          
         
         }
 
-
-
     }
+
+    public function ubah_template(){
+        return $this->aksi_pilih_template();
+    }
+
+
+    private function aksi_pilih_template(){
+       // $mesin = Mesin::with(['maintenance', 'ruang', 'kategori'])->find($Idmesin);
+        $mesin = collect(Cache::get('mesin'));
+        $kategori = Kategori::all(); 
+        Cache::put('mesin', $mesin, now()->addMinutes(30));
+        return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
+    }
+
 
     public function ambil_template(Request $request){
         $data_valid = $request->validate([
@@ -81,6 +95,7 @@ class SetupMesinController extends Controller
                 'setupForm' => $item->setupForm->map(function($i) {
                     return collect([
                         'nama_setup_form' => $i->nama_setup_form,
+                        'syarat_setup_form' => $i->syarat,
                         'value' => $i->value,
                     ]);
                     }) 
@@ -148,7 +163,7 @@ class SetupMesinController extends Controller
             'nama_setup' => 'required',
             'periode' => 'required',
             'satuan_periode' => 'required',
-            'start_date' => 'required|date',
+            'start_date' => 'required|date_format:d-m-Y',
             'warna' => 'required'
         ]));
 
@@ -198,9 +213,13 @@ class SetupMesinController extends Controller
         $data_valid = $request->validate([
             'maintenance_index' => 'required|numeric',
             'nama_setup_form' => 'required',
-
+            'syarat_setup_form' => 'required',
         ]);
-        $setup[$data_valid['maintenance_index']]->get('setupForm')->push(collect(['nama_setup_form' => $data_valid['nama_setup_form']]));
+        $setup[$data_valid['maintenance_index']]->get('setupForm')
+        ->push(collect([
+            'nama_setup_form' => $data_valid['nama_setup_form'], 
+            'syarat_setup_form' => $data_valid['syarat_setup_form']
+        ]));
 
         $mesin = collect(Cache::get('mesin'));
 
@@ -219,11 +238,16 @@ class SetupMesinController extends Controller
             'maintenance_index' => 'required|numeric',
             'form_index' => 'required|numeric',
             'nama_setup_form' => 'required',
-            
+            'syarat_setup_form' => 'required',
         ]);
 
         $form = $setup[$data_valid['maintenance_index']]->get('setupForm')[$data_valid['form_index']];
-        $form = $form->replace(collect(['nama_setup_form' => $data_valid['nama_setup_form']])); 
+        
+        $form = $form->replace(collect([
+            'nama_setup_form' => $data_valid['nama_setup_form'],
+            'syarat_setup_form' => $data_valid['syarat_setup_form']
+        ])); 
+        
         $setup[$data_valid['maintenance_index']]->get('setupForm')[$data_valid['form_index']] = $form;
         // dd($setup[$data_valid['maintenance_index']]->get('setupForm')[$data_valid['form_index']]->get('nama_setup_form'));
  

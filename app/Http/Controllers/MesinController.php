@@ -7,6 +7,8 @@ use App\Models\Mesin;
 use App\Models\Ruang;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Cache;
+
 
 class MesinController extends Controller
 {
@@ -70,9 +72,14 @@ class MesinController extends Controller
         ]);
 
 
-        $mesin = Mesin::create($validData);
+        $m = Mesin::create($validData);
 
-        return redirect()->intended('/maintenance/form/select/'. $mesin['id'])->with('tambah', 'p');
+        //return redirect()->intended('/maintenance/form/pilih/')->with('tambah', 'p');
+        $mesin = Mesin::with(['maintenance', 'ruang', 'kategori'])->find($m->id);
+
+        $kategori = Kategori::all(); 
+        Cache::put('mesin', $mesin, now()->addMinutes(30));
+        return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
     }
 
 
