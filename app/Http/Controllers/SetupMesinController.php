@@ -149,7 +149,7 @@ class SetupMesinController extends Controller
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));
 
-        return redirect('/maintenance/form/pilih/');
+        return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
 
     }
 
@@ -182,7 +182,7 @@ class SetupMesinController extends Controller
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));
 
-        return redirect('/maintenance/form/pilih/');
+        return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
     }
 
     public function delete_maintenance(Request $request){
@@ -202,7 +202,7 @@ class SetupMesinController extends Controller
 
 
 
-        return redirect('/maintenance/form/pilih/');
+        return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
     }
 
 
@@ -226,7 +226,7 @@ class SetupMesinController extends Controller
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));        
 
-        return redirect('/maintenance/form/pilih/');
+        return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
 
     }
 
@@ -255,7 +255,7 @@ class SetupMesinController extends Controller
 
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));        
-        return redirect('/maintenance/form/pilih/');
+        return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
         
 
     }
@@ -278,7 +278,7 @@ class SetupMesinController extends Controller
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));        
 
-        return redirect('/maintenance/form/pilih/');
+        return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
     }
 
 }

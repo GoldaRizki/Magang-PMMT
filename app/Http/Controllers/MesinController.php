@@ -14,12 +14,13 @@ class MesinController extends Controller
 {
     //
     public function index(Request $request){
-
+        
     
 
     if($request->ajax()){
         
         $mesin = Mesin::with(['kategori', 'ruang']);
+
         return DataTables::of($mesin)
         ->editColumn('nama_mesin', function($m){
             return '<a class="text-dark" href="/mesin/detail/' . $m->id . '">' . $m->nama_mesin . '</a>';
@@ -41,7 +42,6 @@ class MesinController extends Controller
         ->addIndexColumn()
         ->toJson();
     }
-
     //return $mesin;  
     return view('pages.mesin.index', ['halaman' => 'Mesin',
       'link_to_create' => '/mesin/create'

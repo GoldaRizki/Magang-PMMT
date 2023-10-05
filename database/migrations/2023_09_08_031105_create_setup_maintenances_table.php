@@ -16,7 +16,7 @@ class CreateSetupMaintenancesTable extends Migration
         Schema::create('setup_maintenances', function (Blueprint $table) {
             $table->id();
             $table->string('nama_setup_maintenance');
-            $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
+            $table->foreignId('kategori_id');
             $table->integer('periode')->default(0);
             $table->enum('satuan_periode', ['Jam', 'Hari', 'Minggu', 'Bulan', 'Tahun'])->default('Jam');
             $table->char('warna', 7);

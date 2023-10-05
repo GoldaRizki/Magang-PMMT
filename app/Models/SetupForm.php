@@ -16,7 +16,7 @@ class SetupForm extends Model
         'value' => 'array',
     ];
 
-    public function setup_maintenance(){
+    public function setupMaintenance(){
         return $this->belongsTo(SetupMaintenance::class);
     }
     

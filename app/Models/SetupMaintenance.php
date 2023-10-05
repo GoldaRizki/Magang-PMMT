@@ -18,7 +18,7 @@ class SetupMaintenance extends Model
     }
     
     public function setupForm(){
-        return $this->hasMany(SetupForm::class);
+        return $this->hasMany(SetupForm::class, 'setup_maintenance_id');
     }
    
     

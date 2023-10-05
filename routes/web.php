@@ -11,7 +11,9 @@ use App\Http\Controllers\SetupFormController;
 use App\Http\Controllers\SetupMaintenanceController;
 use App\Http\Controllers\SetupMesinController;
 use App\Http\Controllers\SparepartController;
+use App\Models\Maintenance;
 use App\Models\SetupMaintenance;
+use Illuminate\Support\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +61,12 @@ Route::put('/setupMaintenance/kategori/update', [KategoriController::class, 'upd
 
 
 Route::post('/setupForm/create/', [SetupFormController::class, 'createPadaSetup']);
+Route::put('/setupForm/edit/', [SetupFormController::class, 'editPadaSetup']);
+Route::delete('/setupForm/delete/', [SetupFormController::class, 'deletePadaSetup']);
 
-
-
+Route::post('/kategori/setupForm/create/', [SetupFormController::class, 'createPadaKategori']);
+Route::put('/kategori/setupForm/edit/', [SetupFormController::class, 'editPadaKategori']);
+Route::delete('/kategori/setupForm/delete/', [SetupFormController::class, 'deletePadaKategori']);
 
 Route::get('/ruang', [RuangController::class, 'index']);
 Route::post('/ruang/create', [RuangController::class, 'create']);
@@ -105,3 +110,74 @@ Route::get('/test', [HomeController::class, 'test']);
 Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 
+Route::get('/test/jadwal/{id}', function($id){
+
+
+    // Ngoprek Membuat Logika buat jadwal
+
+    // bootstrap-year-calendar (refrensi library)
+    $maintenance = Maintenance::find($id);
+    //$maintenance = Maintenance::all();
+    //dd($maintenance);
+    $tahun = 2023;
+    
+
+    $waktu = Carbon::parse($maintenance->start_date);
+    echo "Awalnya adalah " . $waktu->format('d-m-Y') . "<br>";
+
+    $periode = $maintenance->periode;
+    $satuan_periode = $maintenance->satuan_periode;
+    
+    echo "periode : " . $periode . " " . $satuan_periode . "<br>";
+
+    switch ($satuan_periode) {
+        case 'Jam':
+            while($waktu->year === $tahun){
+                echo $waktu->format('d-m-Y') . "<br>";
+        
+                $waktu->addHour($periode);
+            }            
+            break;
+        case 'Hari':
+            while($waktu->year === $tahun){
+                echo $waktu->format('d-m-Y') . "<br>";
+        
+                $waktu->addDays($periode);
+            }            
+            break;
+
+        case 'Minggu':
+                while($waktu->year === $tahun){
+                    echo $waktu->format('d-m-Y') . "<br>";
+            
+                    $waktu->addWeeks($periode);
+                }            
+            break;
+
+        case 'Bulan':
+                while($waktu->year === $tahun){
+                    echo $waktu->format('d-m-Y') . "<br>";
+            
+                    $waktu->addMonths($periode);
+                }            
+                break;
+        
+        case 'Tahun':
+            while($waktu->year === $tahun){
+                echo $waktu->format('d-m-Y') . "<br>";
+        
+                $waktu->addYears($periode);
+            }            
+            break;
+
+        default:
+            # code...
+            break;
+    }
+
+    
+    echo "<br>";
+    echo "Hasil akhir adalah " . $waktu->format('d-m-Y') . "<br>";
+
+    //return redirect('/home');
+});

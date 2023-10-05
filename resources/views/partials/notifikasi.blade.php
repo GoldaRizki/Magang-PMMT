@@ -32,5 +32,14 @@ Swal.fire({
 @endif
 
 
+@if(session('reminder'))
+
+Swal.fire({
+    title: 'Data Jangan Lupa Disimpan',
+    text: 'Perubahan akan hilang bila tidak disimpan',
+    icon: 'warning',
+});
+
+@endif
 </script>
 

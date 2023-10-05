@@ -13,13 +13,11 @@ class SetupMaintenanceController extends Controller
     public function setup($id){
         
         
-        $setup = Kategori::with(['setupMaintenance'])->find($id);
-        $nama_kategori = $setup->nama_kategori;
-
-        $setup = $setup->setupMaintenance()->get();
+        $kategori = Kategori::with(['setupMaintenance', 'setupForm'])->find($id);
+        $nama_kategori = $kategori->nama_kategori;
 
         return view('pages.setupMaintenance.setup', [
-            'setup' => $setup,
+            'kategori' => $kategori,
             'nama_kategori' => $nama_kategori,
             'id' => $id,
             'halaman' => 'Setup Maintenance'
