@@ -1,5 +1,5 @@
 @extends('layouts.header')
 
 @section('konten')
-    <h1>MAKAN BANG</h1>
+    <h1>HALAMAN HOME</h1>
 @endsection

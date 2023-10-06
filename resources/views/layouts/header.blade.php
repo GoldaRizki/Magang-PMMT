@@ -19,9 +19,9 @@ License: For each use you must have a valid license purchased only from above li
     }    
     @endphp
 
-    <title>PMMT @if($halaman != ''): {{$halaman}} @endif</title>
+    <title>PMAT @if($halaman != ''): {{$halaman}} @endif</title>
 		<base href="../">
-		<title>PMMT - {{ $halaman }}</title>
+		<title>PMAT - {{ $halaman }}</title>
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,9 +71,9 @@ License: For each use you must have a valid license purchased only from above li
 							<!--end::Aside mobile toggle-->
 							<!--begin::Logo-->
 							<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
-								<a class="py-3 text-decoration-none" href="#">
+								<a class="py-3 text-decoration-none" href="/">
 									<div class="me-lg-1">
-											<span class="display-6">PMMT</span>
+											<span class="display-6">PMAT</span>
 									</div>
 								</a> 
 								<!--

@@ -68,4 +68,8 @@ class HomeController extends Controller
        // dd($kategori);
         return view('test_page.load_setup');
     }
+
+    public function tes_kalender(){
+        return view('test_page.test_calendar');
+    }
 }
