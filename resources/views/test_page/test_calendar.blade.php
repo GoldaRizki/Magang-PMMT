@@ -1,7 +1,7 @@
 @extends('layouts.header')
 
 @section('customCss')
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
+<link href="/assets/js-year-calendar/dist/js-year-calendar.min.css" rel="stylesheet" type="text/css" />
 
 
     <style>
@@ -42,10 +42,12 @@
 @endsection
 
 @section('customJs')
-<script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
+<script src="\assets\js-year-calendar\dist\js-year-calendar.min.js"></script>
 
 
     <script>
+
+
         const currentYear = new Date().getFullYear();
 
 // Initialize calendar

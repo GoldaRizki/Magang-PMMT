@@ -9,6 +9,8 @@ class Jadwal extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function maintenance() {
         return $this->belongsTo(Maintenance::class);
     }

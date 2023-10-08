@@ -1,0 +1,61 @@
+{
+  "name": "js-year-calendar",
+  "version": "2.0.0",
+  "description": "A fully customizable year calendar widget",
+  "main": "./dist/js-year-calendar.js",
+  "scripts": {
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "prepare": "npm run build && npm run test && npm run doc",
+    "test": "jest",
+    "doc": "typedoc src/ts"
+  },
+  "pre-commit": [
+    "build",
+    "test"
+  ],
+  "files": [
+    "dist",
+    "locales"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/year-calendar/js-year-calendar.git"
+  },
+  "keywords": [
+    "calendar",
+    "year",
+    "javascript",
+    "widget"
+  ],
+  "author": "Paul-DS",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/year-calendar/js-year-calendar/issues"
+  },
+  "homepage": "https://year-calendar.github.io/",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-transform-modules-umd": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-less": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-typescript": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^27.0.6",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.8"
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/*.[jt]s?(x)"
+    ],
+    "collectCoverage": true,
+    "testEnvironment": "jsdom"
+  }
+}

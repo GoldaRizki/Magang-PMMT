@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Maintenance;
 use App\Models\Form;
 use App\Models\Mesin;
+use App\Models\Maintenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\JadwalController;
 
 class MaintenanceController extends Controller
 {
@@ -16,6 +17,9 @@ class MaintenanceController extends Controller
         
         $setup = collect(Cache::get('setup'));
         $mesin = collect(Cache::get('mesin'));
+
+
+        $objectJadwal = new JadwalController();
 
         Mesin::find($mesin['id'])->update(['kategori_id' => $mesin['kategori_id']]);
 
@@ -38,9 +42,16 @@ class MaintenanceController extends Controller
                         'syarat' => $form->get('syarat_setup_form'),
                     ]);
 
-                    
+                $objectJadwal->create_jadwal($maintenance->id);
+    
                 }
+
+
+
+
             }
+        
+        
         
         
 

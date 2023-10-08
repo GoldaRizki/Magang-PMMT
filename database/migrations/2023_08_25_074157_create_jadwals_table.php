@@ -19,7 +19,7 @@ class CreateJadwalsTable extends Migration
             $table->foreignId('maintenance_id');
             //$table->unsignedBigInteger('maintenance_id');
             $table->dateTime('tanggal_rencana');
-            $table->dateTime('tanggal_realisasi');
+            $table->dateTime('tanggal_realisasi')->nullable();
             $table->timestamps();
 
             //$table->foreign('maintenance_id')->references('id')->on('maintenances');
