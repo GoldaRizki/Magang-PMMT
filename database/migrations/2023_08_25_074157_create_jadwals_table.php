@@ -16,12 +16,12 @@ class CreateJadwalsTable extends Migration
         Schema::create('jadwals', function (Blueprint $table) {
 
             $table->id();
-            $table->foreignId('maintenance_id');
+            $table->foreignId('maintenance_id')->cascadeOnDelete();
             //$table->unsignedBigInteger('maintenance_id');
             $table->dateTime('tanggal_rencana');
             $table->dateTime('tanggal_realisasi')->nullable();
             $table->text('keterangan')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->unsignedSmallInteger('status')->default(1);
             $table->timestamps();
 
             //$table->foreign('maintenance_id')->references('id')->on('maintenances');

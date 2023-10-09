@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Jadwal;
+use App\Models\IsiForm;
 use App\Models\Maintenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -41,7 +43,7 @@ class JadwalController extends Controller
             while($waktu->year === $tahun){
                 //echo $waktu->format('d-m-Y') . "<br>";
         
-                Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                $this->buat_jadwal_dan_isi_form($waktu, $id_maintenance);
 
                 $waktu->addHour($periode);
             }            
@@ -50,7 +52,8 @@ class JadwalController extends Controller
             while($waktu->year === $tahun){
                 //echo $waktu->format('d-m-Y') . "<br>";
         
-                Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                //Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                $this->buat_jadwal_dan_isi_form($waktu, $id_maintenance);
 
 
                 $waktu->addDays($periode);
@@ -61,7 +64,9 @@ class JadwalController extends Controller
                 while($waktu->year === $tahun){
                     //echo $waktu->format('d-m-Y') . "<br>";
             
-                    Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                    //Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                    $this->buat_jadwal_dan_isi_form($waktu, $id_maintenance);
+
 
                     $waktu->addWeeks($periode);
                 }            
@@ -71,8 +76,9 @@ class JadwalController extends Controller
                 while($waktu->year === $tahun){
                     //echo $waktu->format('d-m-Y') . "<br>";
             
-                    Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
-                
+                    //Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                    $this->buat_jadwal_dan_isi_form($waktu, $id_maintenance);
+
                     $waktu->addMonths($periode);
                 }            
                 break;
@@ -81,7 +87,8 @@ class JadwalController extends Controller
             while($waktu->year === $tahun){
                 //echo $waktu->format('d-m-Y') . "<br>";
         
-                Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                //Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+                $this->buat_jadwal_dan_isi_form($waktu, $id_maintenance);
 
                 $waktu->addYears($periode);
             }            
@@ -100,9 +107,23 @@ class JadwalController extends Controller
     }
 
 
+    private function buat_jadwal_dan_isi_form($waktu, $id_maintenance){
+        $jadwal = Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
+
+        $form = Form::where('maintenance_id', $id_maintenance)->get();
+        foreach ($form as $f) {
+            IsiForm::create([
+                'jadwal_id' => $jadwal->id,
+                'form_id' => $f->id,
+            ]);
+        }
+    }
+
     public function detail($id){
-        $jadwal = Jadwal::find($id);
+        $jadwal = Jadwal::with(['isi_form'])->find($id);
        // ddd($jadwal);
+
+     
 
         return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal]);
     }   
@@ -115,8 +136,9 @@ class JadwalController extends Controller
             'tanggal_rencana' => 'required|date_format:d-m-Y',
             'tanggal_realisasi' => 'required|date_format:d-m-Y',
             'keterangan' => 'nullable',
-            'konfirmasi' => 'nullable'
         ]);
+
+
 
         $jadwal = Jadwal::find($data_valid['id']);
 
@@ -124,6 +146,11 @@ class JadwalController extends Controller
         $data_valid['tanggal_realisasi'] = Carbon::parse($data_valid['tanggal_realisasi']);
 
         $jadwal->update($data_valid);
+
+
+        if(isset($request->validasi)){
+            $jadwal->increment('status');
+        }
 
         return redirect('/jadwal/' . $jadwal->maintenance->mesin_id);
     }

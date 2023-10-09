@@ -41,10 +41,9 @@ class MaintenanceController extends Controller
                         'nama_form' => $form->get('nama_setup_form'),
                         'syarat' => $form->get('syarat_setup_form'),
                     ]);
-    
                 }
-
                 $objectJadwal->create_jadwal($maintenance->id);
+
 
             }
         

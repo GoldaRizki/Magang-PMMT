@@ -38,7 +38,7 @@
     
     <span class="form-label float-start">Tanggal Realisasi</span>
     <div class="input-group date">
-        <input type="text" class="form-control @error('tanggal_realisasi')is-invalid @enderror" id="form_tanggal_realisasi" @if($jadwal->tanggal_realisasi) value="{{ old('tanggal_realisasi', Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->format('d-m-Y')) }}" @endif name="tanggal_realisasi" readonly>
+        <input type="text" class="form-control @error('tanggal_realisasi') is-invalid @enderror" id="form_tanggal_realisasi" @if($jadwal->tanggal_realisasi) value="{{ old('tanggal_realisasi', Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->format('d-m-Y')) }}" @endif name="tanggal_realisasi" readonly>
         <button class="btn btn-secondary" type="button">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil002.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-2">
@@ -54,8 +54,9 @@
 </div>
 
 
+
 <div class="form-floating my-4">
-    <textarea class="form-control @error('keterangan')is-invalid @enderror" placeholder="Tulis Keterangan disini...." id="form_keterangan" style="height: 150px" name="keterangan">{{ old('keterangan', $jadwal->keterangan) }}</textarea>
+    <textarea class="form-control @error('keterangan') is-invalid @enderror" placeholder="Tulis Keterangan disini...." id="form_keterangan" style="height: 150px" name="keterangan">{{ old('keterangan', $jadwal->keterangan) }}</textarea>
     <label for="form_keterangan">Keterangan</label>
 </div>
 
@@ -66,15 +67,17 @@
     </label>
   </div>
 
-<div class="py-5">
+<div class="container m-5">
 
-    <table class="table table-row-dashed table-row-gray-600 gy-5">
+    <table class="table fs-3 table-row-dashed table-row-gray-600 gy-5 gx-4 gs-7">
         <tr>
-            <td><h2>Form</h2></td>
+            <td class="text-end"><h2>Form</h2></td>
+            <td class="text-end">Syarat</td>
             <td></td>
         </tr>
         <tr>
             <td class="text-end"><b>Nama Form</b></td>
+            <td class="text-end">Kudu apik</td>
             <td><input type="text" class="form-control" value="{{ old('apalah') }}" name="apalah">
             </td>
         </tr>

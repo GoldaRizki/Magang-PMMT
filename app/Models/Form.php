@@ -20,4 +20,8 @@ class Form extends Model
     public function maintenance(){
         return $this->belongsTo(Maintenance::class);
     }
+
+    public function isi_form(){
+        return $this->hasMany(IsiForm::class);
+    }
 }

@@ -15,6 +15,10 @@ class Jadwal extends Model
         return $this->belongsTo(Maintenance::class);
     }
 
+    public function isi_form(){
+        return $this->hasMany(IsiForm::class);
+    }
+
     
     
 }
