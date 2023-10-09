@@ -101,7 +101,9 @@ Route::put('/sparepart/update', [SparepartController::class, 'update']);
 Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);    
 
 
-
+Route::get('/jadwal/{id}', [JadwalController::class, 'index']);
+Route::get('/jadwal/detail/{id}', [JadwalController::class, 'detail']);
+Route::put('/jadwal/update/', [JadwalController::class, 'update']);
 
 
 

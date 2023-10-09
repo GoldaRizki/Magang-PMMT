@@ -156,9 +156,12 @@ License: For each use you must have a valid license purchased only from above li
 				<!--end::Container-->
 			</div>
 			<!--end::Toolbar-->
+		
+		<div class="container-xxl">
 
 		@yield('konten')
-											
+				
+		</div>
 	
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">

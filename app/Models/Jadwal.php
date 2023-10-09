@@ -14,5 +14,7 @@ class Jadwal extends Model
     public function maintenance() {
         return $this->belongsTo(Maintenance::class);
     }
+
+    
     
 }

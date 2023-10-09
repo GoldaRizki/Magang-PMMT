@@ -26,7 +26,7 @@
 
 @section('konten')
     
-<div class="container-xxl my-3">
+<div class="my-3">
 
         
     <table id="tabelTemplate" class="table table-sm table-row-bordered table-row-gray-400 gy-4 gs-7">

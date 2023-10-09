@@ -10,15 +10,21 @@ use Illuminate\Support\Carbon;
 class JadwalController extends Controller
 {
     //
-    function index() {
+    function index($id) {
         //return view('jadwal', ['halaman' => 'Jadwal', 'link_to_create' => '/jadwal/create/']);
+
+        //id mesin
+        $maintenance = Maintenance::with(['jadwal'])->where('mesin_id', $id)->get();
+        
+       // ddd($maintenance->jadwal);
+        //return view('pages.jadwal.index');
+        return view('pages.jadwal.index', ['halaman' => 'Jadwal', 'maintenance' => $maintenance]);
     }
 
     public function create_jadwal($id_maintenance){
-        
+    
 
     $maintenance = Maintenance::find($id_maintenance);
-
     $tahun = Carbon::now()->year;
     
 
@@ -91,6 +97,35 @@ class JadwalController extends Controller
     //echo "Hasil akhir adalah " . $waktu->format('d-m-Y') . "<br>";
 
     //return redirect('/home');
+    }
+
+
+    public function detail($id){
+        $jadwal = Jadwal::find($id);
+       // ddd($jadwal);
+
+        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal]);
+    }   
+
+
+    public function update(Request $request) {
+
+        $data_valid = $request->validate([
+            'id' => 'required|numeric',
+            'tanggal_rencana' => 'required|date_format:d-m-Y',
+            'tanggal_realisasi' => 'required|date_format:d-m-Y',
+            'keterangan' => 'nullable',
+            'konfirmasi' => 'nullable'
+        ]);
+
+        $jadwal = Jadwal::find($data_valid['id']);
+
+        $data_valid['tanggal_rencana'] = Carbon::parse($data_valid['tanggal_rencana']);
+        $data_valid['tanggal_realisasi'] = Carbon::parse($data_valid['tanggal_realisasi']);
+
+        $jadwal->update($data_valid);
+
+        return redirect('/jadwal/' . $jadwal->maintenance->mesin_id);
     }
 
 }

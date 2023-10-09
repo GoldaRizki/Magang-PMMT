@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         Mesin::create([
             'nama_mesin' => 'Mesin Genset Supra',
             'no_asset' => '234.234.276.23.334',
-            'kategori_id' => 2,
+            'kategori_id' => 1,
             'ruang_id' => 1,
             'spesifikasi' => 'Pokoke apik'
 
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
         Mesin::create([
             'nama_mesin' => 'Mesin Genset Mitsubishi 250KVA wes apik lah pokoke',
             'no_asset' => '234.234.276.23.334',
-            'kategori_id' => 3,
+            'kategori_id' => 1,
             'ruang_id' => 2,
             'spesifikasi' => 'Konsumsi dayane 250v, yo ngono kae'
         ]);
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         Mesin::create([
             'nama_mesin' => 'Chiller 1',
             'no_asset' => '234.234.276.23.334',
-            'kategori_id' => 2,
+            'kategori_id' => 1,
             'ruang_id' => 3,
             'spesifikasi' => 'Konsumsi dayane 250v, yo ngono kae'
         ]);
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
         Mesin::create([
             'nama_mesin' => 'Chiller 2',
             'no_asset' => '234.234.276.23.334',
-            'kategori_id' => 4,
+            'kategori_id' => 1,
             'ruang_id' => 1,
             'spesifikasi' => 'Alah mboh meh tak isi opo sembarang /r/n Iki yo mung gawe pemanis'
         ]);
@@ -149,7 +149,7 @@ class DatabaseSeeder extends Seeder
 
 
 */
-
+/*
 Maintenance::create([
     'nama_maintenance' => 'ganti oli',
     'mesin_id' => 1,
@@ -177,7 +177,7 @@ Maintenance::create([
     'start_date' => Carbon::parse('2-4-2023'),
     'warna' => '#ffff00'
 ]);
-
+*/
 /*
         Barang::create([
             'id' => 1,
@@ -202,7 +202,6 @@ Maintenance::create([
         Pekerjaan::find(2)->barang()->attach([1, 236]);
         Pekerjaan::find(3)->barang()->attach([1, 236]);
 
-*/
 
 Sparepart::create([
     'id' => 1,
@@ -242,6 +241,7 @@ Sparepart::create([
         Maintenance::find(3)->sparepart()->attach([1,3]);
 
         
+*/
 
 
     }
