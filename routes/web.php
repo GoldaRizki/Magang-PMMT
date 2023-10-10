@@ -93,12 +93,17 @@ Route::post('/maintenance/form/delete/', [SetupMesinController::class, 'delete_m
 
 
 
+
 Route::get('/sparepart', [SparepartController::class, 'index']);
 Route::get('/sparepart/create', [SparepartController::class, 'create']);
 Route::post('/sparepart/create', [SparepartController::class, 'tambah']);
 Route::get('/sparepart/edit/{id}', [SparepartController::class, 'edit']);
 Route::put('/sparepart/update', [SparepartController::class, 'update']);
 Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);    
+
+Route::get('/sparepart/maintenance/{id}', [MaintenanceController::class, 'tampil_sparepart']);
+Route::post('/sparepart/maintenance/', [MaintenanceController::class, 'tambah_sparepart']);
+Route::delete('/sparepart/maintenance/delete/', [MaintenanceController::class, 'hapus_sparepart']);
 
 
 Route::get('/jadwal/{id}', [JadwalController::class, 'index']);

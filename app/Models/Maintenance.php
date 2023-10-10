@@ -20,7 +20,7 @@ class Maintenance extends Model
     }
 
     public function sparepart() {
-        return $this->belongsToMany(Sparepart::class);
+        return $this->belongsToMany(Sparepart::class)->withPivot('jumlah');
     }
 
     public function form(){

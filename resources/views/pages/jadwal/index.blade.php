@@ -17,7 +17,7 @@
               <h4 class="modal-title">Maintenance</h4>
 
                <!--begin::Close-->
-               <div onclick="clearValue()" class="btn btn-icon btn-sm btn-active-light-danger ms-2" data-bs-dismiss="modal" aria-label="Close">
+               <div class="btn btn-icon btn-sm btn-active-light-danger ms-2" data-bs-dismiss="modal" aria-label="Close">
                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
                 <span class="svg-icon svg-icon-muted svg-icon-2hx">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -53,10 +53,7 @@
 
 <!--End Modal-->
  
-  <div id="events-log">
-    <h3>Events</h3>
-    
-  </div>
+ 
   <div id="calendar"></div>
 @endsection
 
@@ -77,8 +74,11 @@ new Calendar('#calendar', {
     @foreach($maintenance as $m)
         @foreach($m->jadwal as $j)
              {
-              startDate: new Date({{ Illuminate\Support\Carbon::parse($j->tanggal_rencana)->format('Y,m,d') }}), 
-              endDate: new Date({{ Illuminate\Support\Carbon::parse($j->tanggal_rencana)->format('Y,m,d')}}),
+              @php
+               $tanggal_rencana = Illuminate\Support\Carbon::parse($j->tanggal_rencana);
+              @endphp
+              startDate: new Date({{ $tanggal_rencana->year }}, {{ ($tanggal_rencana->month) - 1 }}, {{ $tanggal_rencana->day }}), 
+              endDate: new Date({{ $tanggal_rencana->year }}, {{ ($tanggal_rencana->month) - 1 }}, {{ $tanggal_rencana->day }}),
               nama: '{{ $m->nama_maintenance }}',
               color: '{{ $m->warna }}',
               id: {{ $j->id }},
@@ -95,13 +95,13 @@ document.querySelector('#calendar').addEventListener('clickDay', function(e) {
   
 
   var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" ];
+
   $('#tampil_jadwal').modal('show');
 
   
   //appendLog("Click on day: " + e.date.toLocaleDateString() + " (" + e.events.length + " events)")
   var a = e.events;
   var tanggal = e.date.getDate()+' '+bulan[e.date.getMonth()]+' '+e.date.getFullYear();
-  console.log(e.date.toISOString());
   var maintenance = '';
 
   a.forEach(element => {
@@ -114,26 +114,6 @@ document.querySelector('#calendar').addEventListener('clickDay', function(e) {
 
 })
 
-document.querySelector('#calendar').addEventListener('dayContextMenu', function(e) {
-  appendLog("Right-click on day: " + e.date.toLocaleDateString() + " (" + e.events.length + " events)")
-})
 
-
-
-document.querySelector('#calendar').addEventListener('yearChanged', function(e) {
-  appendLog("Year changed: " + e.currentYear)
-})
-
-document.querySelector('#calendar').addEventListener('renderEnd', function(e) {
-  appendLog("Render end: " + e.currentYear)
-})
-
-
-
-function appendLog(log) {
-  var logElt = document.createElement('div');
-  logElt.textContent = log;
-  document.querySelector('#events-log').appendChild(logElt);
-}
     </script>
 @endsection

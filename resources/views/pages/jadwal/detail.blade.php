@@ -72,16 +72,23 @@
     <table class="table fs-3 table-row-dashed table-row-gray-600 gy-5 gx-4 gs-7">
         <tr>
             <td class="text-end"><h2>Form</h2></td>
-            <td class="text-end">Syarat</td>
+            <td class="text-center">Syarat</td>
             <td></td>
         </tr>
+  
+        
+
+        @foreach ($isi_form as $i)
         <tr>
-            <td class="text-end"><b>Nama Form</b></td>
-            <td class="text-end">Kudu apik</td>
-            <td><input type="text" class="form-control" value="{{ old('apalah') }}" name="apalah">
+            <td class="text-end"><b>{{ $i->form->nama_form }}</b></td>
+            <td class="text-center">{{ $i->form->syarat }}</td>
+            <td>
+                <input type="text" class="form-control" value="{{ old('isi_form['.$i->id.']', $i->nilai) }}" name="isi_form[{{ $i->id }}]" required>
             </td>
         </tr>
-        
+        @endforeach
+
+
     </table>
     
 </div>

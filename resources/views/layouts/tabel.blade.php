@@ -29,7 +29,7 @@
 <div class="my-3">
 
         
-    <table id="tabelTemplate" class="table table-sm table-row-bordered table-row-gray-400 gy-4 gs-7">
+    <table id="tabelTemplate" class="table align-middle fs-6 table-row-bordered table-row-gray-400 gs-7">
         <thead>
                 <tr class="fw-bolder fs-6 text-gray-800">
                     @yield('tableHead')

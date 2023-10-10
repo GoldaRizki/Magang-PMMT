@@ -120,16 +120,15 @@ class JadwalController extends Controller
     }
 
     public function detail($id){
-        $jadwal = Jadwal::with(['isi_form'])->find($id);
-       // ddd($jadwal);
-
-     
-
-        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal]);
+        $jadwal = Jadwal::find($id);
+         // ddd($jadwal);
+        $isi_form = IsiForm::with(['form'])->where('jadwal_id', $id)->get();
+        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form]);
     }   
 
 
     public function update(Request $request) {
+
 
         $data_valid = $request->validate([
             'id' => 'required|numeric',
@@ -138,7 +137,8 @@ class JadwalController extends Controller
             'keterangan' => 'nullable',
         ]);
 
-
+        
+        
 
         $jadwal = Jadwal::find($data_valid['id']);
 
@@ -150,6 +150,12 @@ class JadwalController extends Controller
 
         if(isset($request->validasi)){
             $jadwal->increment('status');
+        }
+
+        if($request->has('isi_form')){
+        foreach($request->isi_form as $key => $value){
+            IsiForm::find($key)->update(['nilai' => $value]);
+            }
         }
 
         return redirect('/jadwal/' . $jadwal->maintenance->mesin_id);

@@ -420,7 +420,7 @@
 @if($errors->any())
     <!--begin::Alert-->
 
-    <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10 mx-3">
+<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10 mx-3">
         <!--begin::Icon-->
         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
         <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen044.svg-->

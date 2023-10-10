@@ -17,6 +17,7 @@ class CreateMaintenanceSparepartTable extends Migration
             $table->id();
             $table->unsignedInteger('sparepart_id');
             $table->unsignedBigInteger('maintenance_id');
+            $table->integer('jumlah');
 
             $table->timestamps();
 
