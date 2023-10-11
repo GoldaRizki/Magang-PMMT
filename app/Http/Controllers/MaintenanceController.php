@@ -10,7 +10,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\JadwalController;
 use App\Models\Sparepart;
-use Illuminate\Support\Facades\Validator;
 
 class MaintenanceController extends Controller
 {
@@ -79,7 +78,7 @@ class MaintenanceController extends Controller
             return back()->withErrors(['sparepart' => 'Spareparts sudah ditambahkan, tidak perlu ditambahkan lagi']);
         }
 
-        //Maintenance::find($data_valid['maintenance_id'])->sparepart()->attach($data_valid['sparepart_id'], ['jumlah' => $data_valid['jumlah']]);
+        Maintenance::find($data_valid['maintenance_id'])->sparepart()->attach($data_valid['sparepart_id'], ['jumlah' => $data_valid['jumlah']]);
 
         return redirect()->back();  
     }
