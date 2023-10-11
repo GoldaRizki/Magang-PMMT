@@ -132,4 +132,19 @@ class MesinController extends Controller
         return redirect('/mesin')->with('hapus', 'p');
 
     }
+
+
+    public function create_ruang(Request $request){
+        
+        $dataValid = $request->validate([
+            'nama_ruang' => 'required',
+            'no_ruang' => 'required',
+            'bagian' => 'required'
+        ]);
+
+        Ruang::create($dataValid);
+
+
+        return redirect()->back()->withInput();
+    }
 }

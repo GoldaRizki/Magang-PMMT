@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b431be11ac890f1453a6017978cfe38b",
+    "content-hash": "335573dff199a0d25b291f7ac5aa277b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -422,21 +422,21 @@
         },
         {
             "name": "dyrynda/laravel-cascade-soft-deletes",
-            "version": "4.1.0",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/michaeldyrynda/laravel-cascade-soft-deletes.git",
-                "reference": "dcfd120af3467901444a155ece03d8326efb53b3"
+                "reference": "6dc274b9b1009895a3786db4f0c879fb90ffe3e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michaeldyrynda/laravel-cascade-soft-deletes/zipball/dcfd120af3467901444a155ece03d8326efb53b3",
-                "reference": "dcfd120af3467901444a155ece03d8326efb53b3",
+                "url": "https://api.github.com/repos/michaeldyrynda/laravel-cascade-soft-deletes/zipball/6dc274b9b1009895a3786db4f0c879fb90ffe3e2",
+                "reference": "6dc274b9b1009895a3786db4f0c879fb90ffe3e2",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "^8.12",
-                "illuminate/events": "^8.12",
+                "illuminate/database": "^8.12|^9.0",
+                "illuminate/events": "^8.12|^9.0",
                 "php": "^7.3|^8.0"
             },
             "require-dev": {
@@ -462,9 +462,9 @@
             "description": "Cascading deletes for Eloquent models that implement soft deletes",
             "support": {
                 "issues": "https://github.com/michaeldyrynda/laravel-cascade-soft-deletes/issues",
-                "source": "https://github.com/michaeldyrynda/laravel-cascade-soft-deletes/tree/4.1.0"
+                "source": "https://github.com/michaeldyrynda/laravel-cascade-soft-deletes/tree/4.2.1"
             },
-            "time": "2020-12-01T02:43:25+00:00"
+            "time": "2022-11-22T03:11:30+00:00"
         },
         {
             "name": "egulias/email-validator",

@@ -44,7 +44,7 @@ class SparepartController extends Controller
     public function tambah(Request $request){
         
         $dataValid = $request->validate([
-            'id' => 'required|numeric',
+            'id' => 'required|numeric|unique:spareparts,id',
             'nama_sparepart' => 'required',
             'harga' => 'required|numeric',
             'jumlah' => 'required|numeric',
@@ -74,7 +74,7 @@ class SparepartController extends Controller
     public function update(Request $request){
     
         $dataValid = $request->validate([
-            'id' => 'required|numeric',
+            'id' => 'required|numeric|unique:spareparts,id',
             'nama_sparepart' => 'required',
             'harga' => 'required|numeric',
             'jumlah' => 'required|numeric',

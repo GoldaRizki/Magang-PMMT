@@ -39,7 +39,7 @@ Route::get('/mesin/edit/{id}', [MesinController::class, 'edit']);
 
 Route::put('/mesin/update', [MesinController::class, 'update']);
 Route::delete('/mesin/destroy', [MesinController::class, 'destroy']);
-
+Route::post('/mesin/ruang/create', [MesinController::class, 'create_ruang']);
 
 
 

@@ -2,6 +2,86 @@
 
 
 @section('konten')
+<div class="modal fade" tabindex="-1" id="kt_modal_1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Ruang</h5>
+        
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" onclick="aksiBatal()" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="svg-icon svg-icon-2x"></span>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+        
+                    <form action="/mesin/ruang/create" method="post">
+        
+                    @csrf
+                    <div class="modal-body">
+              
+                            <div class="mb-3">
+                                <label for="ruang_form" class="form-label float-start">Ruang</label>
+                                <input type="text" class="form-control ruang_form" name="nama_ruang" required>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="no_ruang_form" class="form-label float-start">No Ruang</label>
+                                <input type="text" class="form-control no_ruang_form" name="no_ruang" required>
+                            </div>
+
+
+                            <div class="input-group mb-3">
+                                <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">BAGIAN</button>
+                                <ul class="dropdown-menu"> 
+                                  <li><hr class="dropdown-divider"></li>                                  
+                                  <li><a class="dropdown-item" onclick="setBagian1('Keuangan')">Keuangan</a></li>
+                                  <li><a class="dropdown-item" onclick="setBagian1('Admin')">Admin</a></li>
+                                  <li><a class="dropdown-item" onclick="setBagian1('Manajemen')">Manajemen</a></li>
+
+                                </ul>
+                                <input type="text" class="form-control bagian_form" aria-label="Bagian" name="bagian" value="{{ old('bagian') }}" id="bagian1" readonly>
+                              
+                            </div>
+                                                          
+        
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="button" onclick="aksiBatal()" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen034.svg-->
+                            <span class="svg-icon svg-icon-muted svg-icon-3 text-nowrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black"/>
+                                    <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black"/>
+                                    <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black"/>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <span class="text-nowrap">Batal</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary text-nowrap">
+                            <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil025.svg-->
+                            <span class="svg-icon svg-icon-muted svg-icon-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="black"/>
+                                    <path d="M10.3629 14.0084L8.92108 12.6429C8.57518 12.3153 8.03352 12.3153 7.68761 12.6429C7.31405 12.9967 7.31405 13.5915 7.68761 13.9453L10.2254 16.3488C10.6111 16.714 11.215 16.714 11.6007 16.3488L16.3124 11.8865C16.6859 11.5327 16.6859 10.9379 16.3124 10.5841C15.9665 10.2565 15.4248 10.2565 15.0789 10.5841L11.4631 14.0084C11.1546 14.3006 10.6715 14.3006 10.3629 14.0084Z" fill="black"/>
+                                    <path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="black"/>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            Simpan Perubahan
+                        </button>
+                    </div>
+        
+                    </form>
+        
+                </div>
+            </div>
+</div>
+
+
+
 
 <div class="container-lg mt-5">
 
@@ -76,7 +156,7 @@
         <div class="input-group mb-3">
             <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">RUANG</button>
             <ul class="dropdown-menu"> 
-              <li><a class="dropdown-item" href="/ruang">+ Tambah Ruang</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#kt_modal_1">+ Tambah Ruang</a></li>
               <li><hr class="dropdown-divider"></li>
 
               @foreach ($ruang as $r)
@@ -147,6 +227,10 @@
         document.getElementById('form_ruang').value = nama_ruang;
 
     }
+
+    function setBagian1(bagian) {
+            document.getElementById('bagian1').value = bagian;
+        }
 </script>
 
 @endsection
