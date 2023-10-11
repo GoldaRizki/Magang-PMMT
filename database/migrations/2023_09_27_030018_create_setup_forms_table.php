@@ -20,6 +20,8 @@ class CreateSetupFormsTable extends Migration
             $table->string('syarat', 20);
             $table->json('value')->default('[]');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -19,6 +19,8 @@ class CreateRuangsTable extends Migration
             $table->String('no_ruang');
             $table->enum('bagian', ['Keuangan', 'Admin', 'Manajemen']);
             $table->timestamps();
+            $table->softDeletes();
+
 
         });
     }

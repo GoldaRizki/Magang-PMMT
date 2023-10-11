@@ -21,6 +21,8 @@ class CreateSetupMaintenancesTable extends Migration
             $table->enum('satuan_periode', ['Jam', 'Hari', 'Minggu', 'Bulan', 'Tahun'])->default('Jam');
             $table->char('warna', 7);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

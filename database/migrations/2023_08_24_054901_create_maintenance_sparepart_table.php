@@ -20,7 +20,7 @@ class CreateMaintenanceSparepartTable extends Migration
             $table->integer('jumlah');
 
             $table->timestamps();
-
+            $table->softDeletes();
             $table->unique(['sparepart_id', 'maintenance_id']);
             $table->foreign('sparepart_id')->references('id')->on('spareparts')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('maintenance_id')->references('id')->on('maintenances')->cascadeOnDelete()->cascadeOnUpdate();

@@ -22,6 +22,8 @@ class CreateMaintenancesTable extends Migration
             $table->dateTime('start_date');
             $table->char('warna', 7)->default('#0095E8');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

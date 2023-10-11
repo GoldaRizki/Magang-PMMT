@@ -19,6 +19,8 @@ class CreateIsiFormsTable extends Migration
             $table->foreignId('form_id');
             $table->String('nilai')->default('');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

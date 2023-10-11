@@ -20,7 +20,7 @@ class CreateSparepartsTable extends Migration
             $table->integer('jumlah');
             $table->enum('satuan', ['Pcs','Kg', 'Buah', 'Pak', 'Biji', 'Liter']);
 
-
+            $table->softDeletes();
             $table->timestamps();
             $table->primary('id');
         });

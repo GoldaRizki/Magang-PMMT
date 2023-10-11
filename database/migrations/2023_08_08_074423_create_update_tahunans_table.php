@@ -16,6 +16,8 @@ class CreateUpdateTahunansTable extends Migration
         Schema::create('update_tahunans', function (Blueprint $table) {
             $table->id();
             $table->integer('tahun');
+            $table->softDeletes();
+
         });
     }
 

@@ -23,6 +23,8 @@ class CreateJadwalsTable extends Migration
             $table->text('keterangan')->nullable();
             $table->unsignedSmallInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
+
 
             //$table->foreign('maintenance_id')->references('id')->on('maintenances');
         });
