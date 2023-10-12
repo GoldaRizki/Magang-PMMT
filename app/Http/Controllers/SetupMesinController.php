@@ -21,16 +21,19 @@ class SetupMesinController extends Controller
         ]);
 
 
-        $mesin = Mesin::with(['maintenance', 'ruang', 'kategori'])->find($data_valid['id']);
+        $mesin = Mesin::with(['maintenance', 'ruang', 'kategori', 'form'])->find($data_valid['id']);
 
 
         if($mesin->maintenance->isNotEmpty()){
             // tampilkan semua maintenance mesin apa adanya disini.
-
+            
+            Cache::put('mesin', $mesin, now()->addMinutes(30));
+            return redirect('/mesin/maintenance/' . $data_valid['id']);
+            
+            
+        
             /*
             $setup = $mesin->maintenance->map(function($item){
-               
-               
                
                 return collect([
                    'nama_setup' => $item->nama_maintenance, 
@@ -52,10 +55,10 @@ class SetupMesinController extends Controller
                Cache::put('setup', $setup, now()->addMinutes(30));
                Cache::put('mesin', $mesin, now()->addMinutes(30));
                */
-               //return redirect('/maintenance/form/pilih/');
+
             
         }else{
-            
+
             Cache::put('mesin', $mesin, now()->addMinutes(30));
             return $this->aksi_pilih_template();
           
@@ -124,8 +127,9 @@ class SetupMesinController extends Controller
 
         $setup = collect(Cache::get('setup'));
         $mesin = collect(Cache::get('mesin'));
+        $attach = collect(Cache::get('attach'));
 
-        return view('pages.maintenance.form', ['setup' => $setup, 'mesin' => $mesin]);
+        return view('pages.maintenance.form', ['setup' => $setup, 'mesin' => $mesin, 'attach' => $attach]);
     }
 
     public function create_maintenance(Request $request){
@@ -284,5 +288,8 @@ class SetupMesinController extends Controller
 
         return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
     }
+
+
+    
 
 }

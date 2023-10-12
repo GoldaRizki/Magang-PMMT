@@ -1,19 +1,20 @@
 <?php
 
+use App\Models\Maintenance;
+use Illuminate\Support\Carbon;
+use App\Models\SetupMaintenance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SetupFormController;
-use App\Http\Controllers\SetupMaintenanceController;
-use App\Http\Controllers\SetupMesinController;
 use App\Http\Controllers\SparepartController;
-use App\Models\Maintenance;
-use App\Models\SetupMaintenance;
-use Illuminate\Support\Carbon;
+use App\Http\Controllers\SetupMesinController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\SetupMaintenanceController;
+use App\Http\Controllers\UpdateMaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::delete('/mesin/destroy', [MesinController::class, 'destroy']);
 Route::post('/mesin/ruang/create', [MesinController::class, 'create_ruang']);
 
 
+Route::get('/mesin/maintenance/{id}', [MaintenanceController::class, 'maintenance_mesin']);
+Route::post('/mesin/maintenance/create/', [UpdateMaintenanceController::class, 'create']);
+Route::put('/mesin/maintenance/edit/', [UpdateMaintenanceController::class, 'edit']);
 
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori/create', [KategoriController::class, 'create']);
@@ -92,6 +96,7 @@ Route::post('/maintenance/form/update/', [SetupMesinController::class, 'update_m
 Route::post('/maintenance/form/delete/', [SetupMesinController::class, 'delete_maintenance_form']);
 
 
+Route::post('/maintenance/action/create/', [MaintenanceController::class, 'maintenance_add']);
 
 
 Route::get('/sparepart', [SparepartController::class, 'index']);

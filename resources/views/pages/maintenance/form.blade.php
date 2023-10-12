@@ -471,7 +471,7 @@
 
 
 
-          <form action="/maintenance/submit/" method="post">
+          <form action="@if($attach->isEmpty()) /maintenance/submit/ @elseif($attach->get('aksi') == 'tambah') /mesin/maintenance/create/submit @else /mesin/maintenance/edit/submit @endif" method="post">
             @method('put')
             @csrf
             <button class="btn btn-warning mb-3 text-dark container-fluid" type="submit">

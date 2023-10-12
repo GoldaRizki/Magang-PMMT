@@ -15,7 +15,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "shiftonelabs/laravel-cascade-deletes": "1.0.3",
+        "shiftonelabs/laravel-cascade-deletes": "*",
         "yajra/laravel-datatables-oracle": "^9.21.2"
     },
     "require-dev": {

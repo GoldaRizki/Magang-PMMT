@@ -16,8 +16,8 @@ class MaintenanceController extends Controller
     //
     public function update(){
         
-        $setup = collect(Cache::get('setup'));
-        $mesin = collect(Cache::get('mesin'));
+        $setup = collect(Cache::pull('setup'));
+        $mesin = collect(Cache::pull('mesin'));
 
 
         $objectJadwal = new JadwalController();
@@ -96,5 +96,49 @@ class MaintenanceController extends Controller
         return redirect()->back();
 
     }
+
+
+
+    public function maintenance_mesin($id){
+
+        $mesin = Mesin::with(['maintenance', 'ruang', 'kategori', 'form'])->find($id);
+
+        $maintenance = $mesin->maintenance;
+        $form = $mesin->form;
+
+
+        return view('pages.maintenance.maintenance', [
+            'halaman' => 'Maintenace',
+            'mesin' => $mesin,
+            'maintenance' => $maintenance,
+            'form' => $form
+           ]);
+    }
+
+
+    public function maintenance_add(Request $request){
+        //maintenance ditambahkan bersama form nya
+        
+        $objectJadwal = new JadwalController();
+    
+        $data_valid = $request->validate([
+            'mesin_id' => 'required|numeric',
+            'nama_maintenance' => 'required',
+            'periode' => 'required|numeric',
+            'satuan_periode' => 'required',
+            'start_date' => 'required|date_format:d-m-Y',
+            'warna' => 'required'
+        ]);
+
+
+        $data_valid['start_date'] = Carbon::parse($data_valid['start_date']);
+
+        $maintenance = Maintenance::create($data_valid);
+        dd('aku rapopo');
+        $objectJadwal->create_jadwal($maintenance->id);
+
+    }
+
+
 
 }
