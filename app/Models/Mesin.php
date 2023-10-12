@@ -25,7 +25,7 @@ class Mesin extends Model
         return $this->belongsTo(Kategori::class);
     }
     
-    public function maintenance() {
+    public function maintenance() {;
         return $this->hasMany(Maintenance::class);
     } 
 
