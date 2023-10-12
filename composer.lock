@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "335573dff199a0d25b291f7ac5aa277b",
+    "content-hash": "56f950c1a57524840a130ae602af3cd5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2958,6 +2958,63 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "shiftonelabs/laravel-cascade-deletes",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shiftonelabs/laravel-cascade-deletes.git",
+                "reference": "d710de4c942b90cb5a091157b3c2a6db0a6e4057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shiftonelabs/laravel-cascade-deletes/zipball/d710de4c942b90cb5a091157b3c2a6db0a6e4057",
+                "reference": "d710de4c942b90cb5a091157b3c2a6db0a6e4057",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=4.1",
+                "illuminate/events": ">=4.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "shiftonelabs/codesniffer-standard": "0.*",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ShiftOneLabs\\LaravelCascadeDeletes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Patrick Carlo-Hickman",
+                    "email": "patrick@shiftonelabs.com"
+                }
+            ],
+            "description": "Adds application level cascading deletes to Eloquent Models.",
+            "homepage": "https://github.com/shiftonelabs/laravel-cascade-deletes",
+            "keywords": [
+                "cascade",
+                "deletes",
+                "eloquent",
+                "laravel",
+                "lumen",
+                "model"
+            ],
+            "support": {
+                "issues": "https://github.com/shiftonelabs/laravel-cascade-deletes/issues",
+                "source": "https://github.com/shiftonelabs/laravel-cascade-deletes"
+            },
+            "time": "2023-03-24T16:16:24+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

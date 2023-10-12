@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 
 class Maintenance extends Model
 {
     use HasFactory;
-    use SoftDeletes, CascadeSoftDeletes;
+    use SoftDeletes, CascadesDeletes;
 
     protected $cascadeDeletes = ['jadwal', 'form'];
 

@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 
 
 class Mesin extends Model
 {
     use HasFactory;
-    use SoftDeletes, CascadeSoftDeletes;
+    use SoftDeletes, CascadesDeletes;
 
     protected $cascadeDeletes = ['maintenance'];
 
@@ -31,6 +31,10 @@ class Mesin extends Model
 
     public function ruang(){
         return $this->belongsTo(Ruang::class);
+    }
+    
+    public function form(){
+        return $this->hasManyThrough(Form::class,Maintenance::class);    
     }
 
 }

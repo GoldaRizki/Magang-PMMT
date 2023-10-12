@@ -25,9 +25,13 @@ class SetupMesinController extends Controller
 
 
         if($mesin->maintenance->isNotEmpty()){
+            // tampilkan semua maintenance mesin apa adanya disini.
 
-
+            /*
             $setup = $mesin->maintenance->map(function($item){
+               
+               
+               
                 return collect([
                    'nama_setup' => $item->nama_maintenance, 
                    'periode' => $item->periode,
@@ -47,8 +51,8 @@ class SetupMesinController extends Controller
             
                Cache::put('setup', $setup, now()->addMinutes(30));
                Cache::put('mesin', $mesin, now()->addMinutes(30));
-
-               return redirect('/maintenance/form/pilih/');
+               */
+               //return redirect('/maintenance/form/pilih/');
             
         }else{
             

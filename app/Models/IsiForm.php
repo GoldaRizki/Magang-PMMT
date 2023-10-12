@@ -12,6 +12,7 @@ class IsiForm extends Model
     use SoftDeletes;
 
     protected $guarded = ['id']; 
+    protected $dates = ['deleted_at'];
 
     public function jadwal(){
         return $this->belongsTo(Jadwal::class);
