@@ -26,7 +26,7 @@ class SetupMesinController extends Controller
 
         if($mesin->maintenance->isNotEmpty()){
             // tampilkan semua maintenance mesin apa adanya disini.
-            
+            Cache::forget('attach');
             Cache::put('mesin', $mesin, now()->addMinutes(30));
             return redirect('/mesin/maintenance/' . $data_valid['id']);
             
@@ -58,7 +58,6 @@ class SetupMesinController extends Controller
 
             
         }else{
-
             Cache::put('mesin', $mesin, now()->addMinutes(30));
             return $this->aksi_pilih_template();
           
@@ -76,6 +75,7 @@ class SetupMesinController extends Controller
        // $mesin = Mesin::with(['maintenance', 'ruang', 'kategori'])->find($Idmesin);
         $mesin = collect(Cache::get('mesin'));
         $kategori = Kategori::all(); 
+        Cache::forget('attach');
         Cache::put('mesin', $mesin, now()->addMinutes(30));
         return view('pages.maintenance.select_template', ['mesin' => $mesin, 'kategori' => $kategori]);
     }
@@ -116,6 +116,7 @@ class SetupMesinController extends Controller
             $mesin['kategori'] = Kategori::find($data_valid['id'])->toArray();
             //dd($mesin);
             //dd($a->get('a'));
+            Cache::forget('attach');
             Cache::put('setup', $setup, now()->addMinutes(30));
             Cache::put('mesin', $mesin, now()->addMinutes(30));
 
@@ -153,7 +154,9 @@ class SetupMesinController extends Controller
 
 
         $mesin = collect(Cache::get('mesin'));
+        $attach = collect(Cache::get('attach'));
 
+        Cache::put('attach', $attach, now()->addMinutes(30));
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));
 
@@ -186,7 +189,9 @@ class SetupMesinController extends Controller
         $setup[$index_maintenance] = $maintenance;
         
         $mesin = collect(Cache::get('mesin'));
+        $attach = collect(Cache::get('attach'));
 
+        Cache::put('attach', $attach, now()->addMinutes(30));
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));
 
@@ -204,7 +209,9 @@ class SetupMesinController extends Controller
         $setup = $setup->forget($data_valid['index'])->values();
 
         $mesin = collect(Cache::get('mesin'));
+        $attach = collect(Cache::get('attach'));
 
+        Cache::put('attach', $attach, now()->addMinutes(30));
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));
 
@@ -260,7 +267,9 @@ class SetupMesinController extends Controller
         // dd($setup[$data_valid['maintenance_index']]->get('setupForm')[$data_valid['form_index']]->get('nama_setup_form'));
  
        $mesin = collect(Cache::get('mesin'));
+       $attach = collect(Cache::get('attach'));
 
+        Cache::put('attach', $attach, now()->addMinutes(30));    
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));        
         return redirect('/maintenance/form/pilih/')->with('reminder', 'p');
@@ -282,7 +291,9 @@ class SetupMesinController extends Controller
 
 
         $mesin = collect(Cache::get('mesin'));
+        $attach = collect(Cache::get('attach'));
 
+        Cache::put('attach', $attach, now()->addMinutes(30));
         Cache::put('setup', $setup, now()->addMinutes(30));
         Cache::put('mesin', $mesin, now()->addMinutes(30));        
 

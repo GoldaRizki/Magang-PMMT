@@ -45,7 +45,10 @@ Route::post('/mesin/ruang/create', [MesinController::class, 'create_ruang']);
 
 Route::get('/mesin/maintenance/{id}', [MaintenanceController::class, 'maintenance_mesin']);
 Route::post('/mesin/maintenance/create/', [UpdateMaintenanceController::class, 'create']);
+Route::put('/mesin/maintenance/create/submit/', [UpdateMaintenanceController::class, 'submit_create']);
 Route::put('/mesin/maintenance/edit/', [UpdateMaintenanceController::class, 'edit']);
+Route::put('/mesin/maintenance/edit/submit', [UpdateMaintenanceController::class, 'submit_edit']);
+
 
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori/create', [KategoriController::class, 'create']);
