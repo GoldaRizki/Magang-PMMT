@@ -127,7 +127,26 @@ class JadwalController extends Controller
     }   
 
 
-    public function update(Request $request) {
+    public function update(Request $request){
+
+        $data_valid = $request->validate([
+            'id' => 'required|numeric',
+            'tanggal_rencana' => 'required|date_format:d-m-Y',
+            'tanggal_realisasi' => 'required|date_format:d-m-Y',
+            'keterangan' => 'nullable',
+        ]);
+
+        $data_valid['tanggal_rencana'] = Carbon::parse($data_valid['tanggal_rencana']);
+        $data_valid['tanggal_realisasi'] = Carbon::parse($data_valid['tanggal_realisasi']);
+        
+        if($data_valid['tanggal_realisasi'].greaterThan($data_valid['tanggal_rencana'])){
+                  
+        }
+
+    }
+
+
+    public function submit(Request $request) {
 
 
         $data_valid = $request->validate([

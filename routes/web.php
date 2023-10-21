@@ -48,6 +48,7 @@ Route::post('/mesin/maintenance/create/', [UpdateMaintenanceController::class, '
 Route::put('/mesin/maintenance/create/submit/', [UpdateMaintenanceController::class, 'submit_create']);
 Route::put('/mesin/maintenance/edit/', [UpdateMaintenanceController::class, 'edit']);
 Route::put('/mesin/maintenance/edit/submit', [UpdateMaintenanceController::class, 'submit_edit']);
+Route::delete('/mesin/maintenance/delete/', [UpdateMaintenanceController::class, 'delete']);
 
 
 Route::get('/kategori', [KategoriController::class, 'index']);
