@@ -38,7 +38,7 @@
     
     <span class="form-label float-start">Tanggal Realisasi</span>
     <div class="input-group date">
-        <input type="text" class="form-control @error('tanggal_realisasi') is-invalid @enderror" id="form_tanggal_realisasi" @if($jadwal->tanggal_realisasi) value="{{ old('tanggal_realisasi', Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->format('d-m-Y')) }}" @endif name="tanggal_realisasi" readonly>
+        <input type="text" class="form-control @error('tanggal_realisasi') is-invalid @enderror" id="form_tanggal_realisasi" @if($jadwal->tanggal_realisasi == NULL) value="{{ old('tanggal_realisasi') }}" @else value="{{ old('tanggal_realisasi', Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->format('d-m-Y')) }}" @endif name="tanggal_realisasi" readonly>
         <button class="btn btn-secondary" type="button">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil002.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-2">
@@ -83,7 +83,7 @@
             <td class="text-end"><b>{{ $i->form->nama_form }}</b></td>
             <td class="text-center">{{ $i->form->syarat }}</td>
             <td>
-                <input type="text" class="form-control" value="{{ old('isi_form['.$i->id.']', $i->nilai) }}" name="isi_form[{{ $i->id }}]" required>
+                <input type="text" class="form-control" @if(old('isi_form')) value="{{ old('isi_form')[$i->id] }}" @else value="{{ $i->nilai }}" @endif name="isi_form[{{ $i->id }}]" required>
             </td>
         </tr>
         @endforeach
@@ -125,6 +125,43 @@
 
 </div>
 
+
+<!-- Form Alasan -->
+
+@if (session()->has('form_alasan'))
+
+<div class="modal fade" tabindex="-1" id="kt_modal_1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ALASAN</h5>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-2x"></span>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <div class="modal-body">
+                <p>Silahkan diisi alasan kenapa realisasi mundur (wajib)</p>
+                <div class="form-floating my-4">
+                    <textarea class="form-control @error('alasan') is-invalid @enderror" placeholder="Tulis Alasan disini...." id="form_alasan" style="height: 150px" name="alasan"></textarea>
+                    <label for="form_alasan">Alasan</label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endif
+
+
 </form>
 
 @endsection
@@ -141,6 +178,18 @@ $('.input-group.date').datepicker({
     todayHighlight: true,
     orientation: "bottom left"
 });
+
+
+@if (session()->has('form_alasan'))
+
+$(document).ready(function(){
+
+    $('#kt_modal_1').modal('show');
+
+});
+
+
+@endif
 
     </script>
 @endsection

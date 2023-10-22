@@ -139,8 +139,12 @@ class JadwalController extends Controller
         $data_valid['tanggal_rencana'] = Carbon::parse($data_valid['tanggal_rencana']);
         $data_valid['tanggal_realisasi'] = Carbon::parse($data_valid['tanggal_realisasi']);
         
-        if($data_valid['tanggal_realisasi'].greaterThan($data_valid['tanggal_rencana'])){
-                  
+        if($data_valid['tanggal_realisasi']->greaterThan($data_valid['tanggal_rencana'])){
+            // tampilkan modal juga boleh dengan di redirect back 
+            //ddd($request);
+            return redirect()->back()->withInput()->with('form_alasan', 'p');
+        }else{
+            return $this->submit($request);
         }
 
     }
