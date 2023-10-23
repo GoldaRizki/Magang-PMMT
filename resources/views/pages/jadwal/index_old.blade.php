@@ -1,4 +1,4 @@
-@extends('layouts.tray_layout')
+@extends('layouts.header')
 
 @section('customCss')
 <link href="/assets/js-year-calendar/dist/js-year-calendar.min.css" rel="stylesheet" type="text/css" />
@@ -6,36 +6,7 @@
 
 @endsection
 
-
-@section('content_left')
-<table class="table table-row-dashed table-row-gray-400 gs-1">
-  <tr>
-      <td><b>Nama Mesin</b></td>
-      <td>{{ $mesin->nama_mesin }}</td>
-  </tr>
-  <tr>
-      <td><b>Nomor Asset</b></td>
-      <td>{{ $mesin->no_asset }}</td>
-  </tr>
-  <tr>
-      <td><b>Ruang</b></td>
-      <td>{{ $mesin->ruang->nama_ruang }}</td>
-  </tr>
-  <tr>
-      <td><b>Kategori</b></td>
-      <td>{{ $mesin->kategori->nama_kategori }}</td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <b>Spesifikasi</b><br>
-      {{ $mesin->kategori->nama_kategori }}
-    </td>
-  </tr>
-</table>
-@endsection
-
-
-@section('content_right')
+@section('konten')
 <!--Start Modal-->
 
 

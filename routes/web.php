@@ -118,7 +118,8 @@ Route::delete('/sparepart/maintenance/delete/', [MaintenanceController::class, '
 Route::get('/jadwal/{id}', [JadwalController::class, 'index']);
 Route::get('/jadwal/detail/{id}', [JadwalController::class, 'detail']);
 Route::put('/jadwal/update/', [JadwalController::class, 'update']);
-
+Route::put('/jadwal/update_alasan/', [JadwalController::class, 'update_with_alasan']);
+Route::post('/jadwal/update_alasan_batal/', [JadwalController::class, 'update_with_alasan_batal']);
 
 
 
@@ -127,74 +128,3 @@ Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);
 
-Route::get('/test/jadwal/{id}', function($id){
-
-
-    // Ngoprek Membuat Logika buat jadwal
-
-    // bootstrap-year-calendar (refrensi library)
-    $maintenance = Maintenance::find($id);
-    //$maintenance = Maintenance::all();
-    //dd($maintenance);
-    $tahun = 2023;
-    
-
-    $waktu = Carbon::parse($maintenance->start_date);
-    echo "Awalnya adalah " . $waktu->format('d-m-Y') . "<br>";
-
-    $periode = $maintenance->periode;
-    $satuan_periode = $maintenance->satuan_periode;
-    
-    echo "periode : " . $periode . " " . $satuan_periode . "<br>";
-
-    switch ($satuan_periode) {
-        case 'Jam':
-            while($waktu->year === $tahun){
-                echo $waktu->format('d-m-Y') . "<br>";
-        
-                $waktu->addHour($periode);
-            }            
-            break;
-        case 'Hari':
-            while($waktu->year === $tahun){
-                echo $waktu->format('d-m-Y') . "<br>";
-        
-                $waktu->addDays($periode);
-            }            
-            break;
-
-        case 'Minggu':
-                while($waktu->year === $tahun){
-                    echo $waktu->format('d-m-Y') . "<br>";
-            
-                    $waktu->addWeeks($periode);
-                }            
-            break;
-
-        case 'Bulan':
-                while($waktu->year === $tahun){
-                    echo $waktu->format('d-m-Y') . "<br>";
-            
-                    $waktu->addMonths($periode);
-                }            
-                break;
-        
-        case 'Tahun':
-            while($waktu->year === $tahun){
-                echo $waktu->format('d-m-Y') . "<br>";
-        
-                $waktu->addYears($periode);
-            }            
-            break;
-
-        default:
-            # code...
-            break;
-    }
-
-    
-    echo "<br>";
-    echo "Hasil akhir adalah " . $waktu->format('d-m-Y') . "<br>";
-
-    //return redirect('/home');
-});

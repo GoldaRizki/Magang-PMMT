@@ -24,7 +24,7 @@ class HomeController extends Controller
 
     public function test(){
         
-        return view('test_page.tray_layout');
+        return view('test_page.test_page');
 
     }
 

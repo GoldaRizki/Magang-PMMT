@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.tray_layout')
 
 
 @section('customCss')
@@ -6,11 +6,38 @@
 @endsection
 
 
+@section('content_left')
+<table class="table table-row-dashed table-row-gray-400 gs-1">
+    <tr>
+        <td><b>Nama Mesin</b></td>
+        <td>{{ $mesin->nama_mesin }}</td>
+    </tr>
+    <tr>
+        <td><b>Nomor Asset</b></td>
+        <td>{{ $mesin->no_asset }}</td>
+    </tr>
+    <tr>
+        <td><b>Ruang</b></td>
+        <td>{{ $mesin->ruang->nama_ruang }}</td>
+    </tr>
+    <tr>
+        <td><b>Kategori</b></td>
+        <td>{{ $mesin->kategori->nama_kategori }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <b>Spesifikasi</b><br>
+        {{ $mesin->kategori->nama_kategori }}
+      </td>
+    </tr>
+  </table>
+@endsection
 
-@section('konten')
+
+@section('content_right')
 
 
-<form action="/jadwal/update/" method="POST">
+<form action=" @if(session()->has('form_alasan')) /jadwal/update_alasan/ @else /jadwal/update/ @endif" method="POST">
     @csrf
     @method('PUT')
     <div class="input-group my-4">
@@ -20,6 +47,7 @@
     <span class="form-label float-start">Tanggal Rencana</span>
     <div class="input-group date">
         <input type="text" class="form-control @error('tanggal_rencana')is-invalid @enderror" id="form_tanggal_rencana" value="{{ old('tanggal_rencana', Illuminate\Support\Carbon::parse($jadwal->tanggal_rencana)->format('d-m-Y'))  }}" name="tanggal_rencana" readonly>
+        
         <button class="btn btn-secondary" type="button">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil002.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-2">
@@ -29,8 +57,7 @@
                 </svg>
             </span>
             <!--end::Svg Icon-->
-    </button>
-    
+        </button>
     </div>
 </div>
 
@@ -130,17 +157,13 @@
 
 @if (session()->has('form_alasan'))
 
-<div class="modal fade" tabindex="-1" id="kt_modal_1">
+<div class="modal fade" tabindex="-1" id="kt_modal_1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">ALASAN</h5>
 
-                <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="svg-icon svg-icon-2x"></span>
-                </div>
-                <!--end::Close-->
+   
             </div>
 
             <div class="modal-body">
@@ -148,12 +171,21 @@
                 <div class="form-floating my-4">
                     <textarea class="form-control @error('alasan') is-invalid @enderror" placeholder="Tulis Alasan disini...." id="form_alasan" style="height: 150px" name="alasan"></textarea>
                     <label for="form_alasan">Alasan</label>
+                    @error('alasan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror  
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                
+                <a href="/jadwal/{{ $mesin->id }}">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                </a>
+
+                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             </div>
         </div>
     </div>

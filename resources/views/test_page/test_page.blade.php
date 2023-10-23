@@ -17,7 +17,7 @@
 @section('customJs')
 
 <script>
-        var element = document.getElementById('kt_apexcharts_1');
+var element = document.getElementById('kt_apexcharts_1');
 
 var height = parseInt(KTUtil.css(element, 'height'));
 var labelColor = KTUtil.getCssVariableValue('--bs-gray-700');

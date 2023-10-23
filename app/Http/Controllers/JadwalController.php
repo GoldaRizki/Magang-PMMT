@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mesin;
 use App\Models\Form;
 use App\Models\Jadwal;
 use App\Models\IsiForm;
 use App\Models\Maintenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class JadwalController extends Controller
 {
@@ -16,11 +18,12 @@ class JadwalController extends Controller
         //return view('jadwal', ['halaman' => 'Jadwal', 'link_to_create' => '/jadwal/create/']);
 
         //id mesin
+        $mesin = Mesin::find($id);
         $maintenance = Maintenance::with(['jadwal'])->where('mesin_id', $id)->get();
         
        // ddd($maintenance->jadwal);
         //return view('pages.jadwal.index');
-        return view('pages.jadwal.index', ['halaman' => 'Jadwal', 'maintenance' => $maintenance]);
+        return view('pages.jadwal.index', ['halaman' => 'Jadwal', 'maintenance' => $maintenance, 'mesin' => $mesin]);
     }
 
     public function create_jadwal($id_maintenance){
@@ -121,9 +124,10 @@ class JadwalController extends Controller
 
     public function detail($id){
         $jadwal = Jadwal::find($id);
+        $mesin = $jadwal->maintenance->mesin;
          // ddd($jadwal);
         $isi_form = IsiForm::with(['form'])->where('jadwal_id', $id)->get();
-        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form]);
+        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin]);
     }   
 
 
@@ -144,14 +148,12 @@ class JadwalController extends Controller
             //ddd($request);
             return redirect()->back()->withInput()->with('form_alasan', 'p');
         }else{
-            return $this->submit($request);
+            return $this->submit($request, $data_valid);
         }
 
     }
 
-
-    public function submit(Request $request) {
-
+    public function update_with_alasan(Request $request){
 
         $data_valid = $request->validate([
             'id' => 'required|numeric',
@@ -160,14 +162,33 @@ class JadwalController extends Controller
             'keterangan' => 'nullable',
         ]);
 
-        
-        
+        $validator = Validator::make($request->all(), [
+            'alasan' => 'required'
+        ]);
 
-        $jadwal = Jadwal::find($data_valid['id']);
 
+        if($validator->fails()){
+            return redirect()->back()->withInput()->with('form_alasan', 'p')->withErrors(['alasan' => 'Alasan tidak boleh kosong!']);
+        }
+
+        $data_valid['alasan'] = $validator->validated()['alasan'];
         $data_valid['tanggal_rencana'] = Carbon::parse($data_valid['tanggal_rencana']);
         $data_valid['tanggal_realisasi'] = Carbon::parse($data_valid['tanggal_realisasi']);
+        
+        
+        return $this->submit($request, $data_valid);
 
+    }
+
+
+
+
+    public function submit($request, $data_valid) {
+
+        
+        $jadwal = Jadwal::find($data_valid['id']);
+
+       
         $jadwal->update($data_valid);
 
 
