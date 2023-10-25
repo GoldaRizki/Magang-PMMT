@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Maintenance;
-use Illuminate\Support\Carbon;
-use App\Models\SetupMaintenance;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MesinController;
@@ -15,6 +13,7 @@ use App\Http\Controllers\SetupMesinController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\SetupMaintenanceController;
 use App\Http\Controllers\UpdateMaintenanceController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +29,9 @@ use App\Http\Controllers\UpdateMaintenanceController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/jadwal', [JadwalController::class, 'index']);
+Route::get('/login', [UserController::class, 'login']);
 
+Route::get('/user/create/', [UserController::class, 'create']);
 
 Route::get('/mesin', [MesinController::class, 'index']);
 Route::get('/mesin/create', [MesinController::class, 'create']);

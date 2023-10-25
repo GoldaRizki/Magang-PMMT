@@ -3,6 +3,11 @@
 <html>
 <head>
     <title>Hi</title>
+    <style>
+        h1{
+            background-color: blueviolet;
+        }
+    </style>
 </head>
 <body>
     <h1>{{ $title }}</h1>

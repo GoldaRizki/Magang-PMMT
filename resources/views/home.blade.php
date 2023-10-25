@@ -1,13 +1,17 @@
 @extends('layouts.header')
 
 @section('konten')
-    <h1>HALAMAN HOME</h1>
 
-    
 
     <div class="card card-bordered">
+        <div class="card-header border-0 pt-5">
+            <h1 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder fs-1 mb-1">LAPORAN</span>
+                <span class="text-muted fw-bold fs-7">Perbandingan antara apa dengan apa</span>
+            </h1>
+        </div>
         <div class="card-body">
-            <div id="kt_apexcharts_1" style="height: 450px;"></div>
+            <div id="kt_apexcharts_1" style="height: 420px;"></div>
         </div>
     </div>
 @endsection
@@ -80,7 +84,7 @@ var options = {
         labels: {
             style: {
                 colors: labelColor,
-                fontSize: '12px'
+                fontSize: '14px'
             }
         }
     },
@@ -110,7 +114,7 @@ var options = {
     },
     tooltip: {
         style: {
-            fontSize: '12px'
+            fontSize: '16px'
         },
        
     },
@@ -123,6 +127,13 @@ var options = {
                 show: true
             }
         }
+    },
+    legend:{
+        fontSize: '20px',
+        itemMargin: {
+          horizontal: 10,
+          vertical: 0
+      },
     }
 };
 

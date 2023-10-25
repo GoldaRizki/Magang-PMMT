@@ -180,12 +180,12 @@
                       
                     </div>
 
-                    <div class="my-5">
-                        <div class="p-2 fw-bold">Warna</div>
-                        <div class="p-2 d-inline"><input type="color" name="warna" id="create_warna" value="{{ old('warna','#0095E8') }}">
-                        </div>
+                        <div class="my-5">
+                            <div class="p-2 fw-bold">Warna</div>
+                            <div class="p-2"><input type="color" class="form-control form-control-color" name="warna" id="create_warna" value="{{ old('warna','#0095E8') }}">
+                            </div>
 
-                      </div>
+                        </div>
 
             </div>
 
@@ -274,7 +274,7 @@
 
                     <div class="my-5">
                         <div class="p-2 fw-bold">Warna</div>
-                        <div class="p-2 d-inline"><input type="color" name="warna" id="edit_warna" value="{{ old('warna','#0095E8') }}">
+                        <div class="p-2"><input type="color" class="form-control form-control-color" name="warna" id="edit_warna" value="{{ old('warna','#0095E8') }}">
                         </div>
 
                       </div>
