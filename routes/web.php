@@ -127,4 +127,5 @@ Route::get('/test', [HomeController::class, 'test']);
 Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);
+Route::get('/test/pdf', [HomeController::class, 'test_pdf']);
 

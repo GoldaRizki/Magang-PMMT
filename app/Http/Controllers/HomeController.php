@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\PDF;
 
 use Illuminate\Support\Facades\Cache;
 use App\Models\Kategori;
@@ -71,5 +72,18 @@ class HomeController extends Controller
 
     public function tes_kalender(){
         return view('test_page.test_calendar');
+    }
+
+    public function test_pdf(){
+
+
+        $data = [
+            'title' => 'Ya ndak tau kok tanya saia',
+            'date' => 56575675,
+        ];
+          
+        $pdf = PDF::loadView('test_page.test_for_pdf', $data);
+
+        return $pdf->download('invoice.pdf');
     }
 }
