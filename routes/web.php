@@ -30,7 +30,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/jadwal', [JadwalController::class, 'index']);
 Route::get('/login', [UserController::class, 'login']);
+Route::get('/akun', [UserController::class, 'akun']);
 
+Route::get('/user/all/', [UserController::class, 'index']);
 Route::get('/user/create/', [UserController::class, 'create']);
 
 Route::get('/mesin', [MesinController::class, 'index']);

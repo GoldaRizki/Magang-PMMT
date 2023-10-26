@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('nama');
-            $table->char('role', 1);
+            $table->enum('level', ['Teknisi', 'Supervisor', 'Manager', 'Superuser']);
             $table->string('password');
-            $table->rememberToken();
+            $table->string('unit');
+            $table->dateTime('last_login');
             $table->softDeletes();
             $table->timestamps();
         });

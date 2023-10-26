@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -15,9 +17,26 @@ class UserController extends Controller
         return view('pages.user.login');
     }
 
-    public function index(){
+    public function akun(){
+        return view('pages.user.akun');
+    }
+
+    public function index(Request $request){
         
         //gawekke nganggo datatable ben penak
+
+        if($request->ajax()){
+            $user = User::query();
+
+            return DataTables::of($user)  
+            ->addColumn('aksi', function($u){
+                return view('partials.tombolAksiUser', ['id'=> $u->id]);
+            })
+            ->rawColumns(['aksi'])
+            ->addIndexColumn()
+            ->toJson();
+        }
+
 
         return view('pages.user.index');
     }

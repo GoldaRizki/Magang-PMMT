@@ -9,6 +9,7 @@ use App\Models\Maintenance;
 use App\Models\SetupForm;
 use App\Models\SetupMaintenance;
 use App\Models\Sparepart;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -242,6 +243,42 @@ Sparepart::create([
 
         
 */
+
+    User::create([
+        'username' => 'fadilahh',
+        'nama' => 'Fadilah Alya',
+        'level' => 'Teknisi',
+        'password' => bcrypt('1234'),
+        'unit' => 'Utility',
+        'last_login' => Carbon::parse('12-05-2023 23:34:45'),
+    ]);
+
+    User::create([
+        'username' => 'aqiff',
+        'nama' => 'Tsaqif Abdan',
+        'level' => 'Supervisor',
+        'password' => bcrypt('6969'),
+        'unit' => 'Sembarang',
+        'last_login' => Carbon::parse('12-09-2023 09:56:45'),
+    ]);
+
+    User::create([
+        'username' => 'elfael',
+        'nama' => 'Faelasuf Nabil Antono',
+        'level' => 'Manager',
+        'password' => bcrypt('4567'),
+        'unit' => 'Manager',
+        'last_login' => Carbon::parse('12-09-2023 18:45:05'),
+    ]);
+
+    User::create([
+        'username' => 'dewa',
+        'nama' => 'Dewa 19',
+        'level' => 'Superuser',
+        'password' => bcrypt('1234'),
+        'unit' => 'Segalanya',
+        'last_login' => Carbon::parse('7-10-2023 03:13:45'),
+    ]);
 
 
     }
