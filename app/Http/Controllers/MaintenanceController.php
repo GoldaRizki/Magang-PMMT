@@ -134,7 +134,7 @@ class MaintenanceController extends Controller
         $data_valid['start_date'] = Carbon::parse($data_valid['start_date']);
 
         $maintenance = Maintenance::create($data_valid);
-        dd('aku rapopo');
+
         $objectJadwal->create_jadwal($maintenance->id);
 
     }

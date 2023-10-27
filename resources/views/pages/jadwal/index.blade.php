@@ -89,7 +89,6 @@
 @section('customJs')
 <script src="\assets\js-year-calendar\dist\js-year-calendar.min.js"></script>
 <script src="\assets\js-year-calendar\locales\js-year-calendar.id.js"></script>
-
     <script>
 
         const currentYear = {{ now()->year }};
@@ -99,7 +98,7 @@
 new Calendar('#calendar', {
   language: 'id',
   dataSource: [
-
+     
     @foreach($maintenance as $m)
         @foreach($m->jadwal as $j)
              {

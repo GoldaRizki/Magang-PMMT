@@ -31,6 +31,13 @@
       </td>
     </tr>
   </table>
+
+  @if($jadwal->trashed())
+  <div class="p-5 bg-warning h2 fw-bolder text-center rounded">
+    Jadwal Sudah dihapus
+  </div>
+  @endif
+
 @endsection
 
 
@@ -185,8 +192,12 @@
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
                 </a>
 
+                @if($jadwal->trashed())
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                @endif
+
             </div>
+
         </div>
     </div>
 </div>

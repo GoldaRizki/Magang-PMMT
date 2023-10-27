@@ -131,7 +131,11 @@ class UpdateMaintenanceController extends Controller
             $start_date = Carbon::parse($setup[0]->get('start_date'))->toDateTimeString();
             //ddd($start_date);
             Jadwal::where('maintenance_id', $attach['maintenance_id'])->where('tanggal_rencana', '>=', $start_date)->forceDelete();
-            
+
+            $jadwal = Jadwal::where('maintenance_id', $attach['maintenance_id'])->where('tanggal_rencana', '<', $start_date);
+            $jadwal->increment('status', 20);
+
+            Maintenance::destroy($attach['maintenance_id']);
             // DATA YANG SEBELUMNYA DILAKUKAN SOFT DELETE, TARUH LOGIKANNYA DISINI
             // SILAHKAN DITENTUKAN APAKAH DATA YANG SEBELUMNYA PERLU DITAMPILKAN ATAU TIDAK. 
 

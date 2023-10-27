@@ -103,7 +103,7 @@ Route::post('/maintenance/form/update/', [SetupMesinController::class, 'update_m
 Route::post('/maintenance/form/delete/', [SetupMesinController::class, 'delete_maintenance_form']);
 
 
-Route::post('/maintenance/action/create/', [MaintenanceController::class, 'maintenance_add']);
+//Route::post('/maintenance/action/create/', [MaintenanceController::class, 'maintenance_add']);
 
 
 Route::get('/sparepart', [SparepartController::class, 'index']);

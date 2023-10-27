@@ -19,9 +19,11 @@ class JadwalController extends Controller
 
         //id mesin
         $mesin = Mesin::find($id);
-        $maintenance = Maintenance::with(['jadwal'])->where('mesin_id', $id)->get();
+        $maintenance = Maintenance::with(['jadwal' => function($query) {
+            $query->withTrashed();
+        }])->where('mesin_id', $id)->withTrashed()->get();
         
-       // ddd($maintenance->jadwal);
+        //ddd($maintenance);
         //return view('pages.jadwal.index');
         return view('pages.jadwal.index', ['halaman' => 'Jadwal', 'maintenance' => $maintenance, 'mesin' => $mesin]);
     }
@@ -123,9 +125,11 @@ class JadwalController extends Controller
     }
 
     public function detail($id){
-        $jadwal = Jadwal::find($id);
-        $mesin = $jadwal->maintenance->mesin;
-         // ddd($jadwal);
+        $jadwal = Jadwal::withTrashed()->find($id);
+        $maintenance = Maintenance::withTrashed()->find($jadwal->maintenance_id);
+        $mesin = Mesin::find($maintenance->id);
+
+        // ddd($jadwal);
         $isi_form = IsiForm::with(['form'])->where('jadwal_id', $id)->get();
         return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin]);
     }   
