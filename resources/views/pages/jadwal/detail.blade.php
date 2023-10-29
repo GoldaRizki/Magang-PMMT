@@ -162,7 +162,7 @@
 
 @if(!$jadwal->trashed())
 
-<button type="submit" class="btn btn-lg btn-primary d-inline">
+<button type="submit" class="btn btn-lg btn-primary d-inline" @if($jadwal->status > 1) disabled @endif>
     <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil008.svg-->
     <span class="svg-icon svg-icon-muted svg-icon-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

@@ -127,10 +127,13 @@ class JadwalController extends Controller
     public function detail($id){
         $jadwal = Jadwal::withTrashed()->find($id);
         $maintenance = Maintenance::withTrashed()->find($jadwal->maintenance_id);
-        $mesin = Mesin::find($maintenance->id);
+        $mesin = Mesin::find($maintenance->mesin_id);
 
         // ddd($jadwal);
-        $isi_form = IsiForm::with(['form'])->where('jadwal_id', $id)->get();
+        $isi_form = IsiForm::withTrashed()->with(['form' => function($query) {
+            $query->withTrashed();
+        }])->where('jadwal_id', $id)->get();
+
         return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin, 'maintenance' => $maintenance]);
     }   
 
