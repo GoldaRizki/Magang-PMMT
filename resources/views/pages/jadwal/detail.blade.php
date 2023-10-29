@@ -32,7 +32,12 @@
     </tr>
   </table>
 
-  @if($jadwal->trashed())
+
+  @if($jadwal->status == 2)
+  <div class="p-5 bg-success text-white h2 fw-bolder text-center rounded">
+    Sudah Dikonfirmasi
+  </div>
+  @elseif($jadwal->trashed())
   <div class="p-5 bg-warning h2 fw-bolder text-center rounded">
     Jadwal Sudah dihapus
   </div>
@@ -47,6 +52,9 @@
 <form action=" @if(session()->has('form_alasan')) /jadwal/update_alasan/ @else /jadwal/update/ @endif" method="POST">
     @csrf
     @method('PUT')
+    <div class="input-group my-4">
+        <h1>{{ $maintenance->nama_maintenance }}</h1>
+    </div>
     <div class="input-group my-4">
         
         <input type="hidden" name="id" value="{{ old('id', $jadwal->id)}}">
@@ -87,7 +95,12 @@
     </div>
 </div>
 
-
+@if($jadwal->alasan)
+<div class="form-floating my-4">
+    <textarea class="form-control @error('alasan') is-invalid @enderror" placeholder="Tulis Keterangan disini...." id="form_alasan_2" style="height: 150px" name="alasan">{{ old('alasan', $jadwal->alasan) }}</textarea>
+    <label for="form_alasan_2">Alasan Terlambat</label>
+</div>
+@endif
 
 <div class="form-floating my-4">
     <textarea class="form-control @error('keterangan') is-invalid @enderror" placeholder="Tulis Keterangan disini...." id="form_keterangan" style="height: 150px" name="keterangan">{{ old('keterangan', $jadwal->keterangan) }}</textarea>
@@ -145,7 +158,10 @@
         </button>
             
         </a>
-        
+
+
+@if(!$jadwal->trashed())
+
 <button type="submit" class="btn btn-lg btn-primary d-inline">
     <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil008.svg-->
     <span class="svg-icon svg-icon-muted svg-icon-3">
@@ -156,6 +172,8 @@
     <!--end::Svg Icon-->
     Simpan Perubahan
 </button>
+
+@endif
 
 </div>
 
@@ -192,9 +210,7 @@
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
                 </a>
 
-                @if($jadwal->trashed())
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                @endif
 
             </div>
 

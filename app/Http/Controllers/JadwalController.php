@@ -131,7 +131,7 @@ class JadwalController extends Controller
 
         // ddd($jadwal);
         $isi_form = IsiForm::with(['form'])->where('jadwal_id', $id)->get();
-        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin]);
+        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin, 'maintenance' => $maintenance]);
     }   
 
 
@@ -146,11 +146,16 @@ class JadwalController extends Controller
 
         $data_valid['tanggal_rencana'] = Carbon::parse($data_valid['tanggal_rencana']);
         $data_valid['tanggal_realisasi'] = Carbon::parse($data_valid['tanggal_realisasi']);
-        
+        $jadwal = Jadwal::find($data_valid['id']);
+
         if($data_valid['tanggal_realisasi']->greaterThan($data_valid['tanggal_rencana'])){
             // tampilkan modal juga boleh dengan di redirect back 
             //ddd($request);
-            return redirect()->back()->withInput()->with('form_alasan', 'p');
+            if($jadwal->tanggal_realisasi == null){
+                return redirect()->back()->withInput()->with('form_alasan', 'p');
+            }else{
+                return $this->submit($request, $data_valid);
+            }
         }else{
             return $this->submit($request, $data_valid);
         }
