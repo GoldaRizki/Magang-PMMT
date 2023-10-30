@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use Barryvdh\DomPDF\Facade\PDF;
 
 use Illuminate\Support\Facades\Cache;
@@ -18,7 +19,19 @@ class HomeController extends Controller
 
     public function index(){
 
-        return view('home', ['halaman' => 'Home']);
+
+        $terlambat = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '<', now()->toDateString())->get();
+        $hari_ini = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', now()->toDateString())->get();
+        $seminggu = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->toDateString())->where('tanggal_rencana', '<=', now()->addDays(7)->toDateString())->get();
+        $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(30)->toDateString())->get();
+
+
+        return view('home', ['halaman' => 'Home',
+         'terlambat' => $terlambat,
+         'hari_ini' => $hari_ini,
+         'seminggu' => $seminggu,
+         'sebulan' => $sebulan,
+        ]);
       
     }
 

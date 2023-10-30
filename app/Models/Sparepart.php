@@ -19,4 +19,7 @@ class Sparepart extends Model
         return $this->belongsToMany(Maintenance::class);
     }
     
+    public function jadwal() {
+        return $this->belongsToMany(Jadwal::class);
+    }
 }

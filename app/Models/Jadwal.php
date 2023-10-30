@@ -27,6 +27,10 @@ class Jadwal extends Model
         return $this->hasMany(IsiForm::class);
     }
 
+    public function sparepart(){
+        return $this->belongsToMany(Sparepart::class)->withPivot('jumlah');
+    }
+
     
     
 }

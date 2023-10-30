@@ -7,6 +7,7 @@ use App\Models\Form;
 use App\Models\Jadwal;
 use App\Models\IsiForm;
 use App\Models\Maintenance;
+use App\Models\Sparepart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -128,13 +129,14 @@ class JadwalController extends Controller
         $jadwal = Jadwal::withTrashed()->find($id);
         $maintenance = Maintenance::withTrashed()->find($jadwal->maintenance_id);
         $mesin = Mesin::find($maintenance->mesin_id);
+        $sparepart = Sparepart::all();
 
         // ddd($jadwal);
         $isi_form = IsiForm::withTrashed()->with(['form' => function($query) {
             $query->withTrashed();
         }])->where('jadwal_id', $id)->get();
 
-        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin, 'maintenance' => $maintenance]);
+        return view('pages.jadwal.detail', ['halaman' => 'Jadwal', 'jadwal' => $jadwal, 'isi_form' => $isi_form, 'mesin' => $mesin, 'maintenance' => $maintenance, 'sparepart' => $sparepart]);
     }   
 
 
@@ -157,9 +159,15 @@ class JadwalController extends Controller
             if($jadwal->tanggal_realisasi == null){
                 return redirect()->back()->withInput()->with('form_alasan', 'p');
             }else{
+                if($request->has('alasan')){
+                    $data_valid['alasan'] = $request->alasan;
+                }                
                 return $this->submit($request, $data_valid);
             }
         }else{
+            if($request->has('alasan')){
+                $data_valid['alasan'] = $request->alasan;
+            }
             return $this->submit($request, $data_valid);
         }
 
@@ -203,10 +211,14 @@ class JadwalController extends Controller
        
         $jadwal->update($data_valid);
 
+        if($jadwal->status == 1){
+            $jadwal->increment('status');
+        }
 
         if(isset($request->validasi)){
             $jadwal->increment('status');
         }
+
 
         if($request->has('isi_form')){
         foreach($request->isi_form as $key => $value){
@@ -214,7 +226,7 @@ class JadwalController extends Controller
             }
         }
 
-        return redirect('/jadwal/' . $jadwal->maintenance->mesin_id);
+        return redirect('/jadwal/detail/' . $jadwal->id);
     }
 
 }

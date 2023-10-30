@@ -243,6 +243,13 @@ Sparepart::create([
 
         
 */
+Sparepart::create([
+    'id' => 1,
+    'nama_sparepart' => 'Oli MPX',
+    'harga' => 560000,
+    'jumlah' => 65,
+    'satuan' => 'Buah'
+]);
 
     User::create([
         'username' => 'fadilahh',

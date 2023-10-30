@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\JadwalSparepartController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SetupFormController;
 use App\Http\Controllers\SparepartController;
@@ -113,9 +114,15 @@ Route::get('/sparepart/edit/{id}', [SparepartController::class, 'edit']);
 Route::put('/sparepart/update', [SparepartController::class, 'update']);
 Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);    
 
+/*
+diilangin, diganti pake model jadwal biasa
 Route::get('/sparepart/maintenance/{id}', [MaintenanceController::class, 'tampil_sparepart']);
 Route::post('/sparepart/maintenance/', [MaintenanceController::class, 'tambah_sparepart']);
 Route::delete('/sparepart/maintenance/delete/', [MaintenanceController::class, 'hapus_sparepart']);
+*/
+
+Route::post('/sparepart/jadwal/', [JadwalSparepartController::class, 'tambah_sparepart']);
+Route::delete('/sparepart/jadwal/delete/', [JadwalSparepartController::class, 'hapus_sparepart']);
 
 
 Route::get('/jadwal/{id}', [JadwalController::class, 'index']);
