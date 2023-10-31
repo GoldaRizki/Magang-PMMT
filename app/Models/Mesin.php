@@ -25,7 +25,7 @@ class Mesin extends Model
         return $this->belongsTo(Kategori::class);
     }
     
-    public function maintenance() {;
+    public function maintenance() {
         return $this->hasMany(Maintenance::class);
     } 
 
@@ -35,6 +35,10 @@ class Mesin extends Model
     
     public function form(){
         return $this->hasManyThrough(Form::class,Maintenance::class);    
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
 }

@@ -19,7 +19,7 @@ class MesinController extends Controller
 
     if($request->ajax()){
         
-        $mesin = Mesin::with(['kategori', 'ruang']);
+        $mesin = Mesin::with(['kategori', 'ruang', 'user']);
 
         return DataTables::of($mesin)
         ->editColumn('nama_mesin', function($m){
@@ -31,6 +31,9 @@ class MesinController extends Controller
             }else{
                 return "Tak Terkategori";
             }
+        })
+        ->editColumn('user', function(Mesin $mesin){
+            return $mesin->user->nama;
         })
         ->editColumn('ruang', function(Mesin $mesin){
             return $mesin->ruang->nama_ruang;

@@ -5,6 +5,7 @@
     
                     <th>No</th>
                     <th>Mesin</th>
+                    <th>PIC</th>
                     <th>No. Asset</th>
                     <th>Ruang</th>
                     <th>Kategori</th>
@@ -39,6 +40,7 @@ ajax: "/mesin",
 columns: [
 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
 {data: 'nama_mesin', name: 'nama_mesin'},
+{data: 'user', name: 'user.nama'},
 {data: 'no_asset', name: 'no_asset'},
 {data: 'ruang', name: 'ruang.nama_ruang'},
 {data: 'kategori', name: 'kategori.nama_kategori'},

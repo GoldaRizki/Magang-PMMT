@@ -47,9 +47,12 @@ License: For each use you must have a valid license purchased only from above li
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
 					<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+
+						
 						<!--begin::Form-->
-						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#">
+						<form class="form w-100" action="/masuk" method="POST">
 							<!--begin::Heading-->
+							@csrf
 							<div class="text-center mb-10">
 								<!--begin::Title-->
 								<h1 class="text-dark mb-3">LOGIN</h1>
@@ -65,6 +68,10 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Input-->
 								<input class="form-control form-control-lg form-control-solid" type="text" name="username" autocomplete="off" />
 								<!--end::Input-->
+								@error('username')
+								<p class="text-danger">{{ $message }}</p>
+								@enderror
+
 							</div>
 							<!--end::Input group-->
 							<!--begin::Input group-->
@@ -74,12 +81,14 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Label-->
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
 									<!--end::Label-->
-							
 								</div>
 								<!--end::Wrapper-->
 								<!--begin::Input-->
 								<input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
 								<!--end::Input-->
+								@error('password')
+								<p class="text-danger">{{ $message }}</p>
+								@enderror
 							</div>
 							<!--end::Input group-->
 							<!--begin::Actions-->
@@ -112,7 +121,15 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="/assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="/assets/js/custom/authentication/sign-in/general.js"></script>
+		@error('login')
+		<script>
+			Swal.fire({
+				icon: 'error',
+				title: 'Login Gagal!',
+				text: 'Pastikan Username dan Password benar!',
+				})
+		</script>
+		@enderror
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

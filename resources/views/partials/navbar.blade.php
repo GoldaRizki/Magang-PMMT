@@ -108,7 +108,11 @@
 			</div>
 
 			
-
+			<div class="menu-item me-lg-1">
+				<a class="menu-link py-3" href="/user/all">
+					<span class="menu-title">User</span>
+				</a> 
+			</div>
 			
 		
 			

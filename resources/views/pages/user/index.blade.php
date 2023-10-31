@@ -5,7 +5,6 @@
     <th>Nama</th>
     <th>UserName</th>
     <th>Level/Role</th>
-    <th>Unit</th>
     <th>Terakhir Login</th>
     <th>Aksi</th>
 @endsection
@@ -37,7 +36,6 @@
     {data: 'nama', name: 'nama'},
     {data: 'username', name: 'username'},
     {data: 'level', name: 'level'},
-    {data: 'unit', name: 'unit'},
     {data: 'last_login', name: 'last_login'},
     {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
 

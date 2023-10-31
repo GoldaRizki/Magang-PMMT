@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,7 @@ class CreateMesinsTable extends Migration
             $table->foreignId('ruang_id')->onDelete('cascade')->onUpdate('cascade');
             $table->string('no_asset', 25);
             $table->text('spesifikasi')->nullable();
+            $table->foreignId('user_id')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

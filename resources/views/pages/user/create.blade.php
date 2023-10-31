@@ -3,8 +3,8 @@
 @section('konten')
 <div class="container px-10">
 
-    <form>
-        
+    <form method="post" action="/user/store/">
+        @csrf
     <div class="mb-4">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="username" value="{{ old('username') }}" name="username">

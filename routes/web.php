@@ -30,11 +30,17 @@ use App\Http\Controllers\UserController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/jadwal', [JadwalController::class, 'index']);
-Route::get('/login', [UserController::class, 'login']);
+
+Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+Route::post('/masuk', [UserController::class, 'masuk']);
+
 Route::get('/akun', [UserController::class, 'akun']);
+
+
 
 Route::get('/user/all/', [UserController::class, 'index']);
 Route::get('/user/create/', [UserController::class, 'create']);
+Route::post('/user/store/', [UserController::class, 'store']);
 
 Route::get('/mesin', [MesinController::class, 'index']);
 Route::get('/mesin/create', [MesinController::class, 'create']);
