@@ -32,6 +32,7 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/jadwal', [JadwalController::class, 'index']);
 
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/masuk', [UserController::class, 'masuk']);
 
 Route::get('/akun', [UserController::class, 'akun']);
@@ -41,6 +42,11 @@ Route::get('/akun', [UserController::class, 'akun']);
 Route::get('/user/all/', [UserController::class, 'index']);
 Route::get('/user/create/', [UserController::class, 'create']);
 Route::post('/user/store/', [UserController::class, 'store']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+Route::put('/user/update/', [UserController::class, 'update']);
+Route::delete('/user/delete/', [UserController::class, 'delete']);
+
+
 
 Route::get('/mesin', [MesinController::class, 'index']);
 Route::get('/mesin/create', [MesinController::class, 'create']);

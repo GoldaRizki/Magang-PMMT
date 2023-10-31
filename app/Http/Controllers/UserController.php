@@ -16,6 +16,19 @@ class UserController extends Controller
         return view('pages.user.login');
     }
 
+    public function logout(Request $request){
+        
+        
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/login');
+
+    }
+
 
     public function masuk(Request $request){
         
@@ -83,22 +96,38 @@ class UserController extends Controller
         return redirect('/user/all')->with('tambah', 'p');
     }
 
-    public function edit(){
+    public function edit($id){
         
+        $user = User::find($id);
 
-        return view('pages.user.edit', ['halaman' => 'User']);
+        return view('pages.user.edit', ['halaman' => 'User', 'user' => $user]);
     }
 
 
     public function update(Request $request){
         
+        $data_valid = $request->validate([
+            'id' => 'required|numeric',
+            'username' => 'required',
+            'nama' => 'required',
+            'level' => 'required',
 
+        ]);
+
+        User::find($data_valid['id'])->update($data_valid);
 
         return redirect('/user/all')->with('edit', 'p');
     }
 
     public function delete(Request $request){
         
+        $data_valid = $request->validate([
+            'id' => 'required|numeric',
+        ]);
+
+        User::destroy($data_valid['id']);
+
+        return redirect('/user/all')->with('hapus', 'p');
 
     }
 

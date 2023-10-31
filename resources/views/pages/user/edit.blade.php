@@ -3,11 +3,14 @@
 @section('konten')
 <div class="container px-10">
 
-    <form method="post" action="/user/store/">
+    <form method="post" action="/user/update/">
         @csrf
+        @method('PUT')
+    <input type="hidden" name="id" value="{{ old('id', $user->id) }}">
+
     <div class="mb-4">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="username" value="{{ old('username') }}" name="username">
+        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="username" value="{{ old('username', $user->username) }}" name="username">
         @error('username')
         <div class="invalid-feedback">
             {{ $message }}
@@ -17,7 +20,7 @@
 
     <div class="mb-4">
         <label for="nama" class="form-label">Nama</label>
-        <input type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="nama" id="nama" value="{{ old('nama') }}" name="nama">
+        <input type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="nama" id="nama" value="{{ old('nama', $user->nama) }}" name="nama">
         @error('nama')
         <div class="invalid-feedback">
             {{ $message }}
@@ -27,8 +30,8 @@
 
     <div class="mb-4">
     <label for="level" class="form-label @error('level') is-invalid @enderror">Level / Role</label>
-    <select id="level" value="{{ old('level') }}" name="level" class="form-select">
-        <option value="" selected> --- Pilih Role --- </option>
+    <select id="level" name="level" class="form-select">
+        <option value="{{ old('level', $user->level) }}" selected>{{ old('level', $user->level) }}</option>
         <option value="Teknisi">Teknisi</option>
         <option value="Supervisor">Supervisor</option>
         <option value="Manager">Manager</option>

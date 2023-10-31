@@ -153,7 +153,7 @@
         
 
 
-        <div class="input-group mb-3">
+        <div class="input-group mb-4">
             <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">RUANG</button>
             <ul class="dropdown-menu"> 
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#kt_modal_1">+ Tambah Ruang</a></li>
@@ -175,6 +175,18 @@
         
         <input type="hidden" id="ruang" name="ruang_id" value="{{ old('ruang_id') }}">
           
+
+        <div class="mb-4">
+        <label for="pic" class="form-label">Person In Charge (PIC)</label>
+         <select class="form-select" id="pic" aria-label="Pilihan untuk PIC" value="{{ old('user_id') }}" name="user_id">
+            <option value="" selected> -- Pilih PIC -- </option>
+
+            @foreach ($user as $u)
+            <option value="{{ $u->id }}">{{ $u->nama }}</option>
+            @endforeach
+            
+          </select>
+        </div>
           
         <div class="mb-3">
             <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>

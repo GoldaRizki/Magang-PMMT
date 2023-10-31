@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+use App\Models\User;
 use App\Models\Mesin;
 use App\Models\Ruang;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Cache;
@@ -59,6 +60,7 @@ class MesinController extends Controller
         return view('pages.mesin.create',
         [
             'ruang' => Ruang::all(),
+            'user' => User::all(),
             'halaman' => 'Mesin'
         ]
     );
@@ -71,6 +73,7 @@ class MesinController extends Controller
             'nama_mesin' => 'required|max:255',
             'no_asset' => 'required|max:25',
             'ruang_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
         ]);
 
@@ -98,12 +101,14 @@ class MesinController extends Controller
         $mesin = Mesin::with(['ruang'])->findOrFail($id);
         $ruang = Ruang::all();
         $kategori = Kategori::all();
+        $user = User::all();
 
         return view('pages.mesin.update', 
         ['halaman' => 'Mesin',
          'mesin' => $mesin,
          'kategori' => $kategori,
-         'ruang' => $ruang
+         'ruang' => $ruang,
+         'user' => $user
         ]);
 
     }
@@ -116,6 +121,7 @@ class MesinController extends Controller
             'nama_mesin' => 'required|max:255',
             'no_asset' => 'required|max:25',
             'ruang_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
         ]);
 
