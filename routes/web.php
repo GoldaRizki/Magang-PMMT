@@ -31,11 +31,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/jadwal', [JadwalController::class, 'index']);
 
-Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/masuk', [UserController::class, 'masuk']);
 
-Route::get('/akun', [UserController::class, 'akun']);
+Route::get('/akun', [UserController::class, 'akun'])->middleware('auth');
+Route::put('/user/akun/update/', [UserController::class, 'update_akun'])->middleware('auth');
+Route::put('/user/akun/update/password/', [UserController::class, 'ganti_password'])->middleware('auth');
 
 
 

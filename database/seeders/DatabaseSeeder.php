@@ -259,8 +259,8 @@ User::create([
 ]);
 
     User::create([
-        'username' => 'fadilahh',
-        'nama' => 'Fadilah Alya',
+        'username' => 'fadhilah',
+        'nama' => 'Fadhilah Alya',
         'level' => 'Teknisi',
         'password' => bcrypt('1234'),
         'last_login' => Carbon::parse('12-05-2023 23:34:45'),

@@ -48,7 +48,7 @@ class MaintenanceController extends Controller
 
             }
         
-        return redirect('/mesin');
+        return redirect('/jadwal/'. $mesin['id']);
 
     }
 

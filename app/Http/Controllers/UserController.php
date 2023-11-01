@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -15,6 +16,7 @@ class UserController extends Controller
         
         return view('pages.user.login');
     }
+
 
     public function logout(Request $request){
         
@@ -53,6 +55,64 @@ class UserController extends Controller
 
     public function akun(){
         return view('pages.user.akun');
+    }
+
+    public function update_akun(Request $request){
+        
+
+        $data_valid = $request->validate([
+            'id' => 'required|numeric',
+            'username' => 'required',
+            'nama' => 'required',
+            'avatar' => 'image|file|max:1024'
+        ]);
+
+
+        if($request->avatar){
+            //nek request dono avatar e
+            $data_valid['foto'] = $request->file('avatar')->store('foto-profil');
+            if(auth()->user()->foto !== null){
+                Storage::delete(auth()->user()->foto);
+            }
+
+        }elseif($request->avatar_remove){
+            // nek ora ono avatar dan ono permintaan dihapus
+
+            Storage::delete(auth()->user()->foto);
+            $data_valid['foto'] = null;
+        }
+
+
+       
+
+
+
+        User::find($data_valid['id'])->update($data_valid);        
+
+        return redirect('/akun');
+
+    }
+
+
+
+    public function ganti_password(Request $request){
+   
+        $data_valid = $request->validate([
+            'id' => 'required|numeric'
+        ]);
+
+        if($request->password_baru){
+            $data_valid['password'] = $request->password_lama;
+            if(Auth::attempt($data_valid)){
+                $data_valid['password'] = bcrypt($request->password_baru);
+                User::find($data_valid['id'])->update($data_valid);        
+                return $this->logout($request)->with(['ganti password' => 'Silahkan login dengan password yang baru']);
+            }else{
+                return redirect()->back()->withInput()->withErrors(['password_lama' => 'Pastikan password lamanya sesuai!']);
+            }
+        }else{
+            return redirect()->back()->withInput()->withErrors(['password_baru' => 'Password baru tidak ada isinya!']);
+        }
     }
 
     public function index(Request $request){
