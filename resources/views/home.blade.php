@@ -125,6 +125,8 @@
             <div id="kt_apexcharts_1" style="height: 420px;"></div>
         </div>
     </div>
+
+
 @endsection
 
 @section('customJs')

@@ -40,6 +40,9 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($data_valid)) {
+
+            User::find(auth()->user()->id)->update(['last_login' => now('Asia/Bangkok')]);
+
             $request->session()->regenerate();
  
             return redirect()->intended('/');

@@ -47,6 +47,13 @@ class User extends Authenticatable
     ];
     */
 
+    protected static function booted()
+    {
+        static::deleting(function (User $user) {
+            $user->mesin()->update(['user_id' => 1]);
+        });
+    }
+
 
     public function mesin(){
         return $this->hasMany(Mesin::class);

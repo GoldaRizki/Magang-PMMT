@@ -20,7 +20,7 @@ class CreateMesinsTable extends Migration
             $table->string('nama_mesin');
             $table->foreignId('kategori_id')->default(1);
             $table->foreignId('ruang_id')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('no_asset', 25);
+            $table->string('no_asset', 25)->default('');
             $table->text('spesifikasi')->nullable();
             $table->foreignId('user_id')->default(1);
             $table->timestamps();

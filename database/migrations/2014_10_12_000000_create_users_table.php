@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->enum('level', ['Teknisi', 'Supervisor', 'Manager', 'Admin', 'Superuser']);
             $table->string('foto')->nullable();
             $table->string('password')->default(bcrypt('utility'));
-            $table->dateTime('last_login')->default(now());
+            $table->dateTime('last_login')->default(now('Asia/Bangkok'));
             $table->softDeletes();
             $table->timestamps();
         });

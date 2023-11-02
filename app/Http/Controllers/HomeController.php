@@ -99,4 +99,22 @@ class HomeController extends Controller
 
         return $pdf->download('invoice.pdf');
     }
+
+
+    public function test_laporan(){
+        $jadwal = Jadwal::find(4);
+        $mesin = $jadwal->maintenance->mesin;
+
+
+        $data = ['mesin' => $mesin, 'jadwal' => $jadwal];
+
+        //return view('reports.inspeksi', $data);
+        
+        $pdf = PDF::loadView('reports.inspeksi', $data);
+
+        return $pdf->download('invoice.pdf');
+    }
+
+
+
 }

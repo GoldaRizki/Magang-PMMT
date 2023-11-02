@@ -123,7 +123,23 @@ License: For each use you must have a valid license purchased only from above li
 					<span class="h-20px border-gray-200 border-start mx-4"></span>
 					<!--end::Separator-->
 					<span>Role :&nbsp;</span>
-					<span class="badge badge-light-danger">Admin</span>
+					@auth
+
+						@if(auth()->user()->level === 'Teknisi')
+						<span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Teknisi</span>
+						@elseif(auth()->user()->level === 'Supervisor')
+						<span class="badge badge-light-warning fw-bolder fs-8 px-2 py-1 ms-2">Supervisor</span>
+						@elseif(auth()->user()->level === 'Manager')
+						<span class="badge badge-light-danger fw-bolder fs-8 px-2 py-1 ms-2">Manager</span>
+						@elseif(auth()->user()->level === 'Admin')
+						<span class="badge badge-light-info fw-bolder fs-8 px-2 py-1 ms-2">Admin</span>
+						@elseif(auth()->user()->level === 'Superuser')
+						<span class="badge badge-dark fw-bolder fs-8 px-2 py-1 ms-2">Superuser</span>
+						@endif
+
+					@else
+					<span class="badge badge-light-dark">Tamu</span>
+					@endauth
 				</div>
 				<!--end::Page title-->
 			<!--begin::Actions-->

@@ -41,7 +41,7 @@ Route::put('/user/akun/update/password/', [UserController::class, 'ganti_passwor
 
 
 
-Route::get('/user/all/', [UserController::class, 'index']);
+Route::get('/user/all/', [UserController::class, 'index'])->middleware('superuser');
 Route::get('/user/create/', [UserController::class, 'create']);
 Route::post('/user/store/', [UserController::class, 'store']);
 Route::get('/user/edit/{id}', [UserController::class, 'edit']);
@@ -69,7 +69,7 @@ Route::put('/mesin/maintenance/edit/submit', [UpdateMaintenanceController::class
 Route::delete('/mesin/maintenance/delete/', [UpdateMaintenanceController::class, 'delete']);
 
 
-Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/kategori', [KategoriController::class, 'index'])->middleware('admin');
 Route::post('/kategori/create', [KategoriController::class, 'create']);
 Route::put('/kategori/update', [KategoriController::class, 'updateOnKategori']);
 Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
@@ -146,10 +146,14 @@ Route::put('/jadwal/update_alasan/', [JadwalController::class, 'update_with_alas
 Route::post('/jadwal/update_alasan_batal/', [JadwalController::class, 'update_with_alasan_batal']);
 
 
+Route::get('/laporan/inspeksi', [HomeController::class, 'test_laporan']);
+
 
 Route::get('/test', [HomeController::class, 'test']);
 Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);
 Route::get('/test/pdf', [HomeController::class, 'test_pdf']);
+
+
 

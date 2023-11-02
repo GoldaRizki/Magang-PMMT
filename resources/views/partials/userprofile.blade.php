@@ -84,12 +84,14 @@
 															
 															</div>
 															<span class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user()->username }}</span>
-															<span class="fw-bold text-muted text-hover-primary fs-7">Last login :</span>
-															<span class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user()->last_login }}</span>
-
 														</div>
 														<!--end::Username-->
 													</div>
+
+													<div class="container-fluid px-3">
+														<span class="fw-bold text-muted fs-7">Terakhir Login : {{ auth()->user()->last_login }}</span>
+													</div>
+
 												</div>
 												<!--end::Menu item-->
 												<!--begin::Menu separator-->

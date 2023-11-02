@@ -71,7 +71,7 @@ class MesinController extends Controller
 
         $validData = $request->validate([
             'nama_mesin' => 'required|max:255',
-            'no_asset' => 'required|max:25',
+            'no_asset' => 'nullable|max:25',
             'ruang_id' => 'required|numeric',
             'user_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
@@ -119,7 +119,7 @@ class MesinController extends Controller
         $dataValid = $request->validate([
             'id' => 'required|numeric',
             'nama_mesin' => 'required|max:255',
-            'no_asset' => 'required|max:25',
+            'no_asset' => 'nullable|max:25',
             'ruang_id' => 'required|numeric',
             'user_id' => 'required|numeric',
             'spesifikasi' => 'nullable'
