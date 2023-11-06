@@ -93,14 +93,17 @@
     </tr>
   </table>
 
-
-  @if($jadwal->status == 3)
-  <div class="p-4 bg-success text-white h5 fw-bolder text-center rounded">
-    Sudah Dikonfirmasi,<br>Status Close
-  </div>
-  @elseif($jadwal->trashed())
+  @if($jadwal->trashed())
   <div class="p-5 bg-warning h2 fw-bolder text-center rounded">
     Jadwal Sudah dihapus
+  </div>
+  @elseif($jadwal->status == 3)
+  <div class="p-4 bg-info text-white h5 fw-bolder text-center rounded">
+    Sudah verifikasi oleh Supervisor,<br> Menunggu verifikasi manager
+  </div>
+  @elseif($jadwal->status == 4)
+  <div class="p-4 bg-success text-white h5 fw-bolder text-center rounded">
+    Sudah Dikonfirmasi oleh Manager,<br>Status Close
   </div>
   @endif
 
@@ -196,7 +199,7 @@
             <td class="text-end"><b>{{ $i->form->nama_form }}</b></td>
             <td class="text-center">{{ $i->form->syarat }}</td>
             <td>
-                <input type="text" class="form-control" @if(old('isi_form')) value="{{ old('isi_form')[$i->id] }}" @else value="{{ $i->nilai }}" @endif name="isi_form[{{ $i->id }}]" required  @if($jadwal->status > 2) disabled @endif>
+                <input type="text" class="form-control" @if(old('isi_form')) value="{{ old('isi_form')[$i->id] }}" @else value="{{ $i->nilai }}" @endif name="isi_form[{{ $i->id }}]" required  @if($jadwal->status > 2 || $jadwal->trashed()) disabled @endif>
             </td>
         </tr>
         @endforeach
@@ -231,7 +234,7 @@
 
 @if(!$jadwal->trashed())
 
-<button type="submit" class="btn btn-lg btn-primary d-inline" @if($jadwal->status > 2) disabled @endif>
+<button type="submit" class="btn btn-lg btn-primary d-inline" @if($jadwal->status > 2 && !$jadwal->trashed()) disabled @endif>
     <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil008.svg-->
     <span class="svg-icon svg-icon-muted svg-icon-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -302,7 +305,7 @@
         <td class="fw-bold fs-1">Pemakaian Sparepart</td>
     
         <td class="text-end">
-            @if($jadwal->status < 3) 
+            @if($jadwal->status < 3 && !$jadwal->trashed()) 
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white">
                     <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="white"/>

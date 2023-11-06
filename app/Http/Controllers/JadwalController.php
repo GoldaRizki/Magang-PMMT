@@ -8,6 +8,7 @@ use App\Models\Jadwal;
 use App\Models\IsiForm;
 use App\Models\Maintenance;
 use App\Models\Sparepart;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -20,10 +21,21 @@ class JadwalController extends Controller
 
         //id mesin
         $mesin = Mesin::find($id);
+        /*
         $maintenance = Maintenance::with(['jadwal' => function($query) {
             $query->withTrashed();
         }])->where('mesin_id', $id)->withTrashed()->get();
-        
+        */
+
+        $maintenance = Maintenance::with(['jadwal'])->where('mesin_id', $id)->withTrashed()->get();
+
+        $maintenance2 = Maintenance::with(['jadwal' => function($query) {
+            $query->withTrashed()->where('status', '>', 20);
+        }])->where('mesin_id', $id)->withTrashed()->get();
+
+        $maintenance = $maintenance->concat($maintenance2);
+
+
         //ddd($maintenance);
         //return view('pages.jadwal.index');
         return view('pages.jadwal.index', ['halaman' => 'Jadwal', 'maintenance' => $maintenance, 'mesin' => $mesin]);
