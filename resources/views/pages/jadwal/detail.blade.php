@@ -186,6 +186,7 @@
 <div class="container m-5">
 
     <table class="table fs-3 table-row-dashed table-row-gray-600 gy-5 gx-4 gs-7">
+        
         <tr>
             <td class="text-end"><h2>Form</h2></td>
             <td class="text-center">Syarat</td>

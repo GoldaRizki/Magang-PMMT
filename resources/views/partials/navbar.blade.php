@@ -118,7 +118,11 @@
 		
 			
 
-
+			<div class="menu-item me-lg-1">
+				<a class="menu-link py-3" href="/approve">
+					<span class="menu-title">Laporan Pekerjaan</span>
+				</a> 
+			</div>
 
 						
 		</div>

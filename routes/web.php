@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JadwalApproveController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\JadwalController;
@@ -98,6 +99,9 @@ Route::get('/ruang', [RuangController::class, 'index']);
 Route::post('/ruang/create', [RuangController::class, 'create']);
 Route::put('/ruang/update', [RuangController::class, 'update']);
 Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
+
+
+Route::get('/approve', [JadwalApproveController::class, 'index']);
 
 
 

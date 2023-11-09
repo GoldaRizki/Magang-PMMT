@@ -1,7 +1,42 @@
 @extends('layouts/header')
 
+@section('customCss')
+    <style>
+        .tabel-tampil-jadwal td{
+    position: relative;
+    /*border: 1px #1a1a1a; */ 
+    text-align: center;
+    min-width: 40px;
+}
 
-@section('isi')
+.tabel-tampil-jadwal thead th, 
+.tabel-tampil-jadwal thead td{
+   /* border-collapse: collapse; */
+   font-size: small;
+   position: sticky;
+   top: 0;
+   background-color: white;
+   z-index: 1;
+}
+.tabel-tampil-jadwal thead th:first-child,
+.tabel-tampil-jadwal td:first-child{
+    position: sticky;
+    left: 0;
+    color: #212529;
+    z-index: 2;
+    min-width: 300px;
+    font-size: small;
+    text-align: left;
+    background-color: #009EF7;
+}
+
+.tabel-tampil-jadwal thead th:first-child{
+    z-index: 4;
+}
+    </style>
+@endsection
+
+@section('konten')
 
 <div class="container-fluid px-1">
 
@@ -9,10 +44,10 @@
         
         
     
-    <table class="table border-dark p-0 m-0 tabel-tampil-jadwal">
+    <table class="table table-rounded table-row-dashed table-row-gray-300 p-0 m-0 g-5 tabel-tampil-jadwal">
         <thead>
             <tr>
-                <th class="text-center">Barang</th>
+                <th class="text-center text-light">Barang</th>
 
 
                     <td>Jan'23</td>
@@ -84,7 +119,7 @@
         
         <tbody>
             <tr>
-                <td>Accu 1200 mAh</td>
+                <td class="text-light">Accu 1200 mAh</td>
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>
@@ -150,7 +185,7 @@
 
 
             <tr>
-                <td>Chiller 1kW</td>
+                <td class="text-light">Chiller 1kW</td>
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>

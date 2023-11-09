@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     public function test(){
         
-        return view('test_page.test_page');
+        return view('pages.jadwal.close_jadwal');
 
     }
 
