@@ -29,4 +29,46 @@ class JadwalApproveController extends Controller
 
     }
 
+    public function approve(Request $request){
+        $data_valid = $request->validate([
+            'jadwal_id' => 'required|numeric',
+        ]);
+
+        return redirect()->back()->with('approve', $data_valid['jadwal_id']);
+    }
+
+
+    public function approve_tetap(Request $request){
+        $data_valid = $request->validate([
+            'jadwal_id' => 'required|numeric',
+        ]);
+
+        Jadwal::find($data_valid['jadwal_id'])->increment('status');
+
+        return redirect()->back()->with('approve_berhasil', 'p');
+    }
+
+
+    public function approve_ubah(Request $request){
+        $data_valid = $request->validate([
+            'jadwal_id' => 'required|numeric',
+        ]);
+
+        //logika reset jadwal disini
+        $maintenance_id = Jadwal::find($data_valid['jadwal_id'])->maintenance_id;
+
+        $jadwal = Jadwal::with('maintenance')->where('maintenance_id', $maintenance_id)->where('status', 3)->orderBy('tanggal_rencana', 'DESC')->get();
+        
+        if($data_valid['jadwal_id'] === $jadwal[0]->id){
+            ddd('bener');
+        }else{
+
+            return redirect()->back()->withErrors('reset_gagal', 'Sudah tidak bisa mereset jadwal setelah tanggal ini, sudah terlambat!');
+        }
+
+        //Jadwal::find($data_valid['jadwal_id'])->increment('status');
+
+        return redirect()->back()->with('approve_berhasil', 'p');
+    }
+
 }

@@ -102,6 +102,9 @@ Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
 
 
 Route::get('/approve', [JadwalApproveController::class, 'index']);
+Route::post('/approve/jadwal', [JadwalApproveController::class, 'approve']);
+Route::put('/approve/jadwal/tetap', [JadwalApproveController::class, 'approve_tetap']);
+Route::put('/approve/jadwal/ubah', [JadwalApproveController::class, 'approve_ubah']);
 
 
 

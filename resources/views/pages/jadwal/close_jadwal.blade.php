@@ -96,29 +96,34 @@
 
                         @endphp
                             @while($tglSelesai->greaterThanOrEqualTo($tglMulai))
-                                <td>
+                                <td class="align-middle">
                                    
-                                    {{ $tglSelesai->day }}
                                     @php
-                                    $jd = $maintenanceVal->filter(function($item) use ($tglAkhir){
+                                    $jd = $maintenanceVal->first(function($value, $key) use ($tglSelesai){
                                         /*
                                         if(Illuminate\Support\Carbon::parse($item->tanggal_rencana)->diffInDays('19-10-2023') == 0){
                                             dd('mboh');
                                         }
                                         */
 
-                                        echo Illuminate\Support\Carbon::parse($item->tanggal_rencana)->diffInDays($tglAkhir->format('d-m-Y'));
-                                        return (Illuminate\Support\Carbon::parse($item->tanggal_rencana)->diffInDays($tglAkhir->format('Y-m-d')) == 0);
+                                        //echo $value->tanggal_rencana . "<br>";
+                                        return (Illuminate\Support\Carbon::parse($value->tanggal_rencana)->isSameDay($tglSelesai));
 
-                                    });                                        
+                                    });     
+
+                                    if(is_null($jd)){
+                                        echo $tglSelesai->day;
+                                    }else{
+                                        /*
+                                        $jadwal = $jd->map(function($item, $key){
+                                            return '['. $item->id .',\''. $item->maintenance->nama_maintenance .'\',\''. $item->maintenance->mesin->nama_mesin .'\']';
+                                            });
+                                        */
+                                        echo '<button class="btn btn-sm btn-primary" onclick="modal_approve('. $jd->id . ',\''. $jd->maintenance->mesin->nama_mesin .'\',\''. $jd->maintenance->nama_maintenance .'\',\''. Illuminate\Support\Carbon::parse($jd->tanggal_rencana)->format('d-m-Y') .'\',\''. Illuminate\Support\Carbon::parse($jd->tanggal_realisasi)->format('d-m-Y') .'\',\''. ((!is_null($jd->keterangan)) ? $jd->keterangan : '-') .'\',\''. ((!is_null($jd->alasan)) ? $jd->alasan : '-') .'\')" data-bs-toggle="modal" data-bs-target="#modal_approve">' . $tglSelesai->day .'</button>';
+                                    }
+                                    
                                     $tglSelesai->subDay();
                                     @endphp
-
-                                   @if($jd->isNotEmpty())
-                                    kosong
-                                   @else
-                                   <p>awpkawpkwa</p>
-                                   @endif
                                 </td>
 
                             @endwhile             
@@ -142,4 +147,131 @@
 </div>
 </div>
 
+
+<div class="modal fade" tabindex="-1" id="modal_approve">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Close Pekerjaan</h5>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-2x"></span>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <div class="modal-body">
+
+                <table class="table table-row-dashed table-row-gray-300 gy-5 gs-4">
+                    <tr>
+                        <th class="fw-bold">Jenis Maintenance</th>
+                        <td id="approve_maintenance"></td>
+                    </tr>
+                    <tr>
+                        <th class="fw-bold">Mesin</th>
+                        <td id="approve_mesin"></td>
+                    </tr>
+                    <tr>
+                        <th class="fw-bold">Tanggal Rencana</th>
+                        <td id="approve_tanggal_rencana"></td>
+                    </tr>
+                    <tr>
+                        <th class="fw-bold">Tanggal Realisasi</th>
+                        <td id="approve_tanggal_realisasi"></td>
+                    </tr>
+                    <tr>
+                        <th class="fw-bold">Keterangan</th>
+                        <td id="approve_keterangan"></td>
+                    </tr>
+                    <tr>
+                        <th class="fw-bold">Alasan Terlambat</th>
+                        <td id="approve_alasan"></td>
+                    </tr>
+    
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-warning" id="link_detail" target="_blank">Lihat Detail</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <form action="/approve/jadwal" method="POST">
+                    @csrf
+                    <input type="hidden" name="jadwal_id" id='jadwal_id'>
+                    <button type="submit" class="btn btn-primary">Approve Pekerjaan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@endsection
+
+@section('customJs')
+<script>
+
+    function modal_approve(jadwal_id, mesin, maintenance, tgl_rencana, tgl_realisasi, keterangan, alasan) {
+        
+        document.getElementById('approve_mesin').innerHTML = mesin;
+        document.getElementById('approve_maintenance').innerHTML = maintenance;
+        document.getElementById('approve_tanggal_rencana').innerHTML = tgl_rencana;
+        document.getElementById('approve_tanggal_realisasi').innerHTML = tgl_realisasi;
+        document.getElementById('approve_keterangan').innerHTML = keterangan;
+        document.getElementById('approve_alasan').innerHTML = alasan;
+        document.getElementById('jadwal_id').value = jadwal_id;
+        document.getElementById('link_detail').href = '/jadwal/detail/'+jadwal_id;
+    }
+
+
+@if(session('approve'))
+Swal.fire({
+    title: 'Apakah anda mau mereset Jadwal?',
+    icon: 'question',
+    html:`
+    <div class="row p-0 m-0">
+            <form action="/approve/jadwal/tetap" class="col-6" method="POST">
+                    @csrf
+                    @method('put')
+                    <input type="hidden" value="{{ session('approve') }}" name="jadwal_id">
+                    <button type="submit" class="btn btn-sm btn-primary">Tidak</button>
+    </form>
+    <form action="/approve/jadwal/ubah" class="col-6" method="POST">
+                    @csrf
+                    @method('put')
+                    <input type="hidden" value="{{ session('approve') }}" name="jadwal_id">
+                    <button type="submit" class="btn btn-sm btn-danger">Reset Jadwal</button>
+    </form>
+    </div>
+    `,
+    showCancelButton: true,
+    cancelButtonText: "Batal",
+    showConfirmButton: false,
+});
+@endif
+
+
+@if(session('approve_berhasil'))
+
+Swal.fire({
+    title: 'Berhasil diapprove!',
+    icon: 'success',
+    timer: 1000,
+});
+
+@endif
+
+@error('reset_gagal')
+Swal.fire({
+    title: 'Reset Jadwal Gagal!',
+    icon: 'warning',
+    text: '{{ $message }}',
+
+});
+
+@enderror
+
+</script>
 @endsection
