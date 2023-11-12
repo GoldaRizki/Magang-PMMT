@@ -101,13 +101,13 @@
                                     @php
                                     $jd = $maintenanceVal->first(function($value, $key) use ($tglSelesai){
                                         /*
-                                        if(Illuminate\Support\Carbon::parse($item->tanggal_rencana)->diffInDays('19-10-2023') == 0){
+                                        if(Illuminate\Support\Carbon::parse($item->tanggal_realisasi)->diffInDays('19-10-2023') == 0){
                                             dd('mboh');
                                         }
                                         */
 
-                                        //echo $value->tanggal_rencana . "<br>";
-                                        return (Illuminate\Support\Carbon::parse($value->tanggal_rencana)->isSameDay($tglSelesai));
+                                        //echo $value->tanggal_realisasi . "<br>";
+                                        return (Illuminate\Support\Carbon::parse($value->tanggal_realisasi)->isSameDay($tglSelesai));
 
                                     });     
 
@@ -266,7 +266,7 @@ Swal.fire({
 @error('reset_gagal')
 Swal.fire({
     title: 'Reset Jadwal Gagal!',
-    icon: 'warning',
+    icon: 'error',
     text: '{{ $message }}',
 
 });

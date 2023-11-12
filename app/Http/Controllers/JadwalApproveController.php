@@ -62,8 +62,7 @@ class JadwalApproveController extends Controller
         if($data_valid['jadwal_id'] === $jadwal[0]->id){
             ddd('bener');
         }else{
-
-            return redirect()->back()->withErrors('reset_gagal', 'Sudah tidak bisa mereset jadwal setelah tanggal ini, sudah terlambat!');
+            return redirect()->back()->withErrors(['reset_gagal' => 'Sudah tidak bisa mereset jadwal setelah tanggal ini, sudah terlambat!']);
         }
 
         //Jadwal::find($data_valid['jadwal_id'])->increment('status');
