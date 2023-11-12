@@ -125,7 +125,7 @@ class JadwalController extends Controller
     }
 
 
-    private function buat_jadwal_dan_isi_form($waktu, $id_maintenance){
+    public function buat_jadwal_dan_isi_form($waktu, $id_maintenance){
         $jadwal = Jadwal::create(['tanggal_rencana' => $waktu, 'maintenance_id' => $id_maintenance]);
 
         $form = Form::where('maintenance_id', $id_maintenance)->get();
