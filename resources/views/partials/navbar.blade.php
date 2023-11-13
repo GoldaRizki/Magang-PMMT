@@ -124,6 +124,12 @@
 				</a> 
 			</div>
 
+			<div class="menu-item me-lg-1">
+				<a class="menu-link py-3" href="/update_tahunan">
+					<span class="menu-title">Update Tahunan</span>
+				</a> 
+			</div>
+
 						
 		</div>
 		<!--end::Menu-->

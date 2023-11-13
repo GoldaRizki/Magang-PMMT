@@ -35,4 +35,8 @@ class Maintenance extends Model
         return $this->hasMany(Form::class);
     }
 
+    public function rencana_terakhir(){
+        return $this->hasOne(Jadwal::class)->latestOfMany('tanggal_rencana');       
+    }
+
 }

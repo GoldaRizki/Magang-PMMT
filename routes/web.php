@@ -14,6 +14,7 @@ use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\SetupMesinController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\SetupMaintenanceController;
+use App\Http\Controllers\UpdateDbController;
 use App\Http\Controllers\UpdateMaintenanceController;
 use App\Http\Controllers\UserController;
 
@@ -151,6 +152,10 @@ Route::get('/jadwal/detail/{id}', [JadwalController::class, 'detail']);
 Route::put('/jadwal/update/', [JadwalController::class, 'update']);
 Route::put('/jadwal/update_alasan/', [JadwalController::class, 'update_with_alasan']);
 Route::post('/jadwal/update_alasan_batal/', [JadwalController::class, 'update_with_alasan_batal']);
+
+
+Route::get('/update_tahunan', [UpdateDbController::class, 'index']);
+Route::post('/update_tahunan', [UpdateDbController::class, 'update_jadwal']);
 
 
 Route::get('/laporan/inspeksi', [HomeController::class, 'test_laporan']);

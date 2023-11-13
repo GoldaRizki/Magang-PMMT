@@ -18,6 +18,7 @@ class JadwalApproveController extends Controller
 
         // $jadwal = collect($jadwal);
 
+        
         //ddd(Carbon::getAvailableLocalesInfo());
 
         if($request->tanggal_awal||$request->tanggal_akhir){
@@ -25,6 +26,10 @@ class JadwalApproveController extends Controller
             if($request->tanggal_awal && $request->tanggal_akhir){
                 $tglawal = Carbon::parse($request->tanggal_awal, 7);
                 $tglakhir = Carbon::parse($request->tanggal_akhir, 7);
+
+                if($tglawal->greaterThan($tglakhir)){
+                    return redirect()->back()->withErrors(['tanggal_lebih_besar' => 'Tanggal awal tidak boleh mendahului dari tanggal akhir']);
+                }
 
             }else{                
                 $tglawal = now(7)->subDays(30);
