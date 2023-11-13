@@ -48,7 +48,7 @@ class JadwalController extends Controller
     $tahun = Carbon::now()->year;
     
 
-    $waktu = Carbon::parse($maintenance->start_date);
+    $waktu = Carbon::parse($maintenance->start_date, 7);
     //echo "Awalnya adalah " . $waktu->format('d-m-Y') . "<br>";
 
     $periode = $maintenance->periode;

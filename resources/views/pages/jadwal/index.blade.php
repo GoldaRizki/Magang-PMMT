@@ -91,7 +91,7 @@
 <script src="\assets\js-year-calendar\locales\js-year-calendar.id.js"></script>
     <script>
 
-        const currentYear = {{ now()->year }};
+        const currentYear = {{ now(7)->year }};
         //const currentYear = new Date().getFullYear();
 
 // Initialize calendar

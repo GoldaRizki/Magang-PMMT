@@ -97,9 +97,11 @@
     </div>
 </form>
 
-<div class="container-fluid px-1 py-3">
 
+@if($jadwal->isNotEmpty())
+<div class="container-fluid px-1 py-4">
 
+<div class="container text-center mt-7"><h1>Realisasi</h1></div>
 
     <div class="container-fluid my-3 table-responsive p-0" style="overflow-y: scroll; max-height:450px;">
         
@@ -195,6 +197,11 @@
 
 </div>
 </div>
+@else
+
+<div class="container text-center py-9"><h1>*Tidak Ada Realisasi*</h1></div>
+
+@endif
 
 </div>
 </div>
@@ -344,5 +351,14 @@ Swal.fire({
 });
 @enderror
 
+
+@error('tanggal_lebih_besar')
+Swal.fire({
+    title: 'Input Tanggal Tidak Valid!!',
+    icon: 'error',
+    text: '{{ $message }}',
+
+});
+@enderror
 </script>
 @endsection

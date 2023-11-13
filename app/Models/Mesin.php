@@ -41,4 +41,6 @@ class Mesin extends Model
         return $this->belongsTo(User::class);
     }
 
+
+
 }
