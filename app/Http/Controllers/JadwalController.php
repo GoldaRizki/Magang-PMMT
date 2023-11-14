@@ -21,6 +21,7 @@ class JadwalController extends Controller
 
         //id mesin
         $mesin = Mesin::find($id);
+        ///ddd($mesin);
         /*
         $maintenance = Maintenance::with(['jadwal' => function($query) {
             $query->withTrashed();
@@ -158,6 +159,8 @@ class JadwalController extends Controller
             'id' => 'required|numeric',
             'tanggal_rencana' => 'required|date_format:d-m-Y',
             'tanggal_realisasi' => 'required|date_format:d-m-Y',
+            'lama_pekerjaan' => 'required',
+            'personel' => 'required',
             'keterangan' => 'nullable',
         ]);
 
@@ -191,6 +194,8 @@ class JadwalController extends Controller
             'id' => 'required|numeric',
             'tanggal_rencana' => 'required|date_format:d-m-Y',
             'tanggal_realisasi' => 'required|date_format:d-m-Y',
+            'lama_pekerjaan' => 'required',
+            'personel' => 'required',
             'keterangan' => 'nullable',
         ]);
 

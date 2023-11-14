@@ -7,9 +7,8 @@ use Barryvdh\DomPDF\Facade\PDF;
 
 use Illuminate\Support\Facades\Cache;
 use App\Models\Kategori;
-use App\Models\Maintenance;
-use App\Models\SetupMaintenance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -26,12 +25,31 @@ class HomeController extends Controller
         $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(30)->toDateString())->get();
 
 
+
+        $jadwal_chart_rencana = Jadwal::whereYear('tanggal_rencana', now(7)->year)->get()->groupBy(function($val) {
+            return Carbon::parse($val->tanggal_rencana)->month;
+            })->sort()->map(function($item){
+                return $item->count();
+            });
+        
+        //ddd($jadwal_chart_rencana);    
+        $jadwal_chart_realisasi = Jadwal::whereYear('tanggal_realisasi', now(7)->year)->where('status', '=', 4)->get()->groupBy(function($val) {
+                return Carbon::parse($val->tanggal_rencana)->month;
+            })->sort()->map(function($item){
+                return $item->count();
+            });
+
+
         return view('home', ['halaman' => 'Home',
+         'chart_rencana' => $jadwal_chart_rencana,
+         'chart_realisasi' => $jadwal_chart_realisasi,
          'terlambat' => $terlambat,
          'hari_ini' => $hari_ini,
          'seminggu' => $seminggu,
          'sebulan' => $sebulan,
         ]);
+
+        
       
     }
 

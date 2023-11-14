@@ -75,7 +75,29 @@
             @enderror
         </div>
         
+        <div class="mb-3">
+            <label for="tipe_mesin" class="form-label">Tipe Mesin</label>
+            <input type="text" class="form-control @error('tipe_mesin') is-invalid @enderror" id="tipe_mesin" placeholder="Tipe Mesin" value="{{ old('tipe_mesin', $mesin->tipe_mesin) }}" name="tipe_mesin">
+            @error('tipe_mesin')    
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
+        <div class="mb-3">
+            <label for="kode_mesin" class="form-label">Kode Mesin</label>
+            <input type="text" class="form-control @error('kode_mesin') is-invalid @enderror" id="kode_mesin" placeholder="Kode Mesin" value="{{ old('kode_mesin', $mesin->kode_mesin) }}" name="kode_mesin">
+            @error('kode_mesin')    
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="nomor_seri" class="form-label">Nomor Seri</label>
+            <input type="text" class="form-control @error('nomor_seri') is-invalid @enderror" id="nomor_seri" placeholder="Nomor Seri" value="{{ old('nomor_seri', $mesin->nomor_seri) }}" name="nomor_seri">
+            @error('nomor_seri')    
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
         <div class="input-group mb-4">
             <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">RUANG</button>
@@ -103,22 +125,26 @@
 
         <div class="mb-4">
             <label for="pic" class="form-label">Person In Charge (PIC)</label>
-             <select class="form-select" id="pic" aria-label="Pilihan untuk PIC" name="user_id">
-                <option value="{{old('user_id', $mesin->user_id)}}" selected> {{old('user_id', $mesin->user->nama)}} </option>
+             <select class="form-select @error('user_id') is-invalid @enderror" id="pic" aria-label="Pilihan untuk PIC" value="{{ old('user_id', $mesin->user_id) }}" name="user_id">
+                <option value="{{ old('user_id', $mesin->user_id) }}" selected>{{ old('user_id', $mesin->user->nama) }}</option>
     
                 @foreach ($user as $u)
                 <option value="{{ $u->id }}">{{ $u->nama }}</option>
                 @endforeach
                 
               </select>
-    </div>
+              @error('user_id')    
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+            </div>
+              
 
         
           
-        <div class="mb-3">
-            <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
-            <textarea class="form-control" id="spesifikasi" name="spesifikasi" rows="9">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
-        </div>
+            <div class="mb-3">
+                <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
+                <textarea id="kt_docs_tinymce_basic" name="spesifikasi" class="tox-target">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
+            </div>
 
         <div class="container-fluid">
             
@@ -156,6 +182,7 @@
 </div>
 
 
+<script src="/assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
 
 
 <script>
@@ -170,6 +197,11 @@
         document.getElementById('form_ruang').value = nama_ruang;
 
     }
+
+    var options = {selector: "#kt_docs_tinymce_basic"};
+
+
+    tinymce.init(options);
 </script>
 
 @endsection

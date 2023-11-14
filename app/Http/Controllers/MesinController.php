@@ -74,6 +74,9 @@ class MesinController extends Controller
             'no_asset' => 'nullable|max:25',
             'ruang_id' => 'required|numeric',
             'user_id' => 'required|numeric',
+            'tipe_mesin' => 'nullable',
+            'kode_mesin' => 'nullable',
+            'nomor_seri' => 'nullable',
             'spesifikasi' => 'nullable'
         ]);
 
@@ -122,6 +125,9 @@ class MesinController extends Controller
             'no_asset' => 'nullable|max:25',
             'ruang_id' => 'required|numeric',
             'user_id' => 'required|numeric',
+            'tipe_mesin' => 'nullable',
+            'kode_mesin' => 'nullable',
+            'nomor_seri' => 'nullable',
             'spesifikasi' => 'nullable'
         ]);
 

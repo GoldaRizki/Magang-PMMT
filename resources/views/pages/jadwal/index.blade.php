@@ -11,7 +11,7 @@
 <table class="table table-row-dashed table-row-gray-400 gs-1">
   <tr>
       <td><b>Nama Mesin</b></td>
-      <td>{{ $mesin->nama_mesin }}</td>
+      <td>{{ $mesin->na }}</td>
   </tr>
   <tr>
       <td><b>Nomor Asset</b></td>
@@ -23,12 +23,12 @@
   </tr>
   <tr>
       <td><b>Kategori</b></td>
-      <td>{{ $mesin->kategori->nama_kategori }}</td>
+      <td>{{ $mesin->kategori }}</td>
   </tr>
   <tr>
     <td colspan="2">
       <b>Spesifikasi</b><br>
-      {{ $mesin->kategori->nama_kategori }}
+      {{ $mesin->kategori }}
     </td>
   </tr>
 </table>

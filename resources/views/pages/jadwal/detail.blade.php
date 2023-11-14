@@ -159,6 +159,23 @@
     </div>
 </div>
 
+
+<div class="mb-3">
+    <label for="lama_pekerjaan" class="form-label">Lama Pekerjaan</label>
+    <input type="text" class="form-control @error('lama_pekerjaan') is-invalid @enderror" placeholder="lama pekerjaan" id="lama_pekerjaan" value="{{ old('lama_pekerjaan', $jadwal->lama_pekerjaan) }}" name="lama_pekerjaan">
+    @error('lama_pekerjaan')    
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    <label for="personel" class="form-label">Personel</label>
+    <input type="text" class="form-control @error('personel') is-invalid @enderror" placeholder="personel" id="personel" value="{{ old('personel', $jadwal->personel) }}" name="personel">
+    @error('personel')    
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
 @if($jadwal->alasan)
 <div class="form-floating my-4">
     <textarea class="form-control @error('alasan') is-invalid @enderror" placeholder="Tulis Keterangan disini...." id="form_alasan_2" style="height: 150px" name="alasan"  @if($jadwal->status > 2) disabled @endif>{{ old('alasan', $jadwal->alasan) }}</textarea>
@@ -172,14 +189,7 @@
 </div>
 
 
-@if($jadwal->status == 2)  
-    <div class="form-check my-4">
-        <input class="form-check-input" type="checkbox" value="divalidasi" name="validasi" id="flexCheckDefault">
-        <label class="form-check-label h3" for="flexCheckDefault">
-        Konfirmasi
-        </label>
-    </div>
-@endif
+
 
 
 
@@ -211,7 +221,14 @@
 </div>
 
 
-
+@if($jadwal->status == 2)  
+    <div class="form-check my-4">
+        <input class="form-check-input" type="checkbox" value="divalidasi" name="validasi" id="flexCheckDefault">
+        <label class="form-check-label h2" for="flexCheckDefault">
+        KONFIRMASI
+        </label>
+    </div>
+@endif
 
 
 <div class="container-fluid text-end">

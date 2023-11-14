@@ -22,6 +22,8 @@ class CreateJadwalsTable extends Migration
             $table->dateTime('tanggal_realisasi')->nullable();
             $table->text('keterangan')->nullable();
             $table->text('alasan')->nullable();
+            $table->string('lama_pekerjaan', 18)->nullable();
+            $table->string('personel')->nullable();
             $table->unsignedSmallInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

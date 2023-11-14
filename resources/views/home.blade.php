@@ -117,8 +117,8 @@
     <div class="card card-bordered">
         <div class="card-header border-0 pt-5">
             <h1 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder fs-1 mb-1">LAPORAN</span>
-                <span class="text-muted fw-bold fs-7">Perbandingan antara apa dengan apa</span>
+                <span class="card-label fw-bolder fs-1 mb-1">RENCANA & REALISASI</span>
+                <span class="text-muted fw-bold fs-7">Tahun : {{ now(7)->year }}</span>
             </h1>
         </div>
         <div class="card-body">
@@ -145,10 +145,10 @@ var secondaryColor = KTUtil.getCssVariableValue('--bs-warning');
 var options = {
     series: [{
         name: 'Rencana',
-        data: [50, 2, 4, 59, 69, 21, 32, 6, 17, 5, 12, 24]
+        data: [ @for($i = 1; $i <= 12; $i++)@if($chart_rencana->get($i)){{$chart_rencana->get($i)}},@else 0,@endif @endfor ]
     }, {
         name: 'Realisasi',
-        data: [6, 82, 45, 67, 87, 105, 34, 56, 23, 45, 67, 34]
+        data: [@for($i = 1; $i <= 12; $i++)@if($chart_realisasi->get($i)){{$chart_realisasi->get($i)}},@else 0,@endif @endfor ]
     }, 
 
 ],

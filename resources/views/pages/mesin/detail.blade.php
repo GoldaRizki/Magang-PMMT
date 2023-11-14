@@ -22,6 +22,18 @@
                     <td>{{ $mesin->kategori->nama_kategori }}</td>
                 </tr>
                 <tr>
+                    <td><b>Tipe Mesin</b></td>
+                    <td>{{ $mesin->tipe_mesin }}</td>
+                </tr>
+                <tr>
+                    <td><b>Kode Mesin</b></td>
+                    <td>{{ $mesin->kode_mesin }}</td>
+                </tr>
+                <tr>
+                    <td><b>Nomor Seri</b></td>
+                    <td>{{ $mesin->nomor_seri }}</td>
+                </tr>
+                <tr>
                     <td><b>Ruang</b></td>
                     <td>{{ $mesin->ruang->nama_ruang }}</td>
                 </tr>
@@ -29,20 +41,19 @@
                     <td><b>PIC</b></td>
                     <td>{{ $mesin->user->nama }}</td>
                 </tr>
+                
                
             </table>
 
-            <div class="container w-100 px-0">
-                <span class="display-6 my-3">Spesifikasi</span>
-                <p>{{ $mesin->spesifikasi }}</p>
+            <div class="mb-3">
+                <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
+                <textarea id="kt_docs_tinymce_basic" name="spesifikasi" class="tox-target">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
             </div>
 
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5 justify-content-center">
-            <div>
-                <img src="\assets\media\stock\600x400\img-7.jpg" class="img-fluid d-block mx-auto" alt="...Gambar Mesin Apalah">
-            </div>
+            
             <div class="container-fluid m-4 text-center">
                 <a href="/mesin/edit/{{ $mesin  ->id }}">
                     <button class="btn btn-sm btn-primary" type="submit">
