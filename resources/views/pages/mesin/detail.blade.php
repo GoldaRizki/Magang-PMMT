@@ -45,9 +45,11 @@
                
             </table>
 
-            <div class="mb-3">
-                <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
-                <textarea id="kt_docs_tinymce_basic" name="spesifikasi" class="tox-target">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
+            <div class="container w-100 px-0">
+                <span class="display-6 my-3">Spesifikasi</span>
+                <div class="container-fluid fs-4">
+                    {!! $mesin->spesifikasi !!}
+                </div>
             </div>
 
         </div>

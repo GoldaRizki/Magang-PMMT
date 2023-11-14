@@ -64,7 +64,7 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					<!--begin::Header-->
-					<div id="kt_header" style="" class="header align-items-stretch">
+					<div id="kt_header" class="header align-items-stretch">
 						<!--begin::Container-->
 						<div class="container-xxl d-flex align-items-stretch justify-content-between">
 							<!--begin::Aside mobile toggle-->

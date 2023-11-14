@@ -31,7 +31,7 @@ class SetupMaintenanceController extends Controller
         $dataValid = $request->validate([
             'kategori_id' => 'required|numeric',
             'nama_setup_maintenance' => 'required',
-            'periode' => 'required|numeric',
+            'periode' => 'required|numeric|min:1',
             'satuan_periode' => 'required',
             'warna' => 'required'
         ]);
@@ -55,7 +55,7 @@ class SetupMaintenanceController extends Controller
         $dataValid = $request->validate([
             'id' => 'required|numeric',
             'nama_setup_maintenance' => 'required',
-            'periode' => 'required|numeric',
+            'periode' => 'required|numeric|min:1',
             'satuan_periode' => 'required',
             'warna' => 'required'
         ]);

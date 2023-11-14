@@ -11,24 +11,36 @@
 <table class="table table-row-dashed table-row-gray-400 gs-1">
   <tr>
       <td><b>Nama Mesin</b></td>
-      <td>{{ $mesin->na }}</td>
+      <td>{{ $mesin->nama_mesin }}</td>
   </tr>
   <tr>
       <td><b>Nomor Asset</b></td>
       <td>{{ $mesin->no_asset }}</td>
   </tr>
   <tr>
+    <td><b>Tipe Mesin</b></td>
+    <td>{{ $mesin->tipe_mesin }}</td>
+</tr>
+<tr>
+  <td><b>Kode Mesin</b></td>
+  <td>{{ $mesin->kode_mesin }}</td>
+</tr>
+<tr>
+  <td><b>Nomor Seri</b></td>
+  <td>{{ $mesin->nomor_seri }}</td>
+</tr>
+  <tr>
       <td><b>Ruang</b></td>
       <td>{{ $mesin->ruang->nama_ruang }}</td>
   </tr>
   <tr>
       <td><b>Kategori</b></td>
-      <td>{{ $mesin->kategori }}</td>
+      <td>{{ $mesin->kategori->nama_kategori }}</td>
   </tr>
   <tr>
     <td colspan="2">
       <b>Spesifikasi</b><br>
-      {{ $mesin->kategori }}
+      {!! $mesin->spesifikasi !!}
     </td>
   </tr>
 </table>

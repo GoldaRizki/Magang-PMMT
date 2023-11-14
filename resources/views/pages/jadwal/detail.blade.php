@@ -78,6 +78,18 @@
         <td>{{ $mesin->no_asset }}</td>
     </tr>
     <tr>
+        <td><b>Tipe Mesin</b></td>
+        <td>{{ $mesin->tipe_mesin }}</td>
+    </tr>
+    <tr>
+      <td><b>Kode Mesin</b></td>
+      <td>{{ $mesin->kode_mesin }}</td>
+    </tr>
+    <tr>
+      <td><b>Nomor Seri</b></td>
+      <td>{{ $mesin->nomor_seri }}</td>
+    </tr>
+    <tr>
         <td><b>Ruang</b></td>
         <td>{{ $mesin->ruang->nama_ruang }}</td>
     </tr>
@@ -88,7 +100,7 @@
     <tr>
       <td colspan="2">
         <b>Spesifikasi</b><br>
-        {{ $mesin->kategori->nama_kategori }}
+        {!! $mesin->spesifikasi !!}
       </td>
     </tr>
   </table>

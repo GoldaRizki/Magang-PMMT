@@ -141,7 +141,7 @@ class SetupMesinController extends Controller
         //dd($request);
         $data_valid = $request->validate([
             'nama_setup' => 'required',
-            'periode' => 'required',
+            'periode' => 'required|numeric|min:1',
             'satuan_periode' => 'required',
             'start_date' => 'required|date_format:d-m-Y',
             'warna' => 'required'
@@ -172,7 +172,7 @@ class SetupMesinController extends Controller
         $data_valid = collect($request->validate([
             'index' => 'required|numeric',
             'nama_setup' => 'required',
-            'periode' => 'required',
+            'periode' => 'required|numeric|min:1',
             'satuan_periode' => 'required',
             'start_date' => 'required|date_format:d-m-Y',
             'warna' => 'required'
