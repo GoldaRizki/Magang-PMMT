@@ -9,6 +9,7 @@ use App\Http\Controllers\RuangController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JadwalSparepartController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SetupFormController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\SetupMesinController;
@@ -161,7 +162,7 @@ Route::post('/update_tahunan', [UpdateDbController::class, 'update_jadwal']);
 Route::get('/laporan/inspeksi', [HomeController::class, 'test_laporan']);
 
 
-Route::get('/test', [HomeController::class, 'test']);
+Route::get('/test', [LaporanController::class, 'laporan_general_inspection']);
 Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);

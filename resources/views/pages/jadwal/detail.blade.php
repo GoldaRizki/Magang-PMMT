@@ -128,8 +128,9 @@
 <form action=" @if(session()->has('form_alasan')) /jadwal/update_alasan/ @else /jadwal/update/ @endif" method="POST">
     @csrf
     @method('PUT')
-    <div class="input-group my-4">
-        <h1>{{ $maintenance->nama_maintenance }}</h1>
+    <div class="my-4">
+        <h1 class="display-6">{{ $maintenance->nama_maintenance }}</h1>
+        <h4 class="text-muted">Periode : {{ $maintenance->periode }} {{ $maintenance->satuan_periode }}</h4>
     </div>
     <div class="input-group my-4">
         
