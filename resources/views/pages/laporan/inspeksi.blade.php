@@ -85,7 +85,7 @@
     <td rowspan="2">
         SYARAT
     </td>
-    <td colspan="{{ $maintenance->jadwal->count() }}">
+    <td colspan="{{ $jadwal->count() }}">
         HASIL PEMERIKSAAN
     </td>
 </tr>
@@ -112,6 +112,12 @@
 
 </table>
 
+@php
+    
+    $cek = true;
+
+@endphp
+
 <h4 style="margin-bottom: 1px;">Pemakaian Sparepart: </h4>
 <table class="table2">
 
@@ -123,13 +129,22 @@
     @foreach ($jadwal as $j)
 
         @foreach ($j->sparepart as $sparepart)
+        @php
+            if($sparepart){
+                $cek = false;
+            }
+        @endphp
             <tr>
                 <td>{{ $sparepart->nama_sparepart }}</td><td>{{ $sparepart->pivot->jumlah }}</td><td>{{ Illuminate\Support\Carbon::parse($j->tanggal_realisasi)->format('d/m/Y') }}</td>
             </tr>
         @endforeach
      
     @endforeach
-
+            @if($cek)
+                <tr>
+                    <td style="padding: 10px; text-align: center;" colspan="3">Tidak Ada Penggunaan Spareparts</td>
+                </tr>
+            @endif
 </table>
 
 

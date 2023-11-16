@@ -163,7 +163,7 @@ Route::get('/laporan', [LaporanController::class, 'index']);
 Route::post('/laporan/inspeksi', [LaporanController::class, 'laporan_general_inspection']);
 
 
-Route::get('/test', [LaporanController::class, 'laporan_general_inspection']);
+Route::get('/test', [LaporanController::class, 'laporan_maintenance']);
 Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);

@@ -63,5 +63,20 @@ class LaporanController extends Controller
 
         return $pdf->download('Inspeksi_' . $mesin->nama_mesin .'_' . $data_valid['tanggal_awal'] .'_' . $data_valid['tanggal_akhir'] .'.pdf');
     }
+
+    public function laporan_rencana_realisasi(Request $request){
+        
+
+        return view('pages.laporan.rencana_dan_realisasi');
+    }
+
+
+    public function laporan_maintenance(Request $request){
+        
+
+        $pdf = PDF::loadView('pages.laporan.maintenance')->setPaper('a4', 'potrait')->setWarnings(false);
+
+        return $pdf->download('laporan_maintenance.pdf');
+    }
     
 }
