@@ -159,7 +159,8 @@ Route::get('/update_tahunan', [UpdateDbController::class, 'index']);
 Route::post('/update_tahunan', [UpdateDbController::class, 'update_jadwal']);
 
 
-Route::get('/laporan/inspeksi', [HomeController::class, 'test_laporan']);
+Route::get('/laporan', [LaporanController::class, 'index']);
+Route::post('/laporan/inspeksi', [LaporanController::class, 'laporan_general_inspection']);
 
 
 Route::get('/test', [LaporanController::class, 'laporan_general_inspection']);

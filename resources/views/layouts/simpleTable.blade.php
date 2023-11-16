@@ -29,17 +29,15 @@
     
 <div class="container-fluid row my-3">
 
-    <div class="col-lg-2"> 
+    <div class="col-lg-1"> 
     </div>
     
-    <div class="col-lg-8">
+    <div class="col-lg-10">
         <div class="container text-center">
             @yield('customAddData')
         </div>
 
-
-
-            <table id="tabelTemplate" class="table table-row-bordered table-row-gray-400 gy-2 gs-7 gx-1">
+            <table id="tabelTemplate" class="table align-middle table-row-bordered table-row-gray-400 gy-2 gs-7 gx-1">
                 <thead>
                     <tr class="fw-bolder fs-6 text-gray-800">
                     @yield('tableHead')
@@ -51,7 +49,7 @@
     
     </div>
 
-    <div class="col-lg-2"></div>
+    <div class="col-lg-1"></div>
 
 </div>
 
