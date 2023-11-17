@@ -164,7 +164,7 @@ Route::post('/laporan/inspeksi', [LaporanController::class, 'laporan_general_ins
 Route::post('/laporan/maintenance', [LaporanController::class, 'laporan_maintenance']);
 
 
-Route::get('/test', [LaporanController::class, 'laporan_maintenance']);
+Route::get('/test', [LaporanController::class, 'laporan_rencana_realisasi']);
 Route::post('/test', [HomeController::class, 'test2']);
 Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);

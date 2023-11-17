@@ -29,10 +29,12 @@
             min-height: 150px;
             font-size: 11pt;
             padding: 6px;
+            font-size: 9pt;
             box-sizing: border-box;
         }.table2 {
           border-collapse: collapse;
           width: 100%;
+          font-size: 9pt;
           margin: 5px auto;
         }.detailPekerjaan p{
             margin-top: 5px; 
@@ -46,6 +48,7 @@
             font-size: 11pt;
             padding: 6px;
             box-sizing: border-box;
+            font-size: 9pt;
         }.judul{
             text-align: center;
             margin: 2px auto;

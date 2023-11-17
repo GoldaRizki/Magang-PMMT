@@ -67,7 +67,15 @@ class LaporanController extends Controller
     public function laporan_rencana_realisasi(Request $request){
         
 
-        return view('pages.laporan.rencana_dan_realisasi');
+        $awal = now(7)->isoWeek(1)->startOfWeek();
+        $akhir = $awal->copy()->endOfWeek();
+
+        $data = [
+            'awal' => $awal,
+            'akhir' => $akhir
+        ];
+
+        return view('pages.laporan.rencana_dan_realisasi', $data);
     }
 
 
