@@ -161,7 +161,7 @@ class JadwalController extends Controller
             'tanggal_realisasi' => 'required|date_format:d-m-Y',
             'lama_pekerjaan' => 'required',
             'personel' => 'required',
-            'keterangan' => 'nullable',
+            'keterangan' => 'nullable|not_regex:/\'/i',
         ]);
 
         $data_valid['tanggal_rencana'] = Carbon::parse($data_valid['tanggal_rencana']);
@@ -196,7 +196,7 @@ class JadwalController extends Controller
             'tanggal_realisasi' => 'required|date_format:d-m-Y',
             'lama_pekerjaan' => 'required',
             'personel' => 'required',
-            'keterangan' => 'nullable',
+            'keterangan' => 'nullable|not_regex:/\'/i',
         ]);
 
         $validator = Validator::make($request->all(), [

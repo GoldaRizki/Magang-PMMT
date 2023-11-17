@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use App\Models\Maintenance;
 use App\Models\Mesin;
 use Barryvdh\DomPDF\Facade\PDF;
@@ -55,9 +56,8 @@ class LaporanController extends Controller
 
         $mesin = Mesin::find($maintenance->mesin_id);
 
-       
        // return $maintenance->toArray();
-       // return view('pages.laporan.inspeksi', ['maintenance' => $maintenance, 'mesin' => $mesin]);
+       //return view('pages.laporan.inspeksi', ['maintenance' => $maintenance, 'mesin' => $mesin]);
         
         $pdf = PDF::loadView('pages.laporan.inspeksi', ['maintenance' => $maintenance, 'mesin' => $mesin, 'tgl_awal' => $tgl_awal, 'tgl_akhir' => $tgl_akhir])->setPaper('a4', 'potrait')->setWarnings(false);
 
@@ -73,10 +73,30 @@ class LaporanController extends Controller
 
     public function laporan_maintenance(Request $request){
         
+        $data_valid = $request->validate([
+            'jadwal_id' => 'required|numeric'
+        ]);
 
-        $pdf = PDF::loadView('pages.laporan.maintenance')->setPaper('a4', 'potrait')->setWarnings(false);
 
-        return $pdf->download('laporan_maintenance.pdf');
+        $jadwal = Jadwal::with(['sparepart', 'maintenance' =>function($query){
+            $query->withTrashed();
+        }, 'maintenance.mesin' => function($query){
+            $query->withTrashed();
+        }, 'maintenance.mesin.ruang' => function($query){
+            $query->withTrashed();
+        }])->withTrashed()->find($data_valid['jadwal_id']);
+        
+
+        //return $jadwal->toArray();
+
+        $data = [
+            'jadwal' => $jadwal,
+        ];
+
+        //return view('pages.laporan.maintenance', $data);
+        $pdf = PDF::loadView('pages.laporan.maintenance', $data)->setPaper('a4', 'potrait')->setWarnings(false);
+
+        return $pdf->download('laporan_maintenance_' . $jadwal->maintenance->mesin->nama_mesin . '_'. $jadwal->maintenance->nama_maintenance .'.pdf');
     }
     
 }

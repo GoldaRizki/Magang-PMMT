@@ -77,7 +77,7 @@ class MesinController extends Controller
             'tipe_mesin' => 'nullable|max:40',
             'kode_mesin' => 'nullable|max:6',
             'nomor_seri' => 'nullable|max:50',
-            'spesifikasi' => 'nullable'
+            'spesifikasi' => 'nullable|not_regex:/\'/i'
         ]);
 
 
@@ -128,7 +128,7 @@ class MesinController extends Controller
             'tipe_mesin' => 'nullable|max:40',
             'kode_mesin' => 'nullable|max:6',
             'nomor_seri' => 'nullable|max:50',
-            'spesifikasi' => 'nullable'
+            'spesifikasi' => 'nullable|not_regex:/\'/i'
         ]);
 
         Mesin::find($dataValid['id'])->update($dataValid);

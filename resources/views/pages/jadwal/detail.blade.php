@@ -109,6 +109,10 @@
   <div class="p-5 bg-warning h2 fw-bolder text-center rounded">
     Jadwal Sudah dihapus
   </div>
+  @elseif($jadwal->status == 2)
+  <div class="p-4 bg-warning text-white h5 fw-bolder text-center rounded">
+    Sudah Dikerjakan oleh Teknisi
+  </div>
   @elseif($jadwal->status == 3)
   <div class="p-4 bg-info text-white h5 fw-bolder text-center rounded">
     Sudah verifikasi oleh Supervisor,<br> Menunggu verifikasi manager
@@ -118,6 +122,24 @@
     Sudah Dikonfirmasi oleh Manager,<br>Status Close
   </div>
   @endif
+
+<form action="/laporan/maintenance" class="text-center" method="POST">
+@csrf
+
+<input type="hidden" name="jadwal_id" value="{{ $jadwal->id }}">
+<button class="btn btn-lg btn-primary" type="submit">
+    <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil009.svg-->
+    <span class="svg-icon svg-icon-muted svg-icon-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM13 15.4V10C13 9.4 12.6 9 12 9C11.4 9 11 9.4 11 10V15.4H8L11.3 18.7C11.7 19.1 12.3 19.1 12.7 18.7L16 15.4H13Z" fill="black"/>
+        <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black"/>
+        </svg>
+    </span>
+    <!--end::Svg Icon-->
+    LAPORAN
+</button>
+
+</form>
 
 @endsection
 
@@ -196,10 +218,19 @@
 </div>
 @endif
 
-<div class="form-floating my-4">
-    <textarea class="form-control @error('keterangan') is-invalid @enderror" placeholder="Tulis Keterangan disini...." id="form_keterangan" style="height: 150px" name="keterangan"  @if($jadwal->status > 2) disabled @endif>{{ old('keterangan', $jadwal->keterangan) }}</textarea>
-    <label for="form_keterangan">Keterangan</label>
+<div class="mb-3">
+    <label for="kt_docs_tinymce_basic" class="form-label">Keterangan</label>
+    <p>Isian tidak boleh mengandung karakter petik (") maupun (')</p>
+    <p class="text-danger">
+        @error('keterangan')    
+         {{ $message }}
+        @enderror
+    </p>
+    <textarea id="kt_docs_tinymce_basic" name="keterangan" class="tox-target" @if($jadwal->status > 2) disabled @endif>{{ old('keterangan', $jadwal->keterangan) }}</textarea>
+
 </div>
+
+
 
 
 
@@ -313,9 +344,7 @@
 
             <div class="modal-footer">
                 
-                <a href="/jadwal/{{ $mesin->id }}">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
-                </a>
 
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
 
@@ -412,7 +441,22 @@
 
 
 @section('customJs')
+<script src="/assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
+
     <script>
+
+var options = {
+    selector: "#kt_docs_tinymce_basic",
+    forced_root_block: false,
+    newline_behavior: 'block',
+    toolbar: false,
+    menubar: false,
+};
+
+
+
+tinymce.init(options);
+
 $('.input-group.date').datepicker({
     format: "dd-mm-yyyy",
     todayBtn: "linked",

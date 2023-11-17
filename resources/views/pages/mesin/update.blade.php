@@ -142,9 +142,17 @@
         
           
             <div class="mb-3">
-                <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
-                <textarea id="kt_docs_tinymce_basic" name="spesifikasi" class="tox-target">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
-            </div>
+                <div class="mb-3">
+                    <label for="spesifikasi" class="form-label">Spesifikasi (opsional)</label>
+                    <p>Isian tidak boleh mengandung karakter petik (") maupun (')</p>
+                    <p class="text-danger">
+                        @error('spesifikasi')    
+                         {{ $message }}
+                        @enderror
+                    </p>
+                    <textarea id="kt_docs_tinymce_basic" name="spesifikasi" class="tox-target">{{ old('spesifikasi', $mesin->spesifikasi) }}</textarea>
+
+                </div>
 
         <div class="container-fluid">
             
@@ -198,8 +206,13 @@
 
     }
 
-    var options = {selector: "#kt_docs_tinymce_basic"};
-
+var options = {
+    selector: "#kt_docs_tinymce_basic",
+    forced_root_block: false,
+    newline_behavior: 'block',
+    toolbar: false,
+    menubar: false,
+};
 
     tinymce.init(options);
 </script>
