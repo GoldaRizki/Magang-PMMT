@@ -7,12 +7,19 @@
     <style>
         .tabel-tampil-jadwal{
             width: 100%;
-            font-size: 4pt;
+            font-size: 6pt;
             border-collapse: collapse;
             padding: 1px;
+            margin-top:5px;
+
         }
-        table, tr, td{
+        table, th, tr, td{
             border: 1px solid black;
+            text-align: center;
+            min-width: 10px;
+        }.judul{
+            margin-top:3px;
+            margin-bottom: 3px; 
             text-align: center;
         }
     </style>
@@ -25,17 +32,19 @@
         $tgl_awal = $awal->copy();
         $tgl_akhir = $akhir->copy();
         $tahun_ini = now(7)->year;
-        $loop = 1;
         $hitung_bulan = 1;
         setlocale(LC_ALL, 'IND');
     @endphp
         
         
-    
+    <h3 class="judul">Laporan Mesin</h3>
+    <h5 class="judul">Tahun {{ $tahun_ini }}</h5>
     <table class="tabel-tampil-jadwal">
         <thead>
             <tr>
-                <th rowspan="2">Barang</th>
+                <th rowspan="2">Mesin</th>
+
+                <th rowspan="2">Maintenance</th>
 
                 @while($tgl_awal->year == $tahun_ini)
                 
@@ -57,6 +66,8 @@
             @endwhile
 
             </tr>
+
+
             @php
             $tgl_awal = $awal->copy();
             $tgl_akhir = $akhir->copy();
@@ -84,7 +95,71 @@
                 @endwhile
             </tr>
                           
- 
+            @foreach ($mesin as $mes)
+            @if($mes->maintenance->isNotEmpty())
+            <tr>
+            @if(!$loop->first)
+                <td>{{ $mes->nama_mesin }}<br>({{ $mes->tipe_mesin }})</td>
+            @else
+                <td rowspan="{{ $mes->maintenance->count() }}">{{ $mes->nama_mesin }}<br>({{ $mes->tipe_mesin }})</td> 
+            @endif
+
+                @foreach($mes->maintenance as $maintenance)
+                @if(!$loop->first)
+                    <tr>
+                @endif
+
+
+                    <td>{{ $maintenance->nama_maintenance }}</td>
+
+                    @php
+                    $tgl_awal = $awal->copy();
+                    $tgl_akhir = $akhir->copy();
+
+                    @endphp
+                    
+                    @while($tgl_akhir->year == $tahun_ini)
+
+                        @php
+                        $tanggal = '';
+                        $warna = false;
+                            foreach ($maintenance->jadwal as $jadwal) {
+                                if(Illuminate\Support\Carbon::parse($jadwal->tanggal_rencana)->greaterThanOrEqualTo($tgl_awal) && Illuminate\Support\Carbon::parse($jadwal->tanggal_rencana)->lessThanOrEqualTo($tgl_akhir)){
+                                    $warna = true;
+                                }
+            
+
+                                if(!is_null($jadwal->tanggal_realisasi) && Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->greaterThanOrEqualTo($tgl_awal) && Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->lessThanOrEqualTo($tgl_akhir)){
+                                    $tanggal = Illuminate\Support\Carbon::parse($jadwal->tanggal_realisasi)->day;
+                                }
+
+                            }
+
+                            if($warna){
+                                echo '<td style="background-color:'. $maintenance->warna .'; color:azure; font-weight:bold;">';
+                            }else{
+                                echo '<td>';
+                            }
+
+                            echo $tanggal;
+
+                            echo '</td>';
+
+                        $tgl_awal = $tgl_akhir->copy();
+                        $tgl_akhir->addWeek();
+                        @endphp
+
+                    @endwhile
+
+                @if(!$loop->first)
+                    </tr>
+                @endif
+                @endforeach
+            </tr>
+            @endif
+            @endforeach
+
+
 
         </tbody>
 </table>

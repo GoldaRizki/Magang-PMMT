@@ -70,12 +70,22 @@ class LaporanController extends Controller
         $awal = now(7)->isoWeek(1)->startOfWeek();
         $akhir = $awal->copy()->endOfWeek();
 
+        $mesin = Mesin::with(['maintenance', 'maintenance.jadwal'=>function($query){
+                $query->whereYear('tanggal_rencana', now(7)->year)->orWhereYear('tanggal_realisasi', now(7)->year);
+        }])->get();
+
+        
+
         $data = [
             'awal' => $awal,
-            'akhir' => $akhir
+            'akhir' => $akhir,
+            'mesin' => $mesin
         ];
 
-        return view('pages.laporan.rencana_dan_realisasi', $data);
+        //return view('pages.laporan.rencana_dan_realisasi', $data);
+        $pdf = PDF::loadView('pages.laporan.rencana_dan_realisasi', $data)->setPaper('a3', 'landscape')->setWarnings(false);
+
+        return $pdf->download('Laporan Rencana dan Realisasi Tahun '. now(7)->year .'.pdf');
     }
 
 

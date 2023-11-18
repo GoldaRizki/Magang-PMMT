@@ -162,6 +162,7 @@ Route::post('/update_tahunan', [UpdateDbController::class, 'update_jadwal']);
 Route::get('/laporan', [LaporanController::class, 'index']);
 Route::post('/laporan/inspeksi', [LaporanController::class, 'laporan_general_inspection']);
 Route::post('/laporan/maintenance', [LaporanController::class, 'laporan_maintenance']);
+Route::post('/laporan/rencana_realisasi', [LaporanController::class, 'laporan_rencana_realisasi']);
 
 
 Route::get('/test', [LaporanController::class, 'laporan_rencana_realisasi']);
