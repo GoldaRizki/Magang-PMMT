@@ -19,10 +19,10 @@ class HomeController extends Controller
     public function index(){
 
 
-        $terlambat = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '<', now()->toDateString())->get();
-        $hari_ini = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', now()->toDateString())->get();
-        $seminggu = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->toDateString())->where('tanggal_rencana', '<=', now()->addDays(7)->toDateString())->get();
-        $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(30)->toDateString())->get();
+        $terlambat = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '<', now()->toDateString())->get()->sortBy('tanggal_rencana');
+        $hari_ini = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', now()->toDateString())->get()->sortBy('tanggal_rencana');
+        $seminggu = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->toDateString())->where('tanggal_rencana', '<=', now()->addDays(7)->toDateString())->get()->sortBy('tanggal_rencana');
+        $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(30)->toDateString())->get()->sortBy('tanggal_rencana');
 
 
 

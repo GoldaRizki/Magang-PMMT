@@ -40,19 +40,19 @@ class DatabaseSeeder extends Seeder
         Ruang::create([
             'nama_ruang' => 'Produksi',
             'no_ruang' => 'A123',
-            'bagian' => 'Keuangan'
+            'bagian' => 'Gedung J'
         ]);
         
         Ruang::create([
             'nama_ruang' => 'Administrasi',
             'no_ruang' => 'A69',
-            'bagian' => 'Manajemen'
+            'bagian' => 'Gedung H'
         ]);
 
         Ruang::create([
             'nama_ruang' => 'Kamar Mandi',
             'no_ruang' => '23456',
-            'bagian' => 'Admin'
+            'bagian' => 'Gedung C'
         ]);
 
 

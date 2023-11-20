@@ -15,11 +15,12 @@
             border: 1px solid black;
             border-collapse: collapse;
             padding: 5px;
-            font-size: 9pt;
+            font-size: 8pt;
             }
         .tabel1{
             width: 100%;
             margin: 30px auto;
+            padding: 2px;
         }
        .detailPekerjaan{
             width: 100%;
@@ -29,16 +30,16 @@
             min-height: 150px;
             font-size: 11pt;
             padding: 6px;
-            font-size: 9pt;
             box-sizing: border-box;
+            font-size: 8pt;
         }.table2 {
           border-collapse: collapse;
           width: 100%;
-          font-size: 9pt;
           margin: 5px auto;
         }.detailPekerjaan p{
             margin-top: 5px; 
             margin-bottom: 5px;
+            font-size: 8pt;
         }.alasan{
             width: 100%;
             margin-bottom: 20px;
@@ -58,8 +59,8 @@
 </head>
 <body>
     
-    <h3 class="judul">LAPORAN PENYELESAIAN TEKNIK</h3>
-    <h5 class="judul">UNIT UTILITY - PT. PHAPROS, TBK</h5>
+    <h4 class="judul">LAPORAN PENYELESAIAN PEKERJAAN</h4>
+    <h6 class="judul">UNIT UTILITY - PT. PHAPROS, TBK</h6>
 <table class="tabel1">
 
 @php
@@ -105,17 +106,17 @@
     </td>
 </tr>
 <tr>
-    <td>Personel</td><td colspan="3">{{ $jadwal->personel }}</td>
+    <td>Personel</td><td>{{ $jadwal->personel }}</td><td>PIC</td><td>{{ $jadwal->maintenance->mesin->user->nama }}</td>
 </tr>
 </table>
 
-<h3 style="margin-bottom: 2px;">Detail Pekerjaan : </h3>
+<h5 style="margin-bottom: 2px;">Detail Pekerjaan : </h5>
 <div class="detailPekerjaan">
 {!! $jadwal->keterangan !!}
 </div>
 
 @if($jadwal->alasan)
-    <h3 style="margin-bottom: 2px;">Alasan Terlambat : </h3>
+    <h5 style="margin-bottom: 2px;">Alasan Terlambat : </h5>
     <div class="alasan">
     {{ $jadwal->alasan }}
     </div>
@@ -125,7 +126,7 @@
 @endphp
 
 
-<h3 style="margin-bottom: 0px;">Penggunaan Sparepart : </h3>
+<h5 style="margin-bottom: 0px;">Penggunaan Sparepart : </h5>
 <table class="table2">
 
     <tr>

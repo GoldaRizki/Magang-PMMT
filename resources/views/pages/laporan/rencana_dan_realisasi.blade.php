@@ -97,16 +97,13 @@
                           
             @foreach ($mesin as $mes)
             @if($mes->maintenance->isNotEmpty())
-            <tr>
-            @if(!$loop->first)
-                <td>{{ $mes->nama_mesin }}<br>({{ $mes->tipe_mesin }})</td>
-            @else
-                <td rowspan="{{ $mes->maintenance->count() }}">{{ $mes->nama_mesin }}<br>({{ $mes->tipe_mesin }})</td> 
-            @endif
-
+           
                 @foreach($mes->maintenance as $maintenance)
                 @if(!$loop->first)
                     <tr>
+                @else
+                <tr>
+                        <td rowspan="{{ $mes->maintenance->count() }}">{{ $mes->nama_mesin }}<br>({{ $mes->tipe_mesin }})</td> 
                 @endif
 
 

@@ -9,9 +9,11 @@
 
     <style>
         @page { margin-left: 2.5cm}
+        html{
+            font-family: arial, sans-serif;
+        }
 
         .table1 {
-          font-family: arial, sans-serif;
           border-collapse: collapse;
           width: 60%;
           margin: 10px auto;
@@ -46,7 +48,7 @@
 </head>
 <body>
 <div>
-<h2 style="text-align: center; margin: 20px auto;">Data Hasil Inspeksi / Pemeriksaan Mesin</h2>
+<h3 style="text-align: center; margin: 20px auto;">Data Hasil Inspeksi / Pemeriksaan Mesin</h3>
 </div>
 <table class="table1">
     <tr>
@@ -58,8 +60,12 @@
         <td>{{ $mesin->tipe_mesin }}</td>
     </tr>
     <tr>
-        <td>Tanggal</td>
-        <td>{{ $tgl_awal->format('d-m-Y') }} s/d {{ $tgl_akhir->format('d-m-Y') }}</td>
+        <td>Kode Mesin</td>
+        <td>{{ $mesin->kode_mesin }}</td>
+    </tr>
+    <tr>
+        <td>Nomor Seri</td>
+        <td>{{ $mesin->nomor_seri }}</td>
     </tr>
   
 
@@ -118,7 +124,7 @@
 
 @endphp
 
-<h4 style="margin-bottom: 1px;">Pemakaian Sparepart: </h4>
+<h6 style="margin-bottom: -1px;">Pemakaian Sparepart: </h6>
 <table class="table2">
 
     <tr>
@@ -149,7 +155,7 @@
 
 
 @else
-    <h1 style="margin: 30px auto; text-align: center;">Tidak ada Realisasi Pada Tanggal </h1>
+    <h4 style="margin: 30px auto; text-align: center;"> Tidak ada Realisasi dari tanggal {{ Illuminate\Support\Carbon::parse($tgl_awal)->format('d/m/Y')}} s/d {{ Illuminate\Support\Carbon::parse($tgl_akhir)->format('d/m/Y') }}</h4>
 @endif
 
 </body>

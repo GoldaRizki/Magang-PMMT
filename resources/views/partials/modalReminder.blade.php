@@ -54,7 +54,7 @@
 														</td>
 														<td>
 															<span class="text-dark fw-bolder d-block mb-1 fs-6">{{ $t->maintenance->mesin->ruang->nama_ruang }}</span>
-															<span class="text-muted fw-bold text-muted d-block fs-7">Bagian: {{ $t->maintenance->mesin->ruang->bagian }}</span>
+															<span class="text-muted fw-bold text-muted d-block fs-7">{{ $t->maintenance->mesin->ruang->bagian }}</span>
 														</td>
 														<td class="text-dark fw-bolder fs-6">{{ $t->maintenance->mesin->user->nama }}</td>
 														<td>
@@ -156,7 +156,7 @@
 														</td>
 														<td>
 															<span class="text-dark fw-bolder d-block mb-1 fs-6">{{ $h->maintenance->mesin->ruang->nama_ruang }}</span>
-															<span class="text-muted fw-bold text-muted d-block fs-7">Bagian: {{ $h->maintenance->mesin->ruang->bagian }}</span>
+															<span class="text-muted fw-bold text-muted d-block fs-7">{{ $h->maintenance->mesin->ruang->bagian }}</span>
 														</td>
 														<td class="text-dark fw-bolder fs-6">{{ $h->maintenance->mesin->user->nama }}</td>
 														<td>
@@ -257,7 +257,7 @@
 														</td>
 														<td>
 															<span class="text-dark fw-bolder d-block mb-1 fs-6">{{ $m->maintenance->mesin->ruang->nama_ruang }}</span>
-															<span class="text-muted fw-bold text-muted d-block fs-7">Bagian: {{ $m->maintenance->mesin->ruang->bagian }}</span>
+															<span class="text-muted fw-bold text-muted d-block fs-7">{{ $m->maintenance->mesin->ruang->bagian }}</span>
 														</td>
 														<td class="text-dark fw-bolder fs-6">{{ $m->maintenance->mesin->user->nama }}</td>
 														<td>
@@ -350,7 +350,7 @@
 														<td>
 															<a href="/jadwal/detail/{{ $b->id }}" class="text-dark fw-bolder text-hover-primary fs-6">{{ $b->maintenance->nama_maintenance }}</a>
 														</td>
-														<td>
+														<td>	
 															<span class="text-dark fw-bolder d-block mb-1 fs-6">{{ $b->maintenance->mesin->nama_mesin }}</span>
 														</td>
 														<td>
@@ -358,7 +358,7 @@
 														</td>
 														<td>
 															<span class="text-dark fw-bolder d-block mb-1 fs-6">{{ $b->maintenance->mesin->ruang->nama_ruang }}</span>
-															<span class="text-muted fw-bold text-muted d-block fs-7">Bagian: {{ $b->maintenance->mesin->ruang->bagian }}</span>
+															<span class="text-muted fw-bold text-muted d-block fs-7">{{ $b->maintenance->mesin->ruang->bagian }}</span>
 														</td>
 														<td class="text-dark fw-bolder fs-6">{{ $b->maintenance->mesin->user->nama }}</td>
 														<td>

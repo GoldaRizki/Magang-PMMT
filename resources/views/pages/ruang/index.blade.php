@@ -98,11 +98,38 @@
 
                             <div class="input-group mb-3">
                                 <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">BAGIAN</button>
-                                <ul class="dropdown-menu"> 
-                                  <li><hr class="dropdown-divider"></li>                                  
-                                  <li><a class="dropdown-item" onclick="setBagian1('Keuangan')">Keuangan</a></li>
-                                  <li><a class="dropdown-item" onclick="setBagian1('Admin')">Admin</a></li>
-                                  <li><a class="dropdown-item" onclick="setBagian1('Manajemen')">Manajemen</a></li>
+                                <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;"> 
+                                    <li><hr class="dropdown-divider"></li>                                  
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung A')">Gedung A</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung B')">Gedung B</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung C')">Gedung C</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung D')">Gedung D</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung E')">Gedung E</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung F')">Gedung F</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung G')">Gedung G</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung H')">Gedung H</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung I')">Gedung I</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung J')">Gedung J</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung K')">Gedung K</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung L')">Gedung L</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung M')">Gedung M</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung N')">Gedung N</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung O')">Gedung O</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung P')">Gedung P</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung Q')">Gedung Q</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung R')">Gedung R</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung S')">Gedung S</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung T')">Gedung T</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung U')">Gedung U</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung V')">Gedung V</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung W')">Gedung W</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung X')">Gedung X</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung Y')">Gedung Y</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung Z')">Gedung Z</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung AA')">Gedung AA</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung AB')">Gedung AB</a></li>
+                                    <li><a class="dropdown-item" onclick="setBagian1('Gedung AC')">Gedung AC</a></li>
+
 
                                 </ul>
                                 <input type="text" class="form-control bagian_form" aria-label="Bagian" name="bagian" value="{{ old('bagian') }}" id="bagian1" readonly>
@@ -200,11 +227,37 @@
 
                     <div class="input-group mb-3">
                         <button class="btn btn-primary btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">BAGIAN</button>
-                        <ul class="dropdown-menu"> 
+                        <ul class="dropdown-menu" style="max-height: 200px; overflow-y: auto;"> 
                           <li><hr class="dropdown-divider"></li>                                  
-                          <li><a class="dropdown-item" onclick="setBagian2('Keuangan')">Keuangan</a></li>
-                          <li><a class="dropdown-item" onclick="setBagian2('Admin')">Admin</a></li>
-                          <li><a class="dropdown-item" onclick="setBagian2('Manajemen')">Manajemen</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung A')">Gedung A</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung B')">Gedung B</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung C')">Gedung C</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung D')">Gedung D</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung E')">Gedung E</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung F')">Gedung F</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung G')">Gedung G</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung H')">Gedung H</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung I')">Gedung I</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung J')">Gedung J</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung K')">Gedung K</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung L')">Gedung L</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung M')">Gedung M</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung N')">Gedung N</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung O')">Gedung O</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung P')">Gedung P</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung Q')">Gedung Q</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung R')">Gedung R</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung S')">Gedung S</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung T')">Gedung T</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung U')">Gedung U</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung V')">Gedung V</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung W')">Gedung W</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung X')">Gedung X</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung Y')">Gedung Y</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung Z')">Gedung Z</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung AA')">Gedung AA</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung AB')">Gedung AB</a></li>
+                          <li><a class="dropdown-item" onclick="setBagian2('Gedung AC')">Gedung AC</a></li>
 
                         </ul>
                         <input type="text" class="form-control bagian_form @error('bagian') is-invalid @enderror" aria-label="Bagian" name="bagian" value="{{ old('bagian') }}" id="bagian2" readonly>
