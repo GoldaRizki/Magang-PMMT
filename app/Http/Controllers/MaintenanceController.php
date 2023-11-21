@@ -53,49 +53,10 @@ class MaintenanceController extends Controller
     }
 
 
-    public function tampil_sparepart($id){
-        $maintenance = Maintenance::with('sparepart')->where('mesin_id', $id)->get();
-
-        $sparepart = Sparepart::all();
-        //return ddd($maintenance);
-        //ddd($maintenance);
-        return view('pages.maintenance.sparepart', ['halaman' => 'Daftar Sparepart', 'maintenance' => $maintenance, 'sparepart' => $sparepart]);
-        
-    }
-
-    public function tambah_sparepart(Request $request){
-        $data_valid = $request->validate([
-            'maintenance_id' => 'required|numeric',
-            'sparepart_id' => 'required|numeric',
-            'jumlah' => 'required|numeric',
-        ]); 
-
-        //pengecekan manual
-
-        $sparepart = Maintenance::find($data_valid['maintenance_id'])->sparepart()->get();
-        
-        if($sparepart->where('id',$data_valid['sparepart_id'])->isNotEmpty()){
-            return back()->withErrors(['sparepart' => 'Spareparts sudah ditambahkan, tidak perlu ditambahkan lagi']);
-        }
-
-        Maintenance::find($data_valid['maintenance_id'])->sparepart()->attach($data_valid['sparepart_id'], ['jumlah' => $data_valid['jumlah']]);
-
-        return redirect()->back();  
-    }
+  
 
 
-    public function hapus_sparepart(Request $request){
-        $data_valid = $request->validate([
-            'sparepart_id' => 'required|numeric',
-            'maintenance_id' => 'required|numeric'
-        ]);
-
-        Maintenance::find($data_valid['maintenance_id'])->sparepart()->detach($data_valid['sparepart_id']);
-
-
-        return redirect()->back();
-
-    }
+   
 
 
 

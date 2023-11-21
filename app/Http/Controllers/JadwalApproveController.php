@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
 use App\Models\Maintenance;
-use App\Models\Mesin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -81,13 +80,18 @@ class JadwalApproveController extends Controller
 
         $jd = Jadwal::find($data_valid['jadwal_id']);
         $maintenance_id = $jd->maintenance_id;
+        //ddd($maintenance_id);
 
-
-        $jadwal = Jadwal::with('maintenance')->where('maintenance_id', $maintenance_id)->where('status', 3)->orWhere('status', 4)->orderBy('tanggal_realisasi', 'DESC')->get();
-        //ddd($jadwal);
+        //$jadwal = Jadwal::with('maintenance')->where('maintenance_id', 7)->where('status', 3)->orWhere('status', 4)->orderBy('tanggal_realisasi', 'DESC')->get();
+        $jadwal = Jadwal::with('maintenance')->where('status', 3)->orWhere('status', 4)->where('maintenance_id', 7)->orderBy('tanggal_realisasi', 'DESC')->get();
         if($data_valid['jadwal_id'] == $jadwal[0]->id){
 
-            $jadwal_terakhir = $jadwal[0]->tanggal_realisasi;
+            if(Carbon::parse($jadwal[0]->tanggal_realisasi, 7)->lessThan(Carbon::parse($jadwal[0]->tanggal_rencana, 7))){
+                $jadwal_terakhir = $jadwal[0]->tanggal_rencana;
+            }else{
+                $jadwal_terakhir = $jadwal[0]->tanggal_realisasi;
+            }
+
 
             Jadwal::where('tanggal_rencana', '>' , $jadwal_terakhir)->where('maintenance_id', $maintenance_id)->forceDelete();
 

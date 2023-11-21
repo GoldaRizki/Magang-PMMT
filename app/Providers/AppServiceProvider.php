@@ -38,15 +38,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('manager', function (User $user) {
-            return $user->level === 'Superuser' || $user->level === 'Admin' || $user->level === 'Manager';
+            return $user->level === 'Superuser' || $user->level === 'Manager';
         });
 
         Gate::define('supervisor', function (User $user) {
-            return $user->level === 'Superuser' || $user->level === 'Admin' || $user->level === 'Manager' || $user->level === 'Supervisor';
+            return $user->level === 'Superuser' || $user->level === 'Manager' || $user->level === 'Supervisor';
         });
 
         Gate::define('teknisi', function (User $user) {
-            return $user->level === 'Superuser' || $user->level === 'Admin' || $user->level === 'Manager' || $user->level === 'Supervisor' || $user->level === 'Teknisi';
+            return $user->level === 'Superuser' || $user->level === 'Manager' || $user->level === 'Supervisor' || $user->level === 'Teknisi';
         });
 
 

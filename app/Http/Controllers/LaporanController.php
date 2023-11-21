@@ -64,7 +64,7 @@ class LaporanController extends Controller
         return $pdf->download('Inspeksi_' . $mesin->nama_mesin .'_' . $data_valid['tanggal_awal'] .'_' . $data_valid['tanggal_akhir'] .'.pdf');
     }
 
-    public function laporan_rencana_realisasi(Request $request){
+    public function laporan_rencana_realisasi(){
         
 
         $awal = now(7)->isoWeek(1)->startOfWeek();

@@ -15,7 +15,7 @@ class CreateIsiFormsTable extends Migration
     {
         Schema::create('isi_forms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jadwal_id');
+            $table->foreignId('jadwal_id')->constrained()->cascadeOnDelete();
             $table->foreignId('form_id');
             $table->String('nilai')->default('');
             $table->timestamps();
