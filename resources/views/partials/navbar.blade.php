@@ -103,24 +103,29 @@
 			@endcan
 		
 			
-
+			@can('manager')
 			<div class="menu-item me-lg-1">
 				<a class="menu-link py-3" href="/approve">
 					<span class="menu-title">Laporan Pekerjaan</span>
 				</a> 
 			</div>
+			@endcan
 
+			@canany(['manager', 'admin'])
 			<div class="menu-item me-lg-1">
 				<a class="menu-link py-3" href="/update_tahunan">
 					<span class="menu-title">Update Tahunan</span>
 				</a> 
 			</div>
+			@endcanany
 
+			@canany(['supervisor', 'admin'])
 			<div class="menu-item me-lg-1">
 				<a class="menu-link py-3" href="/laporan">
 					<span class="menu-title">Laporan</span>
 				</a> 
 			</div>
+			@endcanany
 
 				
 		</div>

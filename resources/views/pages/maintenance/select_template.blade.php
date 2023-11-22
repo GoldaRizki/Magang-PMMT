@@ -44,6 +44,8 @@
 
 
 @section('content_right')
+
+@canany(['supervisor','admin'])
 <h1 class="text-center my-3">Pilih Template</h1>
 
 <form action="/maintenance/form/pilih/kirim/" method="post">
@@ -67,6 +69,10 @@
    
     
 </form>
+@else
+<h3>Mesin ini tidak punya jadwal maintenance</h3>
+<p>Silahkan hubungi PIC dari mesin ini atau admin untuk dibuatkan jadwal</p>
+@endcanany
     
     
 @endsection

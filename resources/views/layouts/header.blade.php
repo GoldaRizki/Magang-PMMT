@@ -147,9 +147,9 @@ License: For each use you must have a valid license purchased only from above li
 											
 											
 		<!--begin::Button-->
-		@if(isset($link_to_create))
+		@if(isset($link_to_create) && Gate::allows('admin'))
 		<a href="{{ $link_to_create }}" class="btn btn-sm btn-primary"data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">
-			
+
 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
 			<span class="svg-icon svg-icon-muted svg-icon-3">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

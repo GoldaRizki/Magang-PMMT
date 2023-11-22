@@ -123,6 +123,7 @@
   </div>
   @endif
 
+@canany(['supervisor', 'admin'])
 <form action="/laporan/maintenance" class="text-center" method="POST">
 @csrf
 
@@ -140,6 +141,7 @@
 </button>
 
 </form>
+@endcanany
 
 @endsection
 
@@ -265,7 +267,7 @@
 </div>
 
 
-@if($jadwal->status == 2)  
+@if($jadwal->status == 2 && Gate::allows('supervisor'))  
     <div class="form-check my-4">
         <input class="form-check-input" type="checkbox" value="divalidasi" name="validasi" id="flexCheckDefault">
         <label class="form-check-label h2" for="flexCheckDefault">
@@ -294,7 +296,7 @@
         </a>
 
 
-@if(!$jadwal->trashed())
+@if(!$jadwal->trashed() && Gate::denies('admin'))
 
 <button type="submit" class="btn btn-lg btn-primary d-inline" @if($jadwal->status > 2 && !$jadwal->trashed()) disabled @endif>
     <!--begin::Svg Icon | path: assets/media/icons/duotune/files/fil008.svg-->
@@ -345,7 +347,7 @@
             <div class="modal-footer">
                 
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
-
+                
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
 
             </div>
@@ -365,7 +367,7 @@
         <td class="fw-bold fs-1">Pemakaian Sparepart</td>
     
         <td class="text-end">
-            @if($jadwal->status < 3 && !$jadwal->trashed()) 
+            @if($jadwal->status < 3 && !$jadwal->trashed() && Gate::denies('admin')) 
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white">
                     <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="white"/>

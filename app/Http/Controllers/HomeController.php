@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -18,13 +19,18 @@ class HomeController extends Controller
 
     public function index(){
 
-
-        $terlambat = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '<', now()->toDateString())->get()->sortBy('tanggal_rencana');
-        $hari_ini = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', now()->toDateString())->get()->sortBy('tanggal_rencana');
-        $seminggu = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->toDateString())->where('tanggal_rencana', '<=', now()->addDays(7)->toDateString())->get()->sortBy('tanggal_rencana');
-        $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now()->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(30)->toDateString())->get()->sortBy('tanggal_rencana');
-
-
+        if(Auth::user()->level != 'Supervisor'){
+            $terlambat = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '<', now(7)->toDateString())->get()->sortBy('tanggal_rencana');
+            $hari_ini = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', now(7)->toDateString())->get()->sortBy('tanggal_rencana');
+            $seminggu = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(7)->toDateString())->get()->sortBy('tanggal_rencana');
+            $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->where('status', '<', 3)->where('tanggal_rencana', '>', now(7)->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(30)->toDateString())->get()->sortBy('tanggal_rencana');
+        }else{
+            $user_id = Auth::user()->id;
+            $terlambat = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->whereRelation('maintenance.mesin','user_id', $user_id)->where('status', '<', 3)->where('tanggal_rencana', '<', now(7)->toDateString())->get()->sortBy('tanggal_rencana');
+            $hari_ini = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->whereRelation('maintenance.mesin','user_id', $user_id)->where('status', '<', 3)->where('tanggal_rencana', now(7)->toDateString())->get()->sortBy('tanggal_rencana');
+            $seminggu = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->whereRelation('maintenance.mesin','user_id', $user_id)->where('status', '<', 3)->where('tanggal_rencana', '>', now(7)->toDateString())->where('tanggal_rencana', '<=', now()->addDays(7)->toDateString())->get()->sortBy('tanggal_rencana');
+            $sebulan = Jadwal::with(['maintenance', 'maintenance.mesin', 'maintenance.mesin.ruang'])->whereRelation('maintenance.mesin','user_id', $user_id)->where('status', '<', 3)->where('tanggal_rencana', '>', now(7)->addDays(7)->toDateString())->where('tanggal_rencana', '<=', now(7)->addDays(30)->toDateString())->get()->sortBy('tanggal_rencana');
+        }
 
         $jadwal_chart_rencana = Jadwal::whereYear('tanggal_rencana', now(7)->year)->get()->groupBy(function($val) {
             return Carbon::parse($val->tanggal_rencana)->month;

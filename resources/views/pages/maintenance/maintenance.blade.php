@@ -88,6 +88,7 @@
         </tr>
     </table>
 
+    @canany(['supervisor', 'admin'])
           <form action="/mesin/maintenance/create/" method="post">
             @csrf
             <input type="hidden" name="mesin_id" value="{{ $mesin->id }}">
@@ -105,7 +106,6 @@
                 <span>Maintenance</span>
             </button>
         </form>
-
 <!--
           <form action="/maintenance/submit/" method="post">
             @method('put')
@@ -142,6 +142,9 @@
             </button>
         </form>
 
+        @endcanany
+
+
         <a href="/mesin" class="btn btn-dark container-fluid mt-3">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr046.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-3">
@@ -172,6 +175,7 @@
         <td class="fw-bold fs-1">{{ $m->nama_maintenance }}</td>
 
         <td class="text-end">
+            @canany(['supervisor', 'admin'])
 
             <form action="/mesin/maintenance/delete/" method="post" onSubmit="return hapusSetup(this);" style ="display:inline-block;">
                 @method('delete')
@@ -201,6 +205,9 @@
                 <!--end::Svg Icon-->
                 </button>
             </form>
+
+            @endcanany
+
         </td>
     </tr>
     

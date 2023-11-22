@@ -52,7 +52,7 @@
 @endif    
 
 
-
+    @can('admin')
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_2">
             <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
             <span class="svg-icon svg-icon-muted svg-icon-3">
@@ -65,7 +65,7 @@
     <!--end::Svg Icon-->
             Tambahkan
         </button>
-
+    @endcan
 
 <div class="modal fade" tabindex="-1" id="kt_modal_2">
             <div class="modal-dialog">

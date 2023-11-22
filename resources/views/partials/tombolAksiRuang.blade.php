@@ -1,4 +1,4 @@
-
+@can('admin')
 <button type="button" class="btn btn-sm btn-primary py-0" onclick="aksiEdit({{ $r->id }}, '{{ $r->nama_ruang }}', '{{ $r->no_ruang }}', '{{ $r->bagian }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
     Edit
 </button>
@@ -22,4 +22,7 @@
 
 <span>Hapus</span>
 </button>
-</form>                
+</form>      
+@else
+ - 
+@endcan

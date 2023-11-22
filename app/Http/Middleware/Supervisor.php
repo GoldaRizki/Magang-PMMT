@@ -16,7 +16,7 @@ class Supervisor
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->guest() || !(auth()->user()->level === 'Superuser' || auth()->user()->level == 'Admin' || auth()->user()->level == 'Manager' || auth()->user()->level == 'Supervisor')){
+        if(auth()->guest() || !(auth()->user()->level === 'Superuser' || auth()->user()->level == 'Admin' ||auth()->user()->level == 'Manager' || auth()->user()->level == 'Supervisor')){
             abort(403);
         }
         return $next($request);

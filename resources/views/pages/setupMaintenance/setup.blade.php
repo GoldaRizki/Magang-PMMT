@@ -479,6 +479,7 @@
     <tr class="table-primary">
         <td class="fw-bold fs-2">{{ $nama_kategori }}</td>
         <td class="text-end">
+            @canany(['supervisor', 'admin'])
 
             <form action="/kategori/destroy" method="post" onSubmit="return hapus(this);" style ="display:inline-block;">
                 @method("delete")
@@ -511,6 +512,7 @@
                     <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="white"/>
                 </svg>
             </button>
+            @endcanany
         </td>
     </tr>
 
@@ -530,7 +532,7 @@
             <td>{{ $s->satuan_periode }}</td>
             <td><span style="color: {{ $s->warna }};" class="bg-white px-2 rounded-2">{{ $s->warna }}</span></td>
             <td>
-                
+                @canany(['supervisor', 'admin'])
                     <!-- panggil modal -->
                 <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_2" onclick="setEdit({{ $s->id }}, {{ $s->kategori_id }},'{{ $s->nama_setup_maintenance }}', {{ $s->periode }}, '{{ $s->satuan_periode }}', '{{ $s->warna }}')">
                         <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
@@ -577,7 +579,7 @@
                     
                     <span>Form</span>
             </button>
-
+                @endcanany
             </td>
         </tr>
         <tr>
@@ -596,7 +598,7 @@
                             <td>{{ $f->nama_setup_form }}</td>
                             <td>{{ $f->syarat }}</td>
                             <td>
-
+                                @canany(['supervisor', 'admin'])
                                 <button onclick="editSetupForm({{ $f->id }}, '{{ $f->nama_setup_form }}', '{{ $f->syarat }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_5" class="btn text-primary p-0 m-0">Edit</button>&nbsp;|
                                 <form action="/setupForm/delete/" method="post" onSubmit="return hapus(this);" style ="display:inline-block;">
                                     @csrf
@@ -605,6 +607,9 @@
                                     <input type="hidden" name="id" value="{{ $f->id }}">
                                     <button class="btn text-danger p-0 m-0">Hapus</button>
                                 </form>
+                                @else
+                                 - 
+                                @endcanany
                                 
 
                             </td>

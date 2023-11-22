@@ -87,6 +87,36 @@ class DatabaseSeeder extends Seeder
                 'last_login' => Carbon::parse('12-09-2023 18:45:05'),
             ]);
         
+            User::create([
+                'username' => 'teknisi',
+                'nama' => 'Budak Korporat',
+                'level' => 'Teknisi',
+                'password' => bcrypt('1234'),
+                'last_login' => Carbon::parse('12-05-2023 23:34:45'),
+            ]);
+
+            User::create([
+                'username' => 'supervisor',
+                'nama' => 'Supervisor',
+                'level' => 'Supervisor',
+                'password' => bcrypt('1234'),
+                'last_login' => Carbon::parse('12-05-2023 23:34:45'),
+            ]);
+            User::create([
+                'username' => 'manager',
+                'nama' => 'Si paling manager',
+                'level' => 'Manager',
+                'password' => bcrypt('1234'),
+                'last_login' => Carbon::parse('12-05-2023 23:34:45'),
+            ]);
+            User::create([
+                'username' => 'admin',
+                'nama' => 'Si Paling Admin',
+                'level' => 'Admin',
+                'password' => bcrypt('1234'),
+                'last_login' => Carbon::parse('12-05-2023 23:34:45'),
+            ]);
+
         Mesin::create([
             'nama_mesin' => 'Mesin Genset Supra',
             'no_asset' => '234.234.276.23.334',

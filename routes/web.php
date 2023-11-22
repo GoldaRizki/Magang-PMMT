@@ -35,7 +35,7 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-Route::post('/masuk', [UserController::class, 'masuk']);
+Route::post('/masuk', [UserController::class, 'masuk'])->middleware('guest');
 
 Route::get('/akun', [UserController::class, 'akun'])->middleware('auth');
 Route::put('/user/akun/update/', [UserController::class, 'update_akun'])->middleware('auth');
@@ -44,97 +44,97 @@ Route::put('/user/akun/update/password/', [UserController::class, 'ganti_passwor
 
 
 Route::get('/user/all/', [UserController::class, 'index'])->middleware('superuser');
-Route::get('/user/create/', [UserController::class, 'create']);
-Route::post('/user/store/', [UserController::class, 'store']);
-Route::get('/user/edit/{id}', [UserController::class, 'edit']);
-Route::put('/user/update/', [UserController::class, 'update']);
-Route::delete('/user/delete/', [UserController::class, 'delete']);
+Route::get('/user/create/', [UserController::class, 'create'])->middleware('superuser');
+Route::post('/user/store/', [UserController::class, 'store'])->middleware('superuser');
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])->middleware('superuser');
+Route::put('/user/update/', [UserController::class, 'update'])->middleware('superuser');
+Route::delete('/user/delete/', [UserController::class, 'delete'])->middleware('superuser');
 
 
 
-Route::get('/mesin', [MesinController::class, 'index']);
-Route::get('/mesin/create', [MesinController::class, 'create']);
-Route::post('/mesin/create', [MesinController::class, 'tambah']);
-Route::get('/mesin/detail/{id}', [MesinController::class, 'detail']);
-Route::get('/mesin/edit/{id}', [MesinController::class, 'edit']);
+Route::get('/mesin', [MesinController::class, 'index'])->middleware('teknisi');
+Route::get('/mesin/create', [MesinController::class, 'create'])->middleware('admin');
+Route::post('/mesin/create', [MesinController::class, 'tambah'])->middleware('admin');
+Route::get('/mesin/detail/{id}', [MesinController::class, 'detail'])->middleware('teknisi');
+Route::get('/mesin/edit/{id}', [MesinController::class, 'edit'])->middleware('admin');
 
-Route::put('/mesin/update', [MesinController::class, 'update']);
-Route::delete('/mesin/destroy', [MesinController::class, 'destroy']);
-Route::post('/mesin/ruang/create', [MesinController::class, 'create_ruang']);
-
-
-Route::get('/mesin/maintenance/{id}', [MaintenanceController::class, 'maintenance_mesin']);
-Route::post('/mesin/maintenance/create/', [UpdateMaintenanceController::class, 'create']);
-Route::put('/mesin/maintenance/create/submit/', [UpdateMaintenanceController::class, 'submit_create']);
-Route::put('/mesin/maintenance/edit/', [UpdateMaintenanceController::class, 'edit']);
-Route::put('/mesin/maintenance/edit/submit', [UpdateMaintenanceController::class, 'submit_edit']);
-Route::delete('/mesin/maintenance/delete/', [UpdateMaintenanceController::class, 'delete']);
+Route::put('/mesin/update', [MesinController::class, 'update'])->middleware('admin');
+Route::delete('/mesin/destroy', [MesinController::class, 'destroy'])->middleware('admin');
+Route::post('/mesin/ruang/create', [MesinController::class, 'create_ruang'])->middleware('admin');
 
 
-Route::get('/kategori', [KategoriController::class, 'index'])->middleware('admin');
-Route::post('/kategori/create', [KategoriController::class, 'create']);
-Route::put('/kategori/update', [KategoriController::class, 'updateOnKategori']);
-Route::delete('/kategori/destroy', [KategoriController::class, 'destroy']);
-
-Route::post('/kategori/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaKategori']);
-Route::put('/kategori/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaKategori']);
-Route::delete('/kategori/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaKategori']);
+Route::get('/mesin/maintenance/{id}', [MaintenanceController::class, 'maintenance_mesin'])->middleware('teknisi');
+Route::post('/mesin/maintenance/create/', [UpdateMaintenanceController::class, 'create'])->middleware('supervisor');
+Route::put('/mesin/maintenance/create/submit/', [UpdateMaintenanceController::class, 'submit_create'])->middleware('supervisor');
+Route::put('/mesin/maintenance/edit/', [UpdateMaintenanceController::class, 'edit'])->middleware('supervisor');
+Route::put('/mesin/maintenance/edit/submit', [UpdateMaintenanceController::class, 'submit_edit'])->middleware('supervisor');
+Route::delete('/mesin/maintenance/delete/', [UpdateMaintenanceController::class, 'delete'])->middleware('supervisor');
 
 
-Route::get('/setupMaintenance/{id}', [SetupMaintenanceController::class, 'setup']);
-Route::post('/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaSetup']);
-Route::put('/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaSetup']);
-Route::delete('/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaSetup']);
-Route::put('/setupMaintenance/kategori/update', [KategoriController::class, 'updateOnSetup']);
+Route::get('/kategori', [KategoriController::class, 'index'])->middleware('teknisi');
+Route::post('/kategori/create', [KategoriController::class, 'create'])->middleware('supervisor');
+Route::put('/kategori/update', [KategoriController::class, 'updateOnKategori'])->middleware('supervisor');
+Route::delete('/kategori/destroy', [KategoriController::class, 'destroy'])->middleware('supervisor');
+
+Route::post('/kategori/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaKategori'])->middleware('supervisor');
+Route::put('/kategori/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaKategori'])->middleware('supervisor');
+Route::delete('/kategori/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaKategori'])->middleware('supervisor');
 
 
-Route::post('/setupForm/create/', [SetupFormController::class, 'createPadaSetup']);
-Route::put('/setupForm/edit/', [SetupFormController::class, 'editPadaSetup']);
-Route::delete('/setupForm/delete/', [SetupFormController::class, 'deletePadaSetup']);
-
-Route::post('/kategori/setupForm/create/', [SetupFormController::class, 'createPadaKategori']);
-Route::put('/kategori/setupForm/edit/', [SetupFormController::class, 'editPadaKategori']);
-Route::delete('/kategori/setupForm/delete/', [SetupFormController::class, 'deletePadaKategori']);
-
-Route::get('/ruang', [RuangController::class, 'index']);
-Route::post('/ruang/create', [RuangController::class, 'create']);
-Route::put('/ruang/update', [RuangController::class, 'update']);
-Route::delete('/ruang/destroy', [RuangController::class, 'destroy']);
+Route::get('/setupMaintenance/{id}', [SetupMaintenanceController::class, 'setup'])->middleware('teknisi');
+Route::post('/setupMaintenance/create', [SetupMaintenanceController::class, 'createPadaSetup'])->middleware('supervisor');
+Route::put('/setupMaintenance/edit', [SetupMaintenanceController::class, 'editPadaSetup'])->middleware('supervisor');
+Route::delete('/setupMaintenance/destroy', [SetupMaintenanceController::class, 'hapusPadaSetup'])->middleware('supervisor');
+Route::put('/setupMaintenance/kategori/update', [KategoriController::class, 'updateOnSetup'])->middleware('supervisor');
 
 
-Route::get('/approve', [JadwalApproveController::class, 'index']);
-Route::post('/approve/jadwal', [JadwalApproveController::class, 'approve']);
-Route::put('/approve/jadwal/tetap', [JadwalApproveController::class, 'approve_tetap']);
-Route::put('/approve/jadwal/ubah', [JadwalApproveController::class, 'approve_ubah']);
+Route::post('/setupForm/create/', [SetupFormController::class, 'createPadaSetup'])->middleware('supervisor');
+Route::put('/setupForm/edit/', [SetupFormController::class, 'editPadaSetup'])->middleware('supervisor');
+Route::delete('/setupForm/delete/', [SetupFormController::class, 'deletePadaSetup'])->middleware('supervisor');
+
+Route::post('/kategori/setupForm/create/', [SetupFormController::class, 'createPadaKategori'])->middleware('supervisor');
+Route::put('/kategori/setupForm/edit/', [SetupFormController::class, 'editPadaKategori'])->middleware('supervisor');
+Route::delete('/kategori/setupForm/delete/', [SetupFormController::class, 'deletePadaKategori'])->middleware('supervisor');
+
+Route::get('/ruang', [RuangController::class, 'index'])->middleware('teknisi');
+Route::post('/ruang/create', [RuangController::class, 'create'])->middleware('admin');
+Route::put('/ruang/update', [RuangController::class, 'update'])->middleware('admin');
+Route::delete('/ruang/destroy', [RuangController::class, 'destroy'])->middleware('admin');
+
+
+Route::get('/approve', [JadwalApproveController::class, 'index'])->middleware('manager')->middleware('bukan admin');
+Route::post('/approve/jadwal', [JadwalApproveController::class, 'approve'])->middleware('manager')->middleware('bukan admin');
+Route::put('/approve/jadwal/tetap', [JadwalApproveController::class, 'approve_tetap'])->middleware('manager')->middleware('bukan admin');
+Route::put('/approve/jadwal/ubah', [JadwalApproveController::class, 'approve_ubah'])->middleware('manager')->middleware('bukan admin');
 
 
 
-Route::post('/maintenance/form/pilih/', [SetupMesinController::class, 'pilih_template']);
-Route::post('/maintenance/form/pilih/kirim/', [SetupMesinController::class, 'ambil_template']);
-Route::get('/maintenance/form/pilih/', [SetupMesinController::class, 'tampil_template']);
+Route::post('/maintenance/form/pilih/', [SetupMesinController::class, 'pilih_template'])->middleware('teknisi');
+Route::post('/maintenance/form/pilih/kirim/', [SetupMesinController::class, 'ambil_template'])->middleware('supervisor');
+Route::get('/maintenance/form/pilih/', [SetupMesinController::class, 'tampil_template'])->middleware('supervisor');
 
-Route::post('/maintenance/ubah_template/', [SetupMesinController::class, 'ubah_template']);
+Route::post('/maintenance/ubah_template/', [SetupMesinController::class, 'ubah_template'])->middleware('supervisor');
 
-Route::post('/maintenance/create/', [SetupMesinController::class, 'create_maintenance']);
-Route::post('/maintenance/edit/', [SetupMesinController::class, 'edit_maintenance']);
-Route::post('/maintenance/delete/', [SetupMesinController::class, 'delete_maintenance']);
+Route::post('/maintenance/create/', [SetupMesinController::class, 'create_maintenance'])->middleware('supervisor');
+Route::post('/maintenance/edit/', [SetupMesinController::class, 'edit_maintenance'])->middleware('supervisor');
+Route::post('/maintenance/delete/', [SetupMesinController::class, 'delete_maintenance'])->middleware('supervisor');
 
-Route::put('/maintenance/submit/', [MaintenanceController::class, 'update']);
+Route::put('/maintenance/submit/', [MaintenanceController::class, 'update'])->middleware('supervisor');
 
-Route::post('/maintenance/form/create/', [SetupMesinController::class, 'create_maintenance_form']);
-Route::post('/maintenance/form/update/', [SetupMesinController::class, 'update_maintenance_form']);
-Route::post('/maintenance/form/delete/', [SetupMesinController::class, 'delete_maintenance_form']);
+Route::post('/maintenance/form/create/', [SetupMesinController::class, 'create_maintenance_form'])->middleware('supervisor');
+Route::post('/maintenance/form/update/', [SetupMesinController::class, 'update_maintenance_form'])->middleware('supervisor');
+Route::post('/maintenance/form/delete/', [SetupMesinController::class, 'delete_maintenance_form'])->middleware('supervisor');
 
 
 //Route::post('/maintenance/action/create/', [MaintenanceController::class, 'maintenance_add']);
 
 
-Route::get('/sparepart', [SparepartController::class, 'index']);
-Route::get('/sparepart/create', [SparepartController::class, 'create']);
-Route::post('/sparepart/create', [SparepartController::class, 'tambah']);
-Route::get('/sparepart/edit/{id}', [SparepartController::class, 'edit']);
-Route::put('/sparepart/update', [SparepartController::class, 'update']);
-Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy']);    
+Route::get('/sparepart', [SparepartController::class, 'index'])->middleware('teknisi');
+Route::get('/sparepart/create', [SparepartController::class, 'create'])->middleware('admin');
+Route::post('/sparepart/create', [SparepartController::class, 'tambah'])->middleware('admin');
+Route::get('/sparepart/edit/{id}', [SparepartController::class, 'edit'])->middleware('admin');
+Route::put('/sparepart/update', [SparepartController::class, 'update'])->middleware('admin');
+Route::delete('/sparepart/destroy', [SparepartController::class, 'destroy'])->middleware('admin');    
 
 /*
 diilangin, diganti pake model jadwal biasa
@@ -143,26 +143,27 @@ Route::post('/sparepart/maintenance/', [MaintenanceController::class, 'tambah_sp
 Route::delete('/sparepart/maintenance/delete/', [MaintenanceController::class, 'hapus_sparepart']);
 */
 
-Route::post('/sparepart/jadwal/', [JadwalSparepartController::class, 'tambah_sparepart']);
-Route::delete('/sparepart/jadwal/delete/', [JadwalSparepartController::class, 'hapus_sparepart']);
+Route::post('/sparepart/jadwal/', [JadwalSparepartController::class, 'tambah_sparepart'])->middleware('teknisi');
+Route::delete('/sparepart/jadwal/delete/', [JadwalSparepartController::class, 'hapus_sparepart'])->middleware('teknisi');
 
 
-Route::get('/jadwal/{id}', [JadwalController::class, 'index']);
-Route::get('/jadwal/detail/{id}', [JadwalController::class, 'detail']);
-Route::put('/jadwal/update/', [JadwalController::class, 'update']);
-Route::put('/jadwal/update_alasan/', [JadwalController::class, 'update_with_alasan']);
-Route::post('/jadwal/update_alasan_batal/', [JadwalController::class, 'update_with_alasan_batal']);
+Route::get('/jadwal/{id}', [JadwalController::class, 'index'])->middleware('teknisi');
+Route::get('/jadwal/detail/{id}', [JadwalController::class, 'detail'])->middleware('teknisi');
+Route::put('/jadwal/update/', [JadwalController::class, 'update'])->middleware('teknisi')->middleware('bukan admin');
+Route::put('/jadwal/update_alasan/', [JadwalController::class, 'update_with_alasan'])->middleware('teknisi')->middleware('bukan admin');
+Route::post('/jadwal/update_alasan_batal/', [JadwalController::class, 'update_with_alasan_batal'])->middleware('teknisi')->middleware('bukan admin');
 
 
-Route::get('/update_tahunan', [UpdateDbController::class, 'index']);
-Route::post('/update_tahunan', [UpdateDbController::class, 'update_jadwal']);
+Route::get('/update_tahunan', [UpdateDbController::class, 'index'])->middleware('manager');
+Route::post('/update_tahunan', [UpdateDbController::class, 'update_jadwal'])->middleware('manager');
 
 
-Route::get('/laporan', [LaporanController::class, 'index']);
-Route::post('/laporan/inspeksi', [LaporanController::class, 'laporan_general_inspection']);
-Route::post('/laporan/maintenance', [LaporanController::class, 'laporan_maintenance']);
-Route::post('/laporan/rencana_realisasi', [LaporanController::class, 'laporan_rencana_realisasi']);
+Route::get('/laporan', [LaporanController::class, 'index'])->middleware('supervisor');
+Route::post('/laporan/inspeksi', [LaporanController::class, 'laporan_general_inspection'])->middleware('supervisor');
+Route::post('/laporan/maintenance', [LaporanController::class, 'laporan_maintenance'])->middleware('supervisor');
+Route::post('/laporan/rencana_realisasi', [LaporanController::class, 'laporan_rencana_realisasi'])->middleware('supervisor');
 
+/*
 
 Route::get('/test', [LaporanController::class, 'laporan_rencana_realisasi']);
 Route::post('/test', [HomeController::class, 'test2']);
@@ -170,5 +171,5 @@ Route::get('/test_load', [SetupMesinController::class, 'select_template']);
 Route::get('/test/calendar', [HomeController::class, 'tes_kalender']);
 Route::get('/test/pdf', [HomeController::class, 'test_pdf']);
 
-
+*/
 

@@ -522,6 +522,7 @@
 
 
 @section('content_left')
+@canany(['supervisor', 'admin'])
 <div class="col-auto text-center">
     <button type="button" class="btn container-fluid btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#kt_modal_1">
         <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen035.svg-->
@@ -536,6 +537,7 @@
         Kategori Baru
     </button>
   </div>
+@endcanany
 @endsection
 
 
@@ -549,7 +551,7 @@
     <tr class="table-primary">
         <td class="fw-bold fs-2"><a class="link-dark" href="/setupMaintenance/{{ $k->id }}">{{ $k->nama_kategori }}</a></td>
         <td class="text-end">
-
+            @canany(['supervisor', 'admin'])
             <form action="/kategori/destroy" method="post" onSubmit="return hapus(this);" style ="display:inline-block;">
                     @method("delete")
                     @csrf
@@ -582,6 +584,7 @@
             <!--end::Svg Icon-->
             </button>
 
+            @endcanany
         </td>
     </tr>
     <tr>
@@ -597,7 +600,7 @@
                     <td>{{ $s->satuan_periode }}</td>
                     <td><span style="color: {{ $s->warna }};" class="bg-white px-2 rounded-2">{{ $s->warna }}</span></td>
                     <td>
-                            <!-- panggil modal -->
+                        @canany(['supervisor', 'admin'])                            <!-- panggil modal -->
                             <button class="btn btn-sm btn-primary py-0 text-nowrap d-inline"  data-bs-toggle="modal" data-bs-target="#kt_modal_3" onclick="setEdit({{ $s->id }}, '{{ $s->nama_setup_maintenance }}', {{ $s->periode }}, '{{ $s->satuan_periode }}', '{{ $s->warna }}')">
                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen055.svg-->
                                 <span class="svg-icon svg-icon-muted svg-icon-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -643,9 +646,9 @@
         
                             
                             <span>Form</span>
-                    </button>
+                        </button>
 
-
+                        @endcanany
                     </td>
                 </tr>
                 <tr>
@@ -666,14 +669,16 @@
                             <td>{{ $f->nama_setup_form }}</td>
                             <td>{{ $f->syarat }}</td>
                             <td>
-
-                                <button onclick="editSetupForm({{ $f->id }}, '{{ $f->nama_setup_form }}', '{{ $f->syarat }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_6" class="btn text-primary p-0 m-0">Edit</button>&nbsp;|&nbsp;
+                                @canany(['supervisor', 'admin'])                                <button onclick="editSetupForm({{ $f->id }}, '{{ $f->nama_setup_form }}', '{{ $f->syarat }}')" data-bs-toggle="modal" data-bs-target="#kt_modal_6" class="btn text-primary p-0 m-0">Edit</button>&nbsp;|&nbsp;
                                 <form action="/kategori/setupForm/delete/" method="post" onSubmit="return hapus(this);" style ="display:inline-block;">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="id" value="{{ $f->id }}">
                                     <button class="btn text-danger p-0 m-0">Hapus</button>
                                 </form>
+                                @else
+                                 - 
+                                @endcanany
                             </td>
                         
                         </tr>

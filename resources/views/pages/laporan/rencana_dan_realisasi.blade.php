@@ -22,6 +22,7 @@
             margin-bottom: 3px; 
             text-align: center;
         }
+
     </style>
 
 </head>
@@ -37,8 +38,9 @@
     @endphp
         
         
-    <h3 class="judul">Laporan Mesin</h3>
+    <h3 class="judul">RENCANA DAN REALISASI PREVENTIVE MAINTENANCE MESIN UTILITY</h3>
     <h5 class="judul">Tahun {{ $tahun_ini }}</h5>
+    <h6 style="font-size: 7pt;" class="judul">(diunduh tanggal {{ now(7)->formatLocalized('%d %B %Y') }})</h6>
     <table class="tabel-tampil-jadwal">
         <thead>
             <tr>
