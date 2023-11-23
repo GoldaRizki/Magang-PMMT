@@ -23,12 +23,12 @@
 													<!--begin::Col-->
 													<div class="col-lg-8">
 														<!--begin::Image input-->
-														<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/media/avatars/blank.png)">
+														<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/default/blank.png)">
 															<!--begin::Preview existing avatar-->
 															@if(auth()->user()->foto)
 															<div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ '/storage/'. auth()->user()->foto }}')"></div>
 															@else
-															<div class="image-input-wrapper w-125px h-125px" style="background-image: url(/assets/media/avatars/blank.png)"></div>
+															<div class="image-input-wrapper w-125px h-125px" style="background-image: url(/assets/default/blank.png)"></div>
 															@endif
 															<!--end::Preview existing avatar-->
 															<!--begin::Label-->

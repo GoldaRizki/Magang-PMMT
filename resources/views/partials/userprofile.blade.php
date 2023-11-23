@@ -43,7 +43,7 @@
 												@if(auth()->user()->foto)
 												<img src="{{ '/storage/'.auth()->user()->foto }}" alt="user" />
 												@else
-													<img src="/assets/media/avatars/blank.png" alt="user" />
+													<img src="/assets/default/blank.png" alt="user" />
 												@endif
 												
 											</div>
@@ -58,7 +58,7 @@
 														@if(auth()->user()->foto)
 															<img alt="Logo" src="{{ '/storage/'.auth()->user()->foto }}" />
 														@else
-															<img alt="Logo" src="/assets/media/avatars/blank.png" />
+															<img alt="Logo" src="/assets/default/blank.png" />
 														@endif
 														</div>
 														<!--end::Avatar-->
